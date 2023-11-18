@@ -1,4 +1,6 @@
-public class Enquiry implements Message {
+import java.util.ArrayList;
+
+public class Enquiry implements EditableMessage {
 
 	private String ownerID;
 	private String content;
@@ -8,35 +10,42 @@ public class Enquiry implements Message {
 		return this.ownerID;
 	}
 
-	public String getContent() {
-		return this.content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
 	public ArrayList<Reply> getReplies() {
 		return this.replies;
 	}
 
+	public String view() {
+		return this.content;
+	}
+
+	public boolean isProcessed() {
+		return this.replies.size() == 0;
+	}
+
 	/**
-	 * 
+	 *
+	 * @param content
+	 */
+	public void edit(String content) {
+		this.content = content;
+	}
+
+	/**
+	 *
 	 * @param userID
 	 * @param content
 	 */
 	public Enquiry(String userID, String content) {
-		// TODO - implement Enquiry.Enquiry
-		throw new UnsupportedOperationException();
+		this.ownerID = userID;
+		this.content = content;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param reply
 	 */
 	public void addReply(Reply reply) {
-		// TODO - implement Enquiry.addReply
-		throw new UnsupportedOperationException();
+		this.replies.add(reply);
 	}
 
 }

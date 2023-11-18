@@ -1,3 +1,6 @@
+import java.util.Date;
+import java.util.ArrayList;
+
 public class Camp {
 
 	Staff incharge;
@@ -6,17 +9,17 @@ public class Camp {
 	private Date startDate;
 	private Date endDate;
 	private Date regCloseDate;
-	private boolean openToNTU;
+	private Faculty openToFaculty;
 	private String location;
 	private int totalSlotsLeft;
-	private int comSlotsLeft = 10;
+	private int commSlotsLeft;
 	private String description;
 	private boolean visibleToStudents;
 	private Staff staffInCharge;
-	private ArrayList<Student> attendees;
-	private ArrayList<Student> committee;
-	private ArrayList<Enquiry> enquiries;
-	private ArrayList<Suggestion> suggestions;
+	private ArrayList<Student> attendeeList;
+	private ArrayList<CommitteeMember> committeeList;
+	private ArrayList<Enquiry> enquiryList;
+	private ArrayList<Suggestion> suggestionList;
 
 	public int getCampID() {
 		return this.campID;
@@ -50,12 +53,12 @@ public class Camp {
 		this.regCloseDate = regCloseDate;
 	}
 
-	public boolean isOpenToNTU() {
-		return this.openToNTU;
+	public Faculty getOpenToFaculty() {
+		return this.openToFaculty;
 	}
 
-	public void setOpenToNTU(boolean openToNTU) {
-		this.openToNTU = openToNTU;
+	public void setOpenToFaculty(Faculty openToFaculty) {
+		this.openToFaculty = openToFaculty;
 	}
 
 	public String getLocation() {
@@ -74,12 +77,12 @@ public class Camp {
 		this.totalSlotsLeft = totalSlotsLeft;
 	}
 
-	public int getComSlotsLeft() {
-		return this.comSlotsLeft;
+	public int getCommSlotsLeft() {
+		return this.commSlotsLeft;
 	}
 
 	public void setComSlotsLeft(int comSlotsLeft) {
-		this.comSlotsLeft = comSlotsLeft;
+		this.commSlotsLeft = comSlotsLeft;
 	}
 
 	public String getDescription() {
@@ -107,23 +110,23 @@ public class Camp {
 	}
 
 	public ArrayList<Student> getAttendees() {
-		return this.attendees;
+		return this.attendeeList;
 	}
 
-	public ArrayList<Student> getCommittee() {
-		return this.committee;
+	public ArrayList<CommitteeMember> getCommittee() {
+		return this.committeeList;
 	}
 
 	public ArrayList<Enquiry> getEnquiries() {
-		return this.enquiries;
+		return this.enquiryList;
 	}
 
 	public ArrayList<Suggestion> getSuggestions() {
-		return this.suggestions;
+		return this.suggestionList;
 	}
 
 	/**
-	 * 
+	 *
 	 * @param campID
 	 * @param name
 	 * @param startDate
@@ -136,45 +139,54 @@ public class Camp {
 	 * @param description
 	 * @param visibleToStudents
 	 */
-	public Camp(int campID, String name, Date startDate, Date endDate, Date regCloseDate, boolean openToNTU, String location, int totalSlotsLeft, int comSlotsLeft, string description, boolean visibleToStudents) {
-		// TODO - implement Camp.Camp
-		throw new UnsupportedOperationException();
+	public Camp(int campID, String name, Date startDate, Date endDate, Date regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
+		this.campID = campID;
+		this.name = name;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.regCloseDate = regCloseDate;
+		this.openToFaculty = openToFaculty;
+		this.location = location;
+		this.totalSlotsLeft = totalSlots;
+		this.commSlotsLeft = commSlots;
+		this.description = description;
+		this.visibleToStudents = visibleToStudents;
+		attendeeList = new ArrayList<Student>();
+		committeeList = new ArrayList<CommitteeMember>();
+		enquiryList = new ArrayList<Enquiry>();
+		suggestionList = new ArrayList<Suggestion>();
 	}
 
 	/**
-	 * 
+	 *
 	 * @param attendee
 	 */
 	public void addAttendee(Student attendee) {
-		// TODO - implement Camp.addAttendee
-		throw new UnsupportedOperationException();
+		attendeeList.add(attendee);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param committee
 	 */
-	public void addCommittee(Student committee) {
-		// TODO - implement Camp.addCommittee
-		throw new UnsupportedOperationException();
+	public void addCommittee(CommitteeMember committee) {
+		committeeList.add(committee);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param enquiry
 	 */
 	public void addEnquiry(Enquiry enquiry) {
-		// TODO - implement Camp.addEnquiry
-		throw new UnsupportedOperationException();
+		enquiryList.add(enquiry);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param suggestion
 	 */
 	public void addSuggestion(Suggestion suggestion) {
-		// TODO - implement Camp.addSuggestion
-		throw new UnsupportedOperationException();
+		suggestionList.add(suggestion);
 	}
 
 }

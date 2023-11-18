@@ -1,28 +1,44 @@
+import java.util.ArrayList;
+
 public class Student extends User {
 
-	private ArrayList<Integer> signedUpCamps;
+	private ArrayList<Camp> signedUpCamps;
 
-	public Student() {
-		// TODO - implement Student.Student
-		throw new UnsupportedOperationException();
+	/**
+	 *
+	 * @param userID
+	 * @param faculty
+	 * @param pw
+	 */
+	public Student(String userID, Faculty faculty, String pw) {
+		super(userID, faculty, pw);
+		signedUpCamps = new ArrayList<Camp>();
 	}
 
 	/**
-	 * 
-	 * @param campID
+	 *
+	 * @param userID
+	 * @param faculty
 	 */
-	public void register(int campID) {
-		// TODO - implement Student.register
-		throw new UnsupportedOperationException();
+	public Student(String userID, Faculty faculty) {
+		super(userID, faculty);
+		signedUpCamps = new ArrayList<Camp>();
 	}
 
 	/**
-	 * 
+	 *
 	 * @param campID
 	 */
-	public void withdraw(int campID) {
-		// TODO - implement Student.withdraw
-		throw new UnsupportedOperationException();
+	public void register(Camp camp) {
+		signedUpCamps.add(camp);
+	}
+
+	/**
+	 *
+	 * @param campID
+	 */
+	public void withdraw(Camp camp) {
+		signedUpCamps.remove(camp);
 	}
 
 }

@@ -1,31 +1,44 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class Staff extends User {
 
-	Collection<Camp> camps;
-	private Collection<ArrayList<Camp>> createdCamps;
+	ArrayList<Camp> createdCamps;
 
-	public Staff() {
-		// TODO - implement Staff.Staff
-		throw new UnsupportedOperationException();
+		/**
+	 *
+	 * @param userID
+	 * @param faculty
+	 * @param pw
+	 */
+	public Staff(String userID, Faculty faculty, String pw) {
+		super(userID, faculty, pw);
+		createdCamps = new ArrayList<Camp>();
 	}
 
 	/**
-	 * 
+	 *
+	 * @param userID
+	 * @param faculty
+	 */
+	public Staff(String userID, Faculty faculty) {
+		super(userID, faculty);
+		createdCamps = new ArrayList<Camp>();
+	}
+
+	/**
+	 *
 	 * @param camp
 	 */
 	public void createCamp(Camp camp) {
-		// TODO - implement Staff.createCamp
-		throw new UnsupportedOperationException();
+		createdCamps.add(camp);
 	}
 
 	/**
-	 * 
+	 *
 	 * @param camp
 	 */
 	public void deleteCamp(Camp camp) {
-		// TODO - implement Staff.deleteCamp
-		throw new UnsupportedOperationException();
+		createdCamps.remove(camp);
 	}
 
 }
