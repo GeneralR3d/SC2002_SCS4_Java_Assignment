@@ -6,8 +6,7 @@ import Entity.User;
 public class UserController {
     public static boolean login(ArrayList<User> users, String username, String password){
         for (User user: users){
-            // to add get and set methods for password
-            if (user.getUserID() == username && user.getPW()) return true;
+            if (user.signIn(username, password)) return true;
         }
         return false;
     }
