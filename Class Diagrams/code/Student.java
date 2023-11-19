@@ -35,7 +35,7 @@ public class Student extends User {
 
 	/**
 	 *
-	 * @param campID
+	 * @param camp
 	 */
 	public void withdraw(Camp camp) {
 		signedUpCamps.remove(camp);
