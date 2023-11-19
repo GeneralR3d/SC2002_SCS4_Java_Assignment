@@ -1,3 +1,5 @@
+package Entity;
+
 import java.util.ArrayList;
 
 public class Enquiry implements EditableMessage {

@@ -1,3 +1,5 @@
+package Entity;
+
 public class Reply implements Message {
 
 	private String ownerID;

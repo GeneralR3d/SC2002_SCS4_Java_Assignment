@@ -1,3 +1,5 @@
+package Entity;
+
 public interface EditableMessage extends Message{
 
   boolean isProcessed();

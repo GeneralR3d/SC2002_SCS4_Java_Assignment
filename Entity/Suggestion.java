@@ -1,3 +1,5 @@
+package Entity;
+
 public class Suggestion implements EditableMessage {
 
 	private String ownerID;

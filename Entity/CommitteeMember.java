@@ -1,3 +1,5 @@
+package Entity;
+
 public class CommitteeMember extends Student {
 
 	private Camp commiteeMemberFor;
