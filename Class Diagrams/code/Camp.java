@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Camp {
 
-	Staff incharge;
+	private Staff incharge;
 	private int campID;
 	private String name;
 	private Date startDate;

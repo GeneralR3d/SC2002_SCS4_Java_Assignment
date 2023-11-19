@@ -123,8 +123,8 @@ public class StudentUI{
                     CampController.addEnquiry(camp,question);
                 break;
             case 4:
-                ArrayList<Enquiry> enquiries = CampController.getEnquiries(camp);
-                displayEnquiries(enquiries);
+                ArrayList<Enquiry> enquiriesByStudent = CampController.getEnquiries(camp);
+                displayEnquiries(enquiriesByStudent);
                 break;
             default:
                 break;
@@ -133,13 +133,13 @@ public class StudentUI{
 
     }
 
-    private static void displayEnquiries(ArrayList<Enquiry> enquiries){
+    private static void displayEnquiries(ArrayList<Enquiry> enquiriesByStudent){
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= enquiries.length();i++){
-            System.out.print(i + ". " + enquiries.get(i-1).getContent() + ": ");
-            if(enquiries.get(i-1).isProcessed())
+        for(int i = 1; i<= enquiriesByStudent.length();i++){
+            System.out.print(i + ". " + enquiriesByStudent.get(i-1).getContent() + ": ");
+            if(enquiriesByStudent.get(i-1).isProcessed())
             System.out.println("Processed");
             else
             System.out.println("Not Processed");
@@ -147,10 +147,10 @@ public class StudentUI{
         int option = sc.nextInt();
         if (option == 0)
             studentMainMenu();
-        else if (option <0 || option >enquiries.length())
+        else if (option <0 || option >enquiriesByStudent.length())
             return;
         else
-            viewEnquiryOptions(enquiries.get(option-1));
+            viewEnquiryOptions(enquiriesByStudent.get(option-1));
 
     }
 
