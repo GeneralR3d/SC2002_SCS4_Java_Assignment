@@ -11,14 +11,19 @@ public class UserController {
         System.out.println("TODO: initialize users array with correct data");
         ArrayList<User> users = new ArrayList<User>();
         for (User user : users) {
-            if (userID == user.getUserID())
-                return true;
+            if (userID == user.getUserID()) {
+                if (user.verifyPassword(password)) {
+                    SessionInfo.setUser(user);
+                    return true;
+                } else
+                    return false;
+            }
         }
         return false;
     }
 
     public static void logout() {
-        SessionInfo.user = null;
+        SessionInfo.setUser(null);
     }
 
     public static void changePassword(String newPassword) {
