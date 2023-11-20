@@ -12,8 +12,8 @@ public class Staff extends User {
 	 * @param faculty
 	 * @param pw
 	 */
-	public Staff(String userID, Faculty faculty, String pw) {
-		super(userID, faculty, pw);
+	public Staff(String name, String userID, Faculty faculty, String pw) {
+		super(name, userID, faculty, pw);
 		createdCamps = new ArrayList<Camp>();
 	}
 
@@ -22,8 +22,8 @@ public class Staff extends User {
 	 * @param userID
 	 * @param faculty
 	 */
-	public Staff(String userID, Faculty faculty) {
-		super(userID, faculty);
+	public Staff(String name, String userID, Faculty faculty) {
+		super(name, userID, faculty);
 		createdCamps = new ArrayList<Camp>();
 	}
 
