@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class CommitteeUI{
 
-    public static void committeeMainMenu(){
+    public static void displayMenu(){
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
 

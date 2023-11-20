@@ -7,7 +7,7 @@ import Controllers.CampController;
 import java.util.ArrayList;
 
 public class StudentUI{
-    public static void studentMainMenu(){
+    public static void displayMenu(){
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         //System.out.println("Enter 0 to go back/exit…");
