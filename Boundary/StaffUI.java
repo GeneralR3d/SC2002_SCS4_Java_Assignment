@@ -1,3 +1,5 @@
+package Boundary;
+
 import java.util.Scanner;
 
 public class StaffUI {
