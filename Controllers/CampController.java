@@ -82,7 +82,7 @@ public class CampController {
             }
         }
         committeeMembers.add((CommitteeMember)SessionInfo.user);
-        camp.setTotalSlotsLeft(camp.getTotalSlotsLeft()-1);
+        camp.setComSlotsLeft(camp.getTotalSlotsLeft()-1);
         return true;
     }
 }
