@@ -8,7 +8,7 @@ import java.util.Scanner;
 import Controllers.UserController;
 
 public class AccountUI {
-    public static void loginMenu(ArrayList<User> users){
+    public static void loginMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Camp Application and Management System (CAMS) Login");
         System.out.println("Please enter your username:");
