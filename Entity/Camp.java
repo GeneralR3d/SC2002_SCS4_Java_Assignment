@@ -169,6 +169,14 @@ public class Camp {
 
 	/**
 	 *
+	 * @param attendee
+	 */
+	public void removeAttendee(Student attendee) {
+		attendeeList.remove(attendee);
+	}
+
+	/**
+	 *
 	 * @param committee
 	 */
 	public void addCommittee(CommitteeMember committee) {
