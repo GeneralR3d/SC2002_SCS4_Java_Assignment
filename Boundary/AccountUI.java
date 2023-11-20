@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import Controllers.UserController;
 
-public class UserUI {
-    public static void loginMenu(ArrayList<User> users){
+public class AccountUI {
+    public static void loginMenu(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Camp Application and Management System (CAMS) Login");
         System.out.println("Please enter your username:");
@@ -16,7 +16,7 @@ public class UserUI {
         System.out.println("Please enter your password:");
         String password = sc.nextLine();
 
-        if (UserController.login(users, username, password)){
+        if (UserController.login(username, password)){
             //if success return UI for that user
             for (User user: users){
                 if (user.getUserID() == username) UI(user);
@@ -39,7 +39,7 @@ public class UserUI {
             else System.out.println("Passwords do not match! Try again.");
         }while(true);
 
-        UserController.resetPassword(users, currUser, newPW);
+        UserController.changePassword(newPW);
         System.out.println("Password reset successfully!");
     }
 
