@@ -42,4 +42,12 @@ public class UserUI {
         UserController.resetPassword(users, currUser, newPW);
         System.out.println("Password reset successfully!");
     }
+
+    public static void logout(ArrayList<Camp> camps, ArrayList<User> users){
+        //save camps into xlsx
+        //save users into xlsx
+
+        System.out.println("User logged out successfully!");
+        loginMenu(users);
+    }
 }
