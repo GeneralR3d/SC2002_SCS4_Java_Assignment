@@ -6,6 +6,7 @@ import Controllers.SuggestionController;
 
 public class StaffUI {
     public static void displayMenu() {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("1. View All Camps");
             System.out.println("2. View My Camps");
@@ -15,7 +16,6 @@ public class StaffUI {
             System.out.println("0. Quit");
 
             System.out.print("Please select an option: ");
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -47,13 +47,14 @@ public class StaffUI {
                     break;
             }
         }
+        sc.close();
     }
 
     public static void menu_ViewAllCamps() {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("0. Exit");
 
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -61,13 +62,14 @@ public class StaffUI {
             // TODO: displayCampDetails(choice);
             System.out.println("TODO: display camp details");
         }
+        sc.close();
     }
 
     public static void menu_ViewMyCamps() {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("0. Exit");
 
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -75,9 +77,11 @@ public class StaffUI {
             // TODO: displayCampDetails(choice);
             menu_ManageMyCamp(choice);
         }
+        sc.close();
     }
 
     public static void menu_ManageMyCamp(int campID) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("1. View Enquiries");
             System.out.println("2. View Suggestions");
@@ -85,7 +89,6 @@ public class StaffUI {
             System.out.println("4. Delete Camp");
             System.out.println("0. Exit");
 
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -112,14 +115,15 @@ public class StaffUI {
                     break;
             }
         }
+        sc.close();
     }
 
     public static void menu_ViewMyCampEnquiries(int campID) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("0. Exit");
 
             System.out.println("Select an enquiry to add a reply to it");
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -127,29 +131,31 @@ public class StaffUI {
             // TODO: replyToEnquiry(campID, choice);
             System.out.println("TODO: reply to enquiry");
         }
+        sc.close();
     }
 
     public static void menu_ViewMyCampSuggestions(int campID) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("0. Exit");
 
             System.out.println("Select a suggestion to approve / reject it");
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
 
             menu_setSuggestionStatus(campID, choice);
         }
+        sc.close();
     }
 
     public static void menu_setSuggestionStatus(int campID, int suggestionID) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("1. Approve");
             System.out.println("2. Reject");
             System.out.println("0. Cancel");
 
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -168,9 +174,11 @@ public class StaffUI {
                     break;
             }
         }
+        sc.close();
     }
 
     public static void menu_EditMyCamp(int campID) {
+        Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("1.  Toggle Visibility On / Off");
             System.out.println("2.  Edit Name");
@@ -184,7 +192,6 @@ public class StaffUI {
             System.out.println("10. Edit Description");
             System.out.println("0.  Quit");
 
-            Scanner sc = new Scanner(System.in);
             int choice = sc.nextInt();
             if (choice == 0)
                 break;
@@ -233,6 +240,7 @@ public class StaffUI {
             }
             choice = sc.nextInt();
         }
+        sc.close();
     }
 
     public static void main(String[] args) {

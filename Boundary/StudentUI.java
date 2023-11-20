@@ -7,9 +7,10 @@ import Controllers.*;
 
 import java.util.ArrayList;
 
-public class StudentUI{
-    public static void displayMenu(){
+public class StudentUI {
+    public static void displayMenu() {
         int option;
+        Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
@@ -19,7 +20,6 @@ public class StudentUI{
             System.out.println("3. Withdraw from registered camps");
             if (SessionInfo.user instanceof CommitteeMember) System.out.println("4. Committee member menu");
 
-            Scanner sc = new Scanner(System.in);
             option = sc.nextInt();
             switch(option){
                 case 1:
@@ -41,9 +41,10 @@ public class StudentUI{
             }
         } while(option != 0);
         AccountUI.loginMenu();
+        sc.close();
     }
 
-    private static void displayOpenCamps(ArrayList<Camp> openCamps){
+    private static void displayOpenCamps(ArrayList<Camp> openCamps) {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
@@ -63,9 +64,10 @@ public class StudentUI{
             else viewCampOptions(openCamps.get(option-1));
         }
         displayMenu();
+        sc.close();
     }
 
-    private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps){
+    private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps) {
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back/exit…");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
@@ -75,15 +77,16 @@ public class StudentUI{
             int option = sc.nextInt();
             if (option == 0)
                 break;
-            else if (option<0 || option>registeredCamps.size()){
+            else if (option < 0 || option > registeredCamps.size()){
                 System.out.println("Invalid input!");
                 continue;
             }
         }
         displayMenu();
+        sc.close();
     }
 
-    private static void withdrawRegisteredCamps(Student student){
+    private static void withdrawRegisteredCamps(Student student) {
         ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps(student);
 
         System.out.println("Command Options: ");
@@ -103,9 +106,10 @@ public class StudentUI{
             else CampController.removeAttendee(registeredCamps.get(option-1));
         }
         displayMenu();
+        sc.close();
     }
 
-    private static void viewCampOptions(Camp camp){
+    private static void viewCampOptions(Camp camp) {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
@@ -156,11 +160,10 @@ public class StudentUI{
                 System.out.println("Invalid input!");
                 break;
         }
-
-
+        sc.close();
     }
 
-    private static void displayEnquiries(Camp camp, ArrayList<Enquiry> enquiriesByStudent){
+    private static void displayEnquiries(Camp camp, ArrayList<Enquiry> enquiriesByStudent) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
@@ -173,16 +176,16 @@ public class StudentUI{
             System.out.println("Not Processed");
         }
         int option = sc.nextInt();
+        sc.close();
         if (option == 0)
             displayMenu();
-        else if (option <0 || option >enquiriesByStudent.size())
+        else if (option < 0 || option > enquiriesByStudent.size())
             return;
         else
             viewEnquiryOptions(camp, enquiriesByStudent.get(option-1));
-
     }
 
-    private static void viewEnquiryOptions(Camp camp, Enquiry enquiry){
+    private static void viewEnquiryOptions(Camp camp, Enquiry enquiry) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
@@ -206,7 +209,7 @@ public class StudentUI{
             default:
                 break;
         }
-
+        sc.close();
     }
 
 }
