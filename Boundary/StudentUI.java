@@ -2,6 +2,7 @@ package Boundary;
 
 import java.util.Scanner;
 
+import Entity.*;
 import Controllers.CampController;
 
 import java.util.ArrayList;
@@ -19,20 +20,20 @@ public class StudentUI{
         int option = sc.nextInt();
         switch(option){
             case 1:
-                ArrayList<Camp> openCamps = CampController.getOpenCamps();
+            // TODO: import sessionInfo class
+                ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
                 displayOpenCamps(openCamps);
                 break;
             case 2:
-                Student student = CampController.getStudent();
-                //ideally get arraylist of registered camps from campcontroller, but problem is need 2 return values, one array list, one camp which he is a committee member, which can be null
-                displayRegisteredCamps(student);
+                ArrayList<Camp> signedUpCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
+                
                 break;
             case 3:
-                Student student = CampController.getStudent();
-                //ideally get arraylist of registered camps from campcontroller, but problem is need 2 return values, one array list, one camp which he is a committee member, which can be null
-                withdrawRegisteredCamps(student);
+                ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
+                withdrawRegisteredCamps((Student)SessionInfo.user);
                 break;
             case 4:
+                //pass thru curr user and check if is committee member
                 break:
             default:
                 break;
@@ -43,45 +44,40 @@ public class StudentUI{
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= openCamps.length();i++){
-            System.out.println(i + ". " + openCamps.get(i-1).getName() + ": "+ openCamps.get(i-1).getTotalSlotsLeft());
-        }
+
+        DisplayHelper.displayResult(openCamps);
+
+        Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         if (option == 0)
-            studentMainMenu();
-        else if (option <0 || option >openCamps.length())
+            displayMenu();
+        else if (option <0 || option >openCamps.size())
             return;
         else
             viewCampOptions(openCamps.get(option-1));
 
     }
 
-    private static void displayRegisteredCamps(Student student){
-        ArrayList<Camp> registeredCamps = student.getRegisteredCamps()
-        //sort of breaks the role?? ideally return array list of camps registered with the roles.
-        //also breaks abstraction barrier? if directly access private attribute of student, which is not something a UI class should be doing
+    private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps){        
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= registeredCamps.length();i++){
-            System.out.println(i + ". " + registeredCamps.get(i-1).getName() + ": "+ registeredCamps.get(i-1).getTotalSlotsLeft());
-        }
+        DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
 
     }
 
     private static void withdrawRegisteredCamps(Student student){
-        ArrayList<Camp> registeredCamps = student.getRegisteredCamps()
-        //sort of breaks the role?? ideally return array list of camps registered with the roles.
-        //also breaks abstraction barrier? if directly access private attribute of student, which is not something a UI class should be doing
+        ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps(student);
+
         System.out.println("Command Options: ");
         System.out.println("Enter number to withdraw from that camp....");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= registeredCamps.length();i++){
-            System.out.println(i + ". " + registeredCamps.get(i-1).getName() + ": "+ registeredCamps.get(i-1).getTotalSlotsLeft());
-        }
+        DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
+
+        Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         if (option == 0)
-            studentMainMenu();
-        else if (option <0 || option >registeredCamps.length())
+            displayMenu();
+        else if (option <0 || option >registeredCamps.size())
             return;
         else
             CampController.removeAttendee(registeredCamps.get(option-1));
@@ -146,7 +142,7 @@ public class StudentUI{
         }
         int option = sc.nextInt();
         if (option == 0)
-            studentMainMenu();
+            displayMenu();
         else if (option <0 || option >enquiriesByStudent.length())
             return;
         else
