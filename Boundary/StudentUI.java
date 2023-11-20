@@ -9,35 +9,40 @@ import java.util.ArrayList;
 
 public class StudentUI{
     public static void displayMenu(){
-        System.out.println("Command Options: ");
-        System.out.println("Enter number to select....");
-        //System.out.println("Enter 0 to go back/exit…");
-        System.out.println("1. View open camps");
-        System.out.println("2. See all registered camps");
-        System.out.println("3. Withdraw from registered camps");
-        System.out.println("4. Committee member menu");
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        switch(option){
-            case 1:
-            // TODO: import sessionInfo class
-                ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
-                displayOpenCamps(openCamps);
-                break;
-            case 2:
-                ArrayList<Camp> signedUpCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
-                
-                break;
-            case 3:
-                ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
-                withdrawRegisteredCamps((Student)SessionInfo.user);
-                break;
-            case 4:
-                //pass thru curr user and check if is committee member
-                break:
-            default:
-                break;
-        }
+        int option;
+        do{
+            System.out.println("Command Options: ");
+            System.out.println("Enter number to select....");
+            //System.out.println("Enter 0 to go back/exit…");
+            System.out.println("1. View open camps");
+            System.out.println("2. See all registered camps");
+            System.out.println("3. Withdraw from registered camps");
+            if (SessionInfo.user instanceof CommitteeMember) System.out.println("4. Committee member menu");
+            
+            Scanner sc = new Scanner(System.in);
+            option = sc.nextInt();
+            switch(option){
+                case 1:
+                // TODO: import sessionInfo class
+                    ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
+                    displayOpenCamps(openCamps);
+                    break;
+                case 2:
+                    ArrayList<Camp> signedUpCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
+                    displayRegisteredCamps(signedUpCamps);                
+                    break;
+                case 3:
+                    ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
+                    withdrawRegisteredCamps((Student)SessionInfo.user);
+                    break;
+                case 4:
+                    //pass thru curr user and check if is committee member
+                    break;
+                default:
+                    break;
+            }
+        }while(option != 0);
+        AccountUI.loginMenu();
     }
 
     private static void displayOpenCamps(ArrayList<Camp> openCamps){
@@ -48,13 +53,17 @@ public class StudentUI{
         DisplayHelper.displayResult(openCamps);
 
         Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        if (option == 0)
-            displayMenu();
-        else if (option <0 || option >openCamps.size())
-            return;
-        else
-            viewCampOptions(openCamps.get(option-1));
+        
+        while (true){
+            int option = sc.nextInt();
+            if (option == 0)
+                displayMenu();
+            else if (option <0 || option >openCamps.size()){
+                System.out.println("Invalid input!");
+                continue;
+            }
+            else viewCampOptions(openCamps.get(option-1));
+        }
 
     }
 
@@ -63,6 +72,16 @@ public class StudentUI{
         System.out.println("Enter 0 to go back/exit…");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
 
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            int option = sc.nextInt();
+            if (option == 0)
+                displayMenu();
+            else if (option<0 || option>registeredCamps.size()){
+                System.out.println("Invalid input!");
+                continue;
+            }
+        }
     }
 
     private static void withdrawRegisteredCamps(Student student){
@@ -74,14 +93,16 @@ public class StudentUI{
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
 
         Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
-        if (option == 0)
-            displayMenu();
-        else if (option <0 || option >registeredCamps.size())
-            return;
-        else
-            CampController.removeAttendee(registeredCamps.get(option-1));
-
+        while (true){
+            int option = sc.nextInt();
+            if (option == 0)
+                displayMenu();
+            else if (option<0 || option>registeredCamps.size()){
+                System.out.println("Invalid input!");
+                continue;
+            }
+            else CampController.removeAttendee(registeredCamps.get(option-1));
+        }
     }
 
     private static void viewCampOptions(Camp camp){
@@ -93,21 +114,29 @@ public class StudentUI{
         System.out.println("2. Register as camp committee member");
         System.out.println("3. Submit enquiry about camp");
         System.out.println("4. Manage my enquiries");
+
+        Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
         switch(option){
             case 1:
-                boolean result = CampController.registerAttendee(camp);
-                if(result == true)
+                if(CampController.registerAttendee(camp)){
                     System.out.println("You have successfully registered as attendee!");
-                else
-                    System.out.println("Not registered!");
+                    System.out.println("Enter 0 to go back/exit…");
+                }
+                else{
+                    System.out.println("You are already registered for this camp!");
+                    System.out.println("Enter 0 to go back/exit…");
+                }
                 break;
             case 2:
-                boolean result = CampController.registerCommittee(camp);
-                if(result == true)
+                if(CampController.registerCommittee(camp)){
                     System.out.println("You have successfully registered as camp committee member!");
-                else
-                    System.out.println("Not registered!");
+                    System.out.println("Enter 0 to go back/exit…");
+                }
+                else{
+                    System.out.println("You are already a committee member for this camp!");
+                    System.out.println("Enter 0 to go back/exit…");
+                }
                 break;
             case 3:
                 System.out.println("Enter ~ to quit…");
@@ -123,6 +152,7 @@ public class StudentUI{
                 displayEnquiries(enquiriesByStudent);
                 break;
             default:
+                System.out.println("Invalid input!");
                 break;
         }
 
