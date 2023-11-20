@@ -23,7 +23,6 @@ public class StudentUI{
             option = sc.nextInt();
             switch(option){
                 case 1:
-                // TODO: import sessionInfo class
                     ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
                     displayOpenCamps(openCamps);
                     break;
@@ -32,7 +31,6 @@ public class StudentUI{
                     displayRegisteredCamps(signedUpCamps);                
                     break;
                 case 3:
-                    ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
                     withdrawRegisteredCamps((Student)SessionInfo.user);
                     break;
                 case 4:
@@ -57,14 +55,14 @@ public class StudentUI{
         while (true){
             int option = sc.nextInt();
             if (option == 0)
-                displayMenu();
+                break;
             else if (option <0 || option >openCamps.size()){
                 System.out.println("Invalid input!");
                 continue;
             }
             else viewCampOptions(openCamps.get(option-1));
         }
-
+        displayMenu();
     }
 
     private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps){        
@@ -76,12 +74,13 @@ public class StudentUI{
         while (true){
             int option = sc.nextInt();
             if (option == 0)
-                displayMenu();
+                break;
             else if (option<0 || option>registeredCamps.size()){
                 System.out.println("Invalid input!");
                 continue;
             }
         }
+        displayMenu();
     }
 
     private static void withdrawRegisteredCamps(Student student){
@@ -96,13 +95,14 @@ public class StudentUI{
         while (true){
             int option = sc.nextInt();
             if (option == 0)
-                displayMenu();
+                break;
             else if (option<0 || option>registeredCamps.size()){
                 System.out.println("Invalid input!");
                 continue;
             }
             else CampController.removeAttendee(registeredCamps.get(option-1));
         }
+        displayMenu();
     }
 
     private static void viewCampOptions(Camp camp){
