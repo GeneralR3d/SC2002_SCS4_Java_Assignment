@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Camp {
 
-	private Staff incharge;
 	private int campID;
 	private String name;
 	private Date startDate;
@@ -13,7 +12,7 @@ public class Camp {
 	private Date regCloseDate;
 	private Faculty openToFaculty;
 	private String location;
-	private int totalSlotsLeft;
+	private int attendeeSlotsLeft;
 	private int commSlotsLeft;
 	private String description;
 	private boolean visibleToStudents;
@@ -71,12 +70,12 @@ public class Camp {
 		this.location = location;
 	}
 
-	public int getTotalSlotsLeft() {
-		return this.totalSlotsLeft;
+	public int getAttendeeSlotsLeft() {
+		return this.attendeeSlotsLeft;
 	}
 
-	public void setTotalSlotsLeft(int totalSlotsLeft) {
-		this.totalSlotsLeft = totalSlotsLeft;
+	public void setattendeeSlotsLeft(int attendeeSlotsLeft) {
+		this.attendeeSlotsLeft = attendeeSlotsLeft;
 	}
 
 	public int getCommSlotsLeft() {
@@ -149,7 +148,7 @@ public class Camp {
 		this.regCloseDate = regCloseDate;
 		this.openToFaculty = openToFaculty;
 		this.location = location;
-		this.totalSlotsLeft = totalSlots;
+		this.attendeeSlotsLeft = totalSlots - commSlots;
 		this.commSlotsLeft = commSlots;
 		this.description = description;
 		this.visibleToStudents = visibleToStudents;
@@ -163,8 +162,17 @@ public class Camp {
 	 *
 	 * @param attendee
 	 */
+	public boolean hasAttendeeSlots() {
+		return attendeeSlotsLeft != 0;
+	}
+
+	/**
+	 *
+	 * @param attendee
+	 */
 	public void addAttendee(Student attendee) {
 		attendeeList.add(attendee);
+		this.attendeeSlotsLeft--;
 	}
 
 	/**
@@ -179,8 +187,26 @@ public class Camp {
 	 *
 	 * @param committee
 	 */
+	public boolean hasCommitteeSlots() {
+		return commSlotsLeft != 0;
+	}
+
+	/**
+	 *
+	 * @param committee
+	 */
 	public void addCommittee(CommitteeMember committee) {
 		committeeList.add(committee);
+		this.commSlotsLeft++;
+	}
+
+	/**
+	 *
+	 * @param committee
+	 */
+	public void removeCommittee(CommitteeMember committee) {
+		committeeList.remove(committee);
+		this.commSlotsLeft--;
 	}
 
 	/**
@@ -193,10 +219,26 @@ public class Camp {
 
 	/**
 	 *
+	 * @param enquiry
+	 */
+	public void removeEnquiry(Enquiry enquiry) {
+		enquiryList.remove(enquiry);
+	}
+
+	/**
+	 *
 	 * @param suggestion
 	 */
 	public void addSuggestion(Suggestion suggestion) {
 		suggestionList.add(suggestion);
+	}
+
+	/**
+	 *
+	 * @param suggestion
+	 */
+	public void removeSuggestion(Suggestion suggestion) {
+		suggestionList.remove(suggestion);
 	}
 
 }

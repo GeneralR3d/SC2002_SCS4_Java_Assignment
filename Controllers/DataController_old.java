@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import Entity.*;
 
-public class DataController{
+public class DataController_old{
 
     public static ArrayList<Student> students;
     public static ArrayList<Staff> staffs;

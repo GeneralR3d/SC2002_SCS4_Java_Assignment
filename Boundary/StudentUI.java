@@ -3,14 +3,14 @@ package Boundary;
 import java.util.Scanner;
 
 import Entity.*;
-import Controllers.CampController;
+import Controllers.*;
 
 import java.util.ArrayList;
 
 public class StudentUI{
     public static void displayMenu(){
         int option;
-        do{
+        do {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             //System.out.println("Enter 0 to go back/exit…");
@@ -18,7 +18,7 @@ public class StudentUI{
             System.out.println("2. See all registered camps");
             System.out.println("3. Withdraw from registered camps");
             if (SessionInfo.user instanceof CommitteeMember) System.out.println("4. Committee member menu");
-            
+
             Scanner sc = new Scanner(System.in);
             option = sc.nextInt();
             switch(option){
@@ -28,7 +28,7 @@ public class StudentUI{
                     break;
                 case 2:
                     ArrayList<Camp> signedUpCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
-                    displayRegisteredCamps(signedUpCamps);                
+                    displayRegisteredCamps(signedUpCamps);
                     break;
                 case 3:
                     withdrawRegisteredCamps((Student)SessionInfo.user);
@@ -39,7 +39,7 @@ public class StudentUI{
                 default:
                     break;
             }
-        }while(option != 0);
+        } while(option != 0);
         AccountUI.loginMenu();
     }
 
@@ -51,7 +51,7 @@ public class StudentUI{
         DisplayHelper.displayResult(openCamps);
 
         Scanner sc = new Scanner(System.in);
-        
+
         while (true){
             int option = sc.nextInt();
             if (option == 0)
@@ -65,7 +65,7 @@ public class StudentUI{
         displayMenu();
     }
 
-    private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps){        
+    private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps){
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back/exit…");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
@@ -109,7 +109,8 @@ public class StudentUI{
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
-        System.out.println("Number of slots left for "+ camp.getName() + " is " + camp.getTotalSlotsLeft());
+        System.out.println("Number of slots left for "+ camp.getName());
+        System.out.println("Attendees: " + camp.getAttendeeSlotsLeft() + ", " + camp.getCommSlotsLeft());
         System.out.println("1. Register as attendee");
         System.out.println("2. Register as camp committee member");
         System.out.println("3. Submit enquiry about camp");
@@ -140,16 +141,16 @@ public class StudentUI{
                 break;
             case 3:
                 System.out.println("Enter ~ to quit…");
-                System.out.println("Key in enquiry, press enter to confirm: ")
+                System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = sc.nextLine();
                 if (question.charAt(0)=='~')
                     break;
                 else
-                    CampController.addEnquiry(camp,question);
+                    EnquiryController.post(camp, question);
                 break;
             case 4:
-                ArrayList<Enquiry> enquiriesByStudent = CampController.getEnquiries(camp);
-                displayEnquiries(enquiriesByStudent);
+                ArrayList<Enquiry> enquiriesByStudent = EnquiryController.viewUserEnquiriesForCamp(camp);
+                displayEnquiries(camp, enquiriesByStudent);
                 break;
             default:
                 System.out.println("Invalid input!");
@@ -159,12 +160,13 @@ public class StudentUI{
 
     }
 
-    private static void displayEnquiries(ArrayList<Enquiry> enquiriesByStudent){
+    private static void displayEnquiries(Camp camp, ArrayList<Enquiry> enquiriesByStudent){
+        Scanner sc = new Scanner(System.in);
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= enquiriesByStudent.length();i++){
-            System.out.print(i + ". " + enquiriesByStudent.get(i-1).getContent() + ": ");
+        for(int i = 1; i<= enquiriesByStudent.size();i++){
+            System.out.print(i + ". " + enquiriesByStudent.get(i-1).view() + ": ");
             if(enquiriesByStudent.get(i-1).isProcessed())
             System.out.println("Processed");
             else
@@ -173,14 +175,15 @@ public class StudentUI{
         int option = sc.nextInt();
         if (option == 0)
             displayMenu();
-        else if (option <0 || option >enquiriesByStudent.length())
+        else if (option <0 || option >enquiriesByStudent.size())
             return;
         else
-            viewEnquiryOptions(enquiriesByStudent.get(option-1));
+            viewEnquiryOptions(camp, enquiriesByStudent.get(option-1));
 
     }
 
-    private static void viewEnquiryOptions(Enquiry enquiry){
+    private static void viewEnquiryOptions(Camp camp, Enquiry enquiry){
+        Scanner sc = new Scanner(System.in);
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
@@ -190,15 +193,15 @@ public class StudentUI{
         switch (option) {
             case 1:
                 System.out.println("Enter ~ to quit…");
-                System.out.println("Key in enquiry, press enter to confirm: ")
+                System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = sc.nextLine();
                 if (question.charAt(0)=='~')
                     break;
                 else
-                    CampController.editEnquiry(camp,enquiry,question);
+                    EnquiryController.edit(enquiry, question);
                 break;
             case 2:
-                CampController.deleteEnquiry(camp,enquiry);
+                EnquiryController.delete(camp, enquiry);
                 break;
             default:
                 break;

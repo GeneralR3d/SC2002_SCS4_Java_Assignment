@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Enquiry implements EditableMessage {
 
-	private String ownerID;
+	private Student owner;
 	private String content;
 	private ArrayList<Reply> replies;
 
-	public String getOwnerID() {
-		return this.ownerID;
+	public Student getOwner() {
+		return this.owner;
 	}
 
 	public ArrayList<Reply> getReplies() {
@@ -37,8 +37,8 @@ public class Enquiry implements EditableMessage {
 	 * @param userID
 	 * @param content
 	 */
-	public Enquiry(String userID, String content) {
-		this.ownerID = userID;
+	public Enquiry(Student owner, String content) {
+		this.owner = owner;
 		this.content = content;
 	}
 

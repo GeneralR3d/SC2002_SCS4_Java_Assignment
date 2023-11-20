@@ -2,12 +2,12 @@ package Entity;
 
 public class Suggestion implements EditableMessage {
 
-	private String ownerID;
+	private CommitteeMember owner;
 	private String content;
 	private Status status;
 
-	public String getOwnerID() {
-		return this.ownerID;
+	public CommitteeMember getOwner() {
+		return this.owner;
 	}
 
 	public String view() {
@@ -31,8 +31,8 @@ public class Suggestion implements EditableMessage {
 	 * @param userID
 	 * @param content
 	 */
-	public Suggestion(String userID, String content) {
-		this.ownerID = userID;
+	public Suggestion(CommitteeMember commMember, String content) {
+		this.owner = commMember;
 		this.content = content;
 		this.status = Status.PENDING;
 	}

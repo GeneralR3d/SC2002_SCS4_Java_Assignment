@@ -2,6 +2,8 @@ package Boundary;
 
 import java.util.Scanner;
 
+import Controllers.SuggestionController;
+
 public class StaffUI {
     public static void displayMenu() {
         while (true) {
@@ -155,6 +157,7 @@ public class StaffUI {
             switch (choice) {
                 case 1: // Approve
                     // TODO: setSuggestionStatus(campID, suggestionID, APPROVED);
+                    SuggestionController.approve(null, null, null);
                     System.out.println("TODO: approve suggestion");
                     break;
                 case 2: // Reject

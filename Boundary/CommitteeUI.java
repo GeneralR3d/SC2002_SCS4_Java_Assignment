@@ -2,7 +2,7 @@ package Boundary;
 
 import java.util.Scanner;
 
-import Entity.*;
+import Entity.Camp;
 import Controllers.CampController;
 
 import java.util.ArrayList;
