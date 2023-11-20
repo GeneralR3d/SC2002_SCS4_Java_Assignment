@@ -1,91 +1,59 @@
-package com.ApachePOI;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+package Controllers;
 import java.util.ArrayList;
-
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import Entity.*;
 
-public class DataController{
+public class DataController {
+  private ArrayList<Camp> camps;
+  private ArrayList<Student> students;
+  private ArrayList<Staff> staffs;
+  private ArrayList<CommitteeMember> commMembers;
 
-    public static ArrayList<Student> students;
-    public static ArrayList<Staff> staffs;
-    public static ArrayList<Camp> camps;
+  public void addCamp(Camp camp) {
+    camps.add(camp);
+  }
 
-    public static void init(){
-        FileInputStream student_list_stream = new FileInputStream(new File("student_list.xlsx"));
-        XSSFWorkbook students_workbook = new XSSFWorkbook(student_list_stream);
-        XSSFSheet student_sheet = students_workbook.getSheetAt(0);
+  public void addStudent(Student student) {
+    students.add(student);
+  }
 
+  public void addStaff(Staff staff) {
+    staffs.add(staff);
+  }
 
-        for(int i = 1, rowCount = student_sheet.getPhysicalNumberOfRows() ; i<rowCount ; i++){
-            XSSFRow row = student_sheet.getRow(i);
-            String name = row.getCell(0).getStringCellValue();
-            String userID = row.getCell(1).getStringCellValue().substring(0,row.getCell(1).index('@')-1);
-            Faculty faculty = Faculty.valueOf(row.getCell(2).getStringCellValue());
-            Student currentStudent = new Student(name,userID,faculty);
-            students.add(currentStudent);
-        }
+  public void addCommMember(CommitteeMember commMember) {
+    commMembers.add(commMember);
+  }
 
-        students_workbook.close();
-        student_list_stream.close();
+  public void removeCamp(Camp camp) {
+    camps.remove(camp);
+  }
 
-        FileInputStream staff_list_stream = new FileInputStream(new File("staff_list.xlsx"));
-        XSSFWorkbook staff_workbook = new XSSFWorkbook(staff_list_stream);
-        XSSFSheet staff_sheet = staff_workbook.getSheetAt(0);
+  public void removeStudent(Student student) {
+    students.remove(student);
+  }
 
+  public void removeStaff(Staff staff) {
+    staffs.remove(staff);
+  }
 
-        for(int i = 1 , rowCount = staff_sheet.getPhysicalNumberOfRows(); i < rowCount; i++){
-            XSSFRow row = staff_sheet.getRow(i);
-            String name = row.getCell(0).getStringCellValue();
-            String userID = row.getCell(1).getStringCellValue().substring(0,row.getCell(1).index('@')-1);
-            Faculty faculty = Faculty.valueOf(row.getCell(2).getStringCellValue());
-            Staff currentStaff = new Staff(name,userID,faculty);
-            staffs.add(currentStaff);
-        }
+  public void removeCommMember(CommitteeMember commMember) {
+    commMembers.remove(commMember);
+  }
 
-        staff_workbook.close();
-        staff_list_stream.close();
+  public Camp findCamp(int campID) {
+    return camps.get(campID);
+  }
 
+  public Student findStudent(int userID) {
+    return students.get(userID);
+  }
 
-        // File camp_list = new File("camp_list.xlsx");
-        // FileInputStream camp_list_stream = new FileInputStream(camp_list);
-        // XSSFWorkbook camp_workbook = new XSSFWorkbook(camp_list_stream);
-        // XSSFSheet camp_sheet = camp_workbook.getSheetAt(0);
+  public Staff findStaff(int userID) {
+    return staffs.get(userID);
+  }
 
-        // int rowCount = camp_sheet.getPhysicalNumberOfRows();
+  public CommitteeMember findCommMember(int userID) {
+    return commMembers.get(userID);
+  }
 
-        // for(int i =1;i<rowCount;i++){
-
-        //     //TODO
-        //     XSSFRow row = camp_sheet.getRow(i);
-        //     String name = row.getCell(0).getStringCellValue();
-        //     String userID = row.getCell(1).getStringCellValue().substring(0,row.getCell(1).index('@')-1);
-        //     String faculty = row.getCell(2).getStringCellValue();
-        //     Staff currentStaff = new Staff(name,userID,faculty);
-        //     staffs.add(currentStaff);
-        // }
-
-        // staff_workbook.close();
-        // staff_list_stream.close();
-
-    }
-
-    public static ArrayList<Student> getAllStudents(){
-        return students;
-    }
-
-    public static ArrayList<Staff> getAllStaff(){
-        return staffs;
-    }
-
-    public static ArrayList<Camp> getAllCamps(){
-        return camps;
-    }
 }
