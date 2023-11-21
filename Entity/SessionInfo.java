@@ -1,8 +1,8 @@
 package entity;
 
 public class SessionInfo {
-    public static User user;
-    public static Class<?> userType;
+    private static User user;
+    private static Class<?> userType;
 
     public static void setUser(User user) {
         SessionInfo.user = user;
@@ -10,5 +10,9 @@ public class SessionInfo {
             SessionInfo.userType = user.getClass();
         else
             SessionInfo.userType = null;
+    }
+
+    public static User getUser() {
+        return user;
     }
 }
