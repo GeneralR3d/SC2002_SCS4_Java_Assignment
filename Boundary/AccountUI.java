@@ -1,11 +1,10 @@
-package Boundary;
-
-import Entity.*;
-import Entity.User;
+package boundary;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import Controllers.UserController;
+
+import control.UserController;
+import entity.*;
 
 public class AccountUI {
     public static void loginMenu(){

@@ -1,9 +1,9 @@
-package Boundary;
+package boundary;
 
 import java.util.Scanner;
 
-import Entity.*;
-import Controllers.*;
+import control.*;
+import entity.*;
 
 import java.util.ArrayList;
 

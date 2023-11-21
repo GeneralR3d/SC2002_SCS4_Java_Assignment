@@ -1,7 +1,8 @@
-package Controllers;
+package control;
 
 import java.util.ArrayList;
-import Entity.*;
+
+import entity.*;
 
 public class DataController {
   private static ArrayList<Camp> camps;

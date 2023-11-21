@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public class SessionInfo {
     public static User user;
@@ -10,5 +10,9 @@ public class SessionInfo {
             SessionInfo.userType = user.getClass().toString();
         else
             SessionInfo.userType = null;
+    }
+
+    public static User getUser() {
+        return user;
     }
 }
