@@ -1,7 +1,8 @@
-package Controllers;
+package control;
 
-import Entity.*;
 import java.util.ArrayList;
+
+import entity.*;
 
 public class CampController {
     public static void addCamp(ArrayList<Camp> camps, Camp newCamp) {
@@ -12,7 +13,7 @@ public class CampController {
     public static void editCamp(Camp camp){
         // TODO: use datacontroller to get arr camp
         // ArrayList<Camp> campData = DataController.getcamps();
-        //        
+        //
     }
 
     public static void deleteCamp(ArrayList<Camp> camps, Camp deletingCamp) {

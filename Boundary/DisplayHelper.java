@@ -1,8 +1,8 @@
-package Boundary;
+package boundary;
 
 import java.util.ArrayList;
 
-import Entity.*;
+import entity.*;
 
 public class DisplayHelper {
     //display individual camps
@@ -46,10 +46,10 @@ public class DisplayHelper {
     }
 
     public static void displayResult(Enquiry enquiry){
-        
+
     }
 
     public static void displayResult(Suggestion suggestion){
-        
+
     }
 }

@@ -1,8 +1,8 @@
-package Boundary;
+package boundary;
 
 import java.util.Scanner;
 
-import Controllers.SuggestionController;
+import control.SuggestionController;
 
 public class StaffUI {
     public static void displayMenu() {
