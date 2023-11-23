@@ -1,6 +1,5 @@
 package Boundary;
 
-import java.util.Scanner;
 import handler.InputHandler;
 import control.SuggestionController;
 

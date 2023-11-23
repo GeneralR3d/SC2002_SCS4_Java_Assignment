@@ -4,6 +4,8 @@ import handler.InputHandler;
 
 import Entity.*;
 import control.CampController;
+import control.EnquiryController;
+import control.SuggestionController;
 
 import java.util.ArrayList;
 
@@ -31,10 +33,10 @@ public class CommitteeUI{
                 if (suggestion.charAt(0)=='~')
                     break;
                 else
-                    CampController.addSuggestion(campCurrent,suggestion);
+                    SuggestionController.post(SessionInfo.user,campCurrent,suggestion);
                 break;
             case 3:
-                ArrayList<Enquiry> allEnquiries = CampController.getEnquiries(campCurrent);
+                ArrayList<Enquiry> allEnquiries = campCurrent.getEnquiries();
                 displayEnquiries(allEnquiries);
                 break;
             case 4:
@@ -55,7 +57,7 @@ public class CommitteeUI{
         System.out.println("Total slots available: "+ camp.getTotalSlotsLeft());
         System.out.println("Total camp committee slots available: "+ camp.getCommSlotsLeft());
         System.out.println("Description: "+ camp.getDescription());
-        System.out.println("Staff in charge is "+ camp.getStaffInCharge.getUserID());
+        System.out.println("Staff in charge is "+ camp.getStaffInCharge().getUserID());
     }
 
     private static void displayEnquiries(ArrayList<Enquiry> allEnquiries){
@@ -81,7 +83,7 @@ public class CommitteeUI{
             if (reply.charAt(0)=='~')
                 break;
             else
-                CampController.addReply(camp,allEnquiries.get(option-1),reply);
+                EnquiryController.addReply(campCurrent,allEnquiries.get(option-1),reply);
             break;
 
     }

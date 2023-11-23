@@ -2,7 +2,7 @@ package control;
 
 import java.util.ArrayList;
 
-import entity.*;
+import Entity.*;
 
 public class EnquiryController {
 

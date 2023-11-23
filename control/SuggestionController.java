@@ -1,9 +1,9 @@
 package control;
 
-import entity.Camp;
-import entity.CommitteeMember;
-import entity.Suggestion;
-import entity.User;
+import Entity.Camp;
+import Entity.CommitteeMember;
+import Entity.Suggestion;
+import Entity.User;
 
 public class SuggestionController {
 

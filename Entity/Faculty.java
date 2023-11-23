@@ -23,4 +23,5 @@ public enum Faculty {
 	SSS,
 	ASE,
 	WKWSCI
+
 }

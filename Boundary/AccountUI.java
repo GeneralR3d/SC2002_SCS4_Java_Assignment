@@ -3,6 +3,7 @@ package Boundary;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import control.DataController;
 import control.UserController;
 import handler.InputHandler;
 import Entity.*;
@@ -17,6 +18,7 @@ public class AccountUI {
 
         if (UserController.login(username, password)){
             //if success return UI for that user
+            DataController.getUsers();
             for (User user: users){
                 if (user.getUserID() == username) UI(user);
             }

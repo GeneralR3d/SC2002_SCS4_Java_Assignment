@@ -23,7 +23,7 @@ public class CampController {
 
     public static ArrayList<Camp> viewAvailableCamps(User currUser){
         // TODO: use datacontroller to get arr camp
-        // ArrayList<Camp> campData = DataController.getcamps();
+        ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
 
         // add committeememberfor camp and add as first in result
@@ -31,7 +31,7 @@ public class CampController {
             for (Camp currCamp: campData){
                 //check visibility and faculty of camp
                 //update enum of 'NTU'
-                if (currCamp.isVisibleToStudents() && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == currentUser.getFaculty())){
+                if (currCamp.isVisibleToStudents() && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == currUser.getFaculty())){
                     availableCamps.add(currCamp);
                 }
             }
@@ -56,7 +56,7 @@ public class CampController {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i=0; i<attendees.size(); i++){
             if (attendees.get(i).getUserID() == SessionInfo.user.getUserID()){
-                camp.removeAttendee(i);
+                camp.removeAttendee(attendees.get(i));
                 break;
             }
         }

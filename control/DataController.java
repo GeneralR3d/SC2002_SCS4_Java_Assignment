@@ -1,7 +1,9 @@
+package control;
 
 
 import java.io.*;
 import java.util.StringTokenizer;
+
 import java.util.ArrayList;
 
 import Entity.*;
@@ -19,7 +21,7 @@ public class DataController {
    */
   public static void init(){
     try{
-      BufferedReader staffStream = new BufferedReader(new FileReader("staff_list.txt"));
+      BufferedReader staffStream = new BufferedReader(new FileReader("../staff_list.txt"));
       //skip first line
       String line = staffStream.readLine();
       while(true){
@@ -39,7 +41,6 @@ public class DataController {
       staffStream.close();
     }
     catch(FileNotFoundException e){
-
       System.out.println("staff_list.txt not found!\n\r"+ e.getMessage());
       System.exit(0);
     }
@@ -50,7 +51,7 @@ public class DataController {
     }
 
     try{
-      BufferedReader studentStream = new BufferedReader(new FileReader("student_list.txt"));
+      BufferedReader studentStream = new BufferedReader(new FileReader("../student_list.txt"));
       //skip first line
       String line = studentStream.readLine();
       while(true){
@@ -70,7 +71,60 @@ public class DataController {
       studentStream.close();
     }
     catch(FileNotFoundException e){
+      System.out.println("student_list.txt not found!\n\r"+ e.getMessage());
+      System.exit(0);
+    }
+    catch(IOException e){
+        System.out.println("file error!\n\r"+ e.getMessage());
+        e.printStackTrace();
+        System.exit(0);
+    }
+  
 
+  }
+
+  public static void save(){
+    try{
+      BufferedWriter staffStream = new BufferedWriter(new FileWriter("../staff_list.txt"));
+      //skip first line
+      String line = staffStream.skip();
+      for(Staff staff : staffs){
+
+        String name = staff.getName();
+        String email = staff.getUserID()+"@NTU.EDU.SG";
+        String faculty = staff.getFaculty().toString();
+
+        staffStream.write(name+"\t"+email+"\t"+faculty+"\n\r");
+
+      }
+      staffStream.close();
+    }
+    catch(FileNotFoundException e){
+      System.out.println("staff_list.txt not found!\n\r"+ e.getMessage());
+      System.exit(0);
+    }
+    catch(IOException e){
+      System.out.println("file error!\n\r"+ e.getMessage());
+      e.printStackTrace();
+      System.exit(0);
+    }
+
+    try{
+      BufferedWriter studentStream = new BufferedWriter(new FileWriter("../staff_list.txt"));
+      //skip first line
+      String line = studentStream.skip();
+      for(Student student : students){
+
+        String name = student.getName();
+        String email = student.getUserID()+"@NTU.EDU.SG";
+        String faculty = student.getFaculty().toString();
+
+        studentStream.write(name+"\t"+email+"\t"+faculty+"\n\r");
+
+      }
+      studentStream.close();
+    }
+    catch(FileNotFoundException e){
       System.out.println("student_list.txt not found!\n\r"+ e.getMessage());
       System.exit(0);
     }
@@ -82,6 +136,9 @@ public class DataController {
   
 
   }
+
+
+
   public static ArrayList<Camp> getCamps() {
     return camps;
   }
