@@ -47,6 +47,10 @@ public class CommitteeUI{
         }
     }
 
+    
+    /** 
+     * @param camp
+     */
     private static void displayCampDetails(Camp camp){
         System.out.println("Name: "+ camp.getName());
         System.out.println("Start Date: "+ camp.getStartDate());

@@ -7,6 +7,12 @@ import Entity.User;
 
 public class SuggestionController {
 
+  
+  /** 
+   * @param user
+   * @param camp
+   * @param content
+   */
   public static void post(User user, Camp camp, String content) {
     if (!(user instanceof CommitteeMember)) {
       // call boundary class

@@ -8,6 +8,10 @@ public class Enquiry implements EditableMessage {
 	private String content;
 	private ArrayList<Reply> replies;
 
+	
+	/** 
+	 * @return Student
+	 */
 	public Student getOwner() {
 		return this.owner;
 	}

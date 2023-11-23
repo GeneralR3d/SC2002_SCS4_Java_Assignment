@@ -6,6 +6,10 @@ public class Enquiry implements EditableMessage {
 	private String content;
 	private ArrayList<Reply> replies;
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getOwnerID() {
 		return this.ownerID;
 	}

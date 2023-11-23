@@ -43,6 +43,10 @@ public class Staff extends User {
 		createdCamps.remove(camp);
 	}
 
+	
+	/** 
+	 * @return ArrayList<Camp>
+	 */
 	public ArrayList<Camp> getCreatedCamps(){
 		return this.createdCamps;
 	}

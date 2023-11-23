@@ -4,6 +4,10 @@ public class Suggestion implements EditableMessage {
 	private String content;
 	private Status status;
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getOwnerID() {
 		return this.ownerID;
 	}

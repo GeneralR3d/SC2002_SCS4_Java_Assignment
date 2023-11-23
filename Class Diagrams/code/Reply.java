@@ -3,6 +3,10 @@ public class Reply implements Message {
 	private String ownerID;
 	private String content;
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getOwnerID() {
 		return this.ownerID;
 	}

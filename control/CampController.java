@@ -6,6 +6,10 @@ import java.util.Date;
 import Entity.*;
 
 public class CampController {
+    
+    /** 
+     * @param newCamp
+     */
     public static void addCamp(Camp newCamp) {
         DataController.addCamp(newCamp);
     }

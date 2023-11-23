@@ -139,6 +139,10 @@ public class Camp {
 	}
 
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getAttendeeSlotsLeft() {
 		return this.attendeeSlotsLeft;
 	}

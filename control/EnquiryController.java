@@ -6,6 +6,11 @@ import Entity.*;
 
 public class EnquiryController {
 
+  
+  /** 
+   * @param camp
+   * @param content
+   */
   public static void post(Camp camp, String content) {
     User user = SessionInfo.user;
     if (!(user instanceof Student)) {

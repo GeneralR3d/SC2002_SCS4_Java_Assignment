@@ -139,6 +139,10 @@ public class DataController {
 
 
 
+  
+  /** 
+   * @return ArrayList<Camp>
+   */
   public static ArrayList<Camp> getCamps() {
     return camps;
   }

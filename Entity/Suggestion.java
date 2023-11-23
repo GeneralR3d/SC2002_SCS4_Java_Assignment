@@ -6,6 +6,10 @@ public class Suggestion implements EditableMessage {
 	private String content;
 	private Status status;
 
+	
+	/** 
+	 * @return CommitteeMember
+	 */
 	public CommitteeMember getOwner() {
 		return this.owner;
 	}

@@ -21,6 +21,10 @@ public class Camp {
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getCampID() {
 		return this.campID;
 	}

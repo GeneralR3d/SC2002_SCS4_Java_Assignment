@@ -41,6 +41,10 @@ public class Student extends User {
 		signedUpCamps.remove(camp);
 	}
 
+	
+	/** 
+	 * @return ArrayList<Camp>
+	 */
 	public ArrayList<Camp> getSignedUpCamps(){
 		return signedUpCamps;
 	}

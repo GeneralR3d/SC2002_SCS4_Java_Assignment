@@ -41,6 +41,10 @@ public class StudentUI {
         AccountUI.loginMenu();
     }
 
+    
+    /** 
+     * @param openCamps
+     */
     private static void displayOpenCamps(ArrayList<Camp> openCamps) {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");

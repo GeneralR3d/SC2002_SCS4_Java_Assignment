@@ -73,6 +73,10 @@ public class StaffUI {
         }
     }
 
+    
+    /** 
+     * @param campID
+     */
     public static void menu_ManageMyCamp(int campID) {
         while (true) {
             System.out.println("1. View Enquiries");

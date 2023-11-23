@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import Entity.*;
 
 public class DisplayHelper {
+    
+    /** 
+     * @param camp
+     */
     //display individual camps
     public static void displayResult(Camp camp){
         System.out.println("Camp name: " + camp.getName());

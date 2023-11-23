@@ -4,6 +4,12 @@ import Entity.SessionInfo;
 import Entity.User;
 
 public class UserController {
+    
+    /** 
+     * @param userID
+     * @param password
+     * @return boolean
+     */
     public static boolean login(String userID, String password) {
         User user = DataController.findUser(userID);
         if (user == null)
