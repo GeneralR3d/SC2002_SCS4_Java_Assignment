@@ -1,9 +1,9 @@
-package boundary;
+package Boundary;
 
-import java.util.Scanner;
+import handler.InputHandler;
 
-import Entity.Camp;
-import Controllers.CampController;
+import Entity.*;
+import control.CampController;
 
 import java.util.ArrayList;
 
@@ -19,8 +19,7 @@ public class CommitteeUI{
         System.out.println("2. Submit suggestion");
         System.out.println("3. View enquries");
         System.out.println("4. Generate report");
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
+        int option = InputHandler.nextInt();
         switch(option){
             case 1:
                 displayCampDetails(campCurrent);
@@ -28,7 +27,7 @@ public class CommitteeUI{
             case 2:
                 System.out.println("Enter ~ to quit…");
                 System.out.println("Key in suggestion, press enter to confirm: ")
-                String suggestion = sc.nextLine();
+                String suggestion = InputHandler.nextLine();
                 if (suggestion.charAt(0)=='~')
                     break;
                 else
@@ -63,22 +62,22 @@ public class CommitteeUI{
         System.out.println("Command Options: ");
         System.out.println("Enter number to reply....");
         System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= allEnquiries.length();i++){
+        for(int i = 1; i<= allEnquiries.size();i++){
             System.out.print(i + ". " + allEnquiries.get(i-1).getContent() + ": ");
             if(allEnquiries.get(i-1).isProcessed())
             System.out.println("Processed");
             else
             System.out.println("Not Processed");
         }
-        int option = sc.nextInt();
+        int option = InputHandler.nextInt();
         if (option == 0)
             committeeMainMenu();
-        else if (option <0 || option >allEnquiries.length())
+        else if (option <0 || option >allEnquiries.size())
             return;
         else
             System.out.println("Enter ~ to quit…");
             System.out.println("Key in reply, press enter to confirm: ")
-            String reply = sc.nextLine();
+            String reply = InputHandler.nextLine();
             if (reply.charAt(0)=='~')
                 break;
             else

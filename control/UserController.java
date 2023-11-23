@@ -1,7 +1,7 @@
 package control;
 
-import entity.SessionInfo;
-import entity.User;
+import Entity.SessionInfo;
+import Entity.User;
 
 public class UserController {
     public static boolean login(String userID, String password) {

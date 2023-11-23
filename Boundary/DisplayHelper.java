@@ -1,8 +1,8 @@
-package boundary;
+package Boundary;
 
 import java.util.ArrayList;
 
-import entity.*;
+import Entity.*;
 
 public class DisplayHelper {
     //display individual camps

@@ -1,19 +1,19 @@
-package boundary;
+package Boundary;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import control.UserController;
-import entity.*;
+import handler.InputHandler;
+import Entity.*;
 
 public class AccountUI {
     public static void loginMenu(){
-        Scanner sc = new Scanner(System.in);
         System.out.println("Camp Application and Management System (CAMS) Login");
         System.out.println("Please enter your username:");
-        String username = sc.nextLine();
+        String username = InputHandler.nextLine();
         System.out.println("Please enter your password:");
-        String password = sc.nextLine();
+        String password = InputHandler.nextLine();
 
         if (UserController.login(username, password)){
             //if success return UI for that user
@@ -25,15 +25,14 @@ public class AccountUI {
     }
 
     public static void resetPasswordMenu(ArrayList<User> users, User currUser){
-        Scanner sc = new Scanner(System.in);
         System.out.println("Reset Password");
 
         String newPW;
         do{
             System.out.println("Enter your new password:");
-            newPW = sc.nextLine();
+            newPW = InputHandler.nextLine();
             System.out.println("Enter your new password again:");
-            String newPW2 = sc.nextLine();
+            String newPW2 = InputHandler.nextLine();
             if (newPW == newPW2) break;
             else System.out.println("Passwords do not match! Try again.");
         }while(true);

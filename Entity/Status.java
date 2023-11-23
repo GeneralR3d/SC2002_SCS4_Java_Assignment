@@ -1,4 +1,4 @@
-package entity;
+package Entity;
 
 public enum Status {
   PENDING,

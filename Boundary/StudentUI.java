@@ -1,16 +1,14 @@
-package boundary;
+package Boundary;
 
-import java.util.Scanner;
 
 import control.*;
-import entity.*;
-
+import Entity.*;
+import handler.InputHandler;
 import java.util.ArrayList;
 
 public class StudentUI {
     public static void displayMenu() {
         int option;
-        Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
@@ -20,7 +18,7 @@ public class StudentUI {
             System.out.println("3. Withdraw from registered camps");
             if (SessionInfo.user instanceof CommitteeMember) System.out.println("4. Committee member menu");
 
-            option = sc.nextInt();
+            option = InputHandler.nextInt();
             switch(option){
                 case 1:
                     ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
@@ -41,7 +39,6 @@ public class StudentUI {
             }
         } while(option != 0);
         AccountUI.loginMenu();
-        sc.close();
     }
 
     private static void displayOpenCamps(ArrayList<Camp> openCamps) {
@@ -51,10 +48,9 @@ public class StudentUI {
 
         DisplayHelper.displayResult(openCamps);
 
-        Scanner sc = new Scanner(System.in);
 
         while (true){
-            int option = sc.nextInt();
+            int option = InputHandler.nextInt();
             if (option == 0)
                 break;
             else if (option <0 || option >openCamps.size()){
@@ -64,17 +60,14 @@ public class StudentUI {
             else viewCampOptions(openCamps.get(option-1));
         }
         displayMenu();
-        sc.close();
     }
 
     private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps) {
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back/exit…");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
-
-        Scanner sc = new Scanner(System.in);
         while (true){
-            int option = sc.nextInt();
+            int option = InputHandler.nextInt();
             if (option == 0)
                 break;
             else if (option < 0 || option > registeredCamps.size()){
@@ -83,7 +76,6 @@ public class StudentUI {
             }
         }
         displayMenu();
-        sc.close();
     }
 
     private static void withdrawRegisteredCamps(Student student) {
@@ -94,9 +86,8 @@ public class StudentUI {
         System.out.println("Enter 0 to go back/exit…");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
 
-        Scanner sc = new Scanner(System.in);
         while (true){
-            int option = sc.nextInt();
+            int option = InputHandler.nextInt();
             if (option == 0)
                 break;
             else if (option<0 || option>registeredCamps.size()){
@@ -106,7 +97,6 @@ public class StudentUI {
             else CampController.removeAttendee(registeredCamps.get(option-1));
         }
         displayMenu();
-        sc.close();
     }
 
     private static void viewCampOptions(Camp camp) {
@@ -120,8 +110,7 @@ public class StudentUI {
         System.out.println("3. Submit enquiry about camp");
         System.out.println("4. Manage my enquiries");
 
-        Scanner sc = new Scanner(System.in);
-        int option = sc.nextInt();
+        int option = InputHandler.nextInt();
         switch(option){
             case 1:
                 if(CampController.registerAttendee(camp)){
@@ -146,7 +135,7 @@ public class StudentUI {
             case 3:
                 System.out.println("Enter ~ to quit…");
                 System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = sc.nextLine();
+                String question = InputHandler.nextLine();
                 if (question.charAt(0)=='~')
                     break;
                 else
@@ -160,11 +149,9 @@ public class StudentUI {
                 System.out.println("Invalid input!");
                 break;
         }
-        sc.close();
     }
 
     private static void displayEnquiries(Camp camp, ArrayList<Enquiry> enquiriesByStudent) {
-        Scanner sc = new Scanner(System.in);
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
@@ -175,8 +162,7 @@ public class StudentUI {
             else
             System.out.println("Not Processed");
         }
-        int option = sc.nextInt();
-        sc.close();
+        int option = InputHandler.nextInt();
         if (option == 0)
             displayMenu();
         else if (option < 0 || option > enquiriesByStudent.size())
@@ -186,18 +172,18 @@ public class StudentUI {
     }
 
     private static void viewEnquiryOptions(Camp camp, Enquiry enquiry) {
-        Scanner sc = new Scanner(System.in);
+    
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");
         System.out.println("1. Edit enquiry");
         System.out.println("2. Delete enquiry");
-        int option = sc.nextInt();
+        int option = InputHandler.nextInt();
         switch (option) {
             case 1:
                 System.out.println("Enter ~ to quit…");
                 System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = sc.nextLine();
+                String question = InputHandler.nextLine();
                 if (question.charAt(0)=='~')
                     break;
                 else
@@ -209,7 +195,6 @@ public class StudentUI {
             default:
                 break;
         }
-        sc.close();
     }
 
 }
