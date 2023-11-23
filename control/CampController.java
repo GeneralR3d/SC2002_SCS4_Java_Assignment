@@ -17,23 +17,34 @@ public class CampController {
         //
     }
 
-    public static void deleteCamp(ArrayList<Camp> camps, Camp deletingCamp) {
-        //use datacontoller to remove from camp arr
-        camps.remove(deletingCamp.getCampID());
+    public static boolean deleteCamp(Camp deletingCamp) {
+        ArrayList<Camp> openCamps = DataController.getCamps();
+
+        //check if deletingcamp is in camps
+        for(Camp camp: openCamps){
+            if (deletingCamp.getCampID() == camp.getCampID()){
+                DataController.removeCamp(deletingCamp);
+                return true;
+            }
+        }
+        return false;
     }
 
     public static ArrayList<Camp> getAvailableCamps(){
         ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
+        Date today = new Date();
 
         // add committeememberfor camp and add as first in result
         switch(SessionInfo.userType){
             case "Student":
                 for (Camp currCamp: campData){
-                    //TODO: should check for RegCloseDate??
+                    //check for RegCloseDate
                     //check visibility and faculty of camp
-                    //update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty())){
+                    //TODO: update enum of 'NTU'
+                    if (currCamp.isVisibleToStudents() && 
+                        (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty()) &&
+                        !today.after(currCamp.getRegCloseDate())){
                         availableCamps.add(currCamp);
                     }
                 }
@@ -41,9 +52,12 @@ public class CampController {
             case "CommitteeMember":
                 CommitteeMember currUser = (CommitteeMember) SessionInfo.user;
                 for (Camp currCamp: campData){
+                    //check for RegCloseDate
                     //check visibility and faculty of camp
-                    //update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty())){
+                    //TODO: update enum of 'NTU'
+                    if (currCamp.isVisibleToStudents() && 
+                        (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty()) &&
+                        !today.after(currCamp.getRegCloseDate())){
                         availableCamps.add(currCamp);
                     }
                 }
@@ -87,8 +101,8 @@ public class CampController {
     public static boolean registerAttendee(Camp camp){
         ArrayList<Student> attendees = camp.getAttendees();
         //check for registration deadline
-        Date today = new Date();
-        if (today.after(camp.getRegCloseDate())) return false;
+        // Date today = new Date();
+        // if (today.after(camp.getRegCloseDate())) return false;
 
         //check if user already signed up
         for (int i=0; i<attendees.size(); i++){
@@ -107,8 +121,8 @@ public class CampController {
     public static boolean registerCommittee(Camp camp){
         ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
         //check for registration deadline
-        Date today = new Date();
-        if (today.after(camp.getRegCloseDate())) return false;
+        // Date today = new Date();
+        // if (today.after(camp.getRegCloseDate())) return false;
 
         //check if already committee member
         for (int i=0; i<committeeMembers.size(); i++){
