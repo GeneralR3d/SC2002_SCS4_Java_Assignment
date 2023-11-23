@@ -21,15 +21,15 @@ public class StudentUI {
             option = InputHandler.nextInt();
             switch(option){
                 case 1:
-                    ArrayList<Camp> openCamps = CampController.viewAvailableCamps(SessionInfo.user);
+                    ArrayList<Camp> openCamps = CampController.getAvailableCamps();
                     displayOpenCamps(openCamps);
                     break;
                 case 2:
-                    ArrayList<Camp> signedUpCamps = CampController.viewSignedUpCamps((Student)SessionInfo.user);
+                    ArrayList<Camp> signedUpCamps = CampController.getSignedUpCamps();
                     displayRegisteredCamps(signedUpCamps);
                     break;
                 case 3:
-                    withdrawRegisteredCamps((Student)SessionInfo.user);
+                    withdrawRegisteredCamps();
                     break;
                 case 4:
                     //pass thru curr user and check if is committee member
@@ -78,8 +78,8 @@ public class StudentUI {
         displayMenu();
     }
 
-    private static void withdrawRegisteredCamps(Student student) {
-        ArrayList<Camp> registeredCamps = CampController.viewSignedUpCamps(student);
+    private static void withdrawRegisteredCamps() {
+        ArrayList<Camp> registeredCamps = CampController.getSignedUpCamps();
 
         System.out.println("Command Options: ");
         System.out.println("Enter number to withdraw from that camp....");
