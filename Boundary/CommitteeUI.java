@@ -15,7 +15,7 @@ public class CommitteeUI{
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
 
-        Camp campCurrent = CampController.getCommiteeMemberFor();
+        Camp campCurrent = CampController.getCommiteeMemberFor(SessionInfo.user);
         System.out.println("You are a committee member for camp "+ campCurrent.getName());
         System.out.println("1. View details for camp");
         System.out.println("2. Submit suggestion");
