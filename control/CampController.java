@@ -121,8 +121,7 @@ public class CampController {
         //add into camps
         attendees.add((Student)SessionInfo.user);
         //TODO: does not work! need dataController to have editCamps or make array of camps public
-        //camp.setAttendees(attendees);
-        camp.setattendeeSlotsLeft(camp.getAttendeeSlotsLeft()-1);
+        camp.addAttendee((Student) SessionInfo.user);
         return true;
     }
 
@@ -138,9 +137,13 @@ public class CampController {
                 return false;
             }
         }
+
+        User currUser = SessionInfo.user;
+        //TODO: add getpw() in entity
+        CommitteeMember newCommMember = new CommitteeMember(currUser.getName(), currUser.getUserID(), currUser.getFaculty(), currUser.getPW(), camp);
         //TODO: does not work! need dataController to have editCamps or make array of camps public
-        committeeMembers.add((CommitteeMember)SessionInfo.user);
-        camp.setComSlotsLeft(camp.getCommSlotsLeft()-1);
+        DataController.addCommMember(newCommMember);
+        camp.addCommittee(newCommMember);
         return true;
     }
 }
