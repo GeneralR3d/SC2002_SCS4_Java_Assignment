@@ -7,13 +7,21 @@ import Entity.*;
 
 public class CampController {
     public static void addCamp(Camp newCamp) {
-        //just call DataController?
         DataController.addCamp(newCamp);
     }
 
     public static void editCamp(Camp camp){
         // TODO: need set camps function
         ArrayList<Camp> campData = DataController.getCamps();
+        // TODO: change staffUI
+        int choice = Boundary.StaffUI.menu_EditMyCamp();
+
+        switch(choice){
+            case 1:
+                //TODO: add setName in camp
+                camp.setName();
+                break;                
+        }
         //
     }
 
