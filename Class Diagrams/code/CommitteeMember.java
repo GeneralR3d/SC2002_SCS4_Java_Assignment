@@ -22,8 +22,8 @@ public class CommitteeMember extends Student {
 	 * @param faculty
 	 * @param pw
 	 */
-	public CommitteeMember(String userID, Faculty faculty, String pw, Camp committeeMemberFor) {
-		super(userID, faculty, pw);
+	public CommitteeMember(String name, String userID, Faculty faculty, String pw, Camp committeeMemberFor) {
+		super(name,userID, faculty, pw);
 		this.commiteeMemberFor = committeeMemberFor;
 	}
 

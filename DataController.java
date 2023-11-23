@@ -1,15 +1,87 @@
-package control;
 
+
+import java.io.*;
+import java.util.StringTokenizer;
 import java.util.ArrayList;
 
 import Entity.*;
 
 public class DataController {
+  public static final String SEPARATOR = "\t";
   private static ArrayList<Camp> camps;
   private static ArrayList<Staff> staffs;
   private static ArrayList<Student> students;
   private static ArrayList<CommitteeMember> commMembers;
 
+  /**
+   * Reads array list of staff and students from text file
+   * @param filename
+   */
+  public static void init(){
+    try{
+      BufferedReader staffStream = new BufferedReader(new FileReader("staff_list.txt"));
+      //skip first line
+      String line = staffStream.readLine();
+      while(true){
+        line = staffStream.readLine();
+        if(line == null) break;
+        StringTokenizer token = new StringTokenizer(line,SEPARATOR);
+
+        String name = token.nextToken().trim();
+        String email = token.nextToken().trim();
+        String userID = email.substring(0,email.indexOf('@'));
+        Faculty faculty = Faculty.valueOf(token.nextToken().trim());
+
+        Staff staff = new Staff(name, userID, faculty);
+        staffs.add(staff);
+
+      }
+      staffStream.close();
+    }
+    catch(FileNotFoundException e){
+
+      System.out.println("staff_list.txt not found!\n\r"+ e.getMessage());
+      System.exit(0);
+    }
+    catch(IOException e){
+      System.out.println("file error!\n\r"+ e.getMessage());
+      e.printStackTrace();
+      System.exit(0);
+    }
+
+    try{
+      BufferedReader studentStream = new BufferedReader(new FileReader("student_list.txt"));
+      //skip first line
+      String line = studentStream.readLine();
+      while(true){
+        line = studentStream.readLine();
+        if(line == null) break;
+        StringTokenizer token = new StringTokenizer(line,SEPARATOR);
+
+        String name = token.nextToken().trim();
+        String email = token.nextToken().trim();
+        String userID = email.substring(0,email.indexOf('@'));
+        Faculty faculty = Faculty.valueOf(token.nextToken().trim());
+
+        Student student = new Student(name, userID, faculty);
+        students.add(student);
+
+      }
+      studentStream.close();
+    }
+    catch(FileNotFoundException e){
+
+      System.out.println("student_list.txt not found!\n\r"+ e.getMessage());
+      System.exit(0);
+    }
+    catch(IOException e){
+      System.out.println("file error!\n\r"+ e.getMessage());
+      e.printStackTrace();
+      System.exit(0);
+    }
+  
+
+  }
   public static ArrayList<Camp> getCamps() {
     return camps;
   }

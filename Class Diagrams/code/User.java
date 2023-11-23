@@ -1,11 +1,16 @@
 public abstract class User {
 
+	private String name;
 	private String userID;
 	private Faculty faculty;
 	private String pw = "password";
 
 	public String getUserID() {
 		return this.userID;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 	public Faculty getFaculty() {
@@ -22,7 +27,8 @@ public abstract class User {
 	 * @param faculty
 	 * @param pw
 	 */
-	public User(String userID, Faculty faculty, String pw) {
+	public User(String name,String userID, Faculty faculty, String pw) {
+		this.name = name;
 		this.userID = userID;
 		this.faculty = faculty;
 		this.pw = pw;
@@ -33,7 +39,8 @@ public abstract class User {
 		 * @param userID
 		 * @param faculty
 		 */
-	public User(String userID, Faculty faculty) {
+	public User(String name, String userID, Faculty faculty) {
+		this.name= name;
 		this.userID = userID;
 		this.faculty = faculty;
 	}

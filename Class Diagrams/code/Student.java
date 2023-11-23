@@ -10,8 +10,8 @@ public class Student extends User {
 	 * @param faculty
 	 * @param pw
 	 */
-	public Student(String userID, Faculty faculty, String pw) {
-		super(userID, faculty, pw);
+	public Student(String name,String userID, Faculty faculty, String pw) {
+		super(name,userID, faculty, pw);
 		signedUpCamps = new ArrayList<Camp>();
 	}
 
@@ -20,8 +20,8 @@ public class Student extends User {
 	 * @param userID
 	 * @param faculty
 	 */
-	public Student(String userID, Faculty faculty) {
-		super(userID, faculty);
+	public Student(String name, String userID, Faculty faculty) {
+		super(name,userID, faculty);
 		signedUpCamps = new ArrayList<Camp>();
 	}
 
