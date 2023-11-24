@@ -6,7 +6,6 @@ public class Suggestion implements EditableMessage {
 	private String content;
 	private Status status;
 
-
 	/**
 	 * @return CommitteeMember
 	 */

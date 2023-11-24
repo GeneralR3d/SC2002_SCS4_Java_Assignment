@@ -7,7 +7,6 @@ import entity.User;
 
 public class SuggestionController {
 
-
   /**
    * @param user
    * @param camp
@@ -50,8 +49,8 @@ public class SuggestionController {
     suggestion.getOwner().addPoint();
   }
 
-	public static void reject(User user, Suggestion suggestion) {
-		suggestion.reject();
-	}
+  public static void reject(User user, Suggestion suggestion) {
+    suggestion.reject();
+  }
 
 }

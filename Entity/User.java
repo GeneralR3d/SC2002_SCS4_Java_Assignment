@@ -7,7 +7,6 @@ public abstract class User {
 	private Faculty faculty;
 	private String password = "password";
 
-
 	/**
 	 * @return String
 	 */
@@ -45,10 +44,10 @@ public abstract class User {
 	}
 
 	/**
-		 *
-		 * @param userID
-		 * @param faculty
-		 */
+	 *
+	 * @param userID
+	 * @param faculty
+	 */
 	public User(String name, String userID, Faculty faculty) {
 		this.name = name;
 		this.userID = userID;

@@ -1,6 +1,5 @@
 package boundary;
 
-
 import control.*;
 import entity.*;
 import handler.InputHandler;
@@ -26,7 +25,7 @@ public class StudentUI {
             }
 
             option = InputHandler.nextInt();
-            switch(option){
+            switch (option) {
                 case 1:
                     ArrayList<Camp> openCamps = CampController.getAvailableCamps();
                     displayOpenCamps(openCamps);
@@ -52,7 +51,6 @@ public class StudentUI {
         AccountUI.loginMenu();
     }
 
-
     /**
      * @param openCamps
      */
@@ -64,16 +62,15 @@ public class StudentUI {
 
         DisplayHelper.displayResult(openCamps);
 
-
         while (true) {
             int option = InputHandler.nextInt();
             if (option == 0)
                 return;
-            else if (option < 0 || option > openCamps.size()){
+            else if (option < 0 || option > openCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
-            }
-            else viewCampOptions(openCamps.get(option-1));
+            } else
+                viewCampOptions(openCamps.get(option - 1));
         }
     }
 
@@ -82,11 +79,11 @@ public class StudentUI {
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
-        while (true){
+        while (true) {
             int option = InputHandler.nextInt();
             if (option == 0)
                 break;
-            else if (option < 0 || option > registeredCamps.size()){
+            else if (option < 0 || option > registeredCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
             }
@@ -102,15 +99,15 @@ public class StudentUI {
         System.out.println("Enter 0 to go back");
         DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
 
-        while (true){
+        while (true) {
             int option = InputHandler.nextInt();
             if (option == 0)
                 break;
-            else if (option<0 || option>registeredCamps.size()){
+            else if (option < 0 || option > registeredCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
-            }
-            else CampController.removeAttendee(registeredCamps.get(option-1));
+            } else
+                CampController.removeAttendee(registeredCamps.get(option - 1));
         }
         displayMenu();
     }
@@ -119,7 +116,7 @@ public class StudentUI {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back");
-        System.out.println("Number of slots left for "+ camp.getName());
+        System.out.println("Number of slots left for " + camp.getName());
         System.out.println("Attendees: " + camp.getAttendeeSlotsLeft() + ", Committee: " + camp.getCommSlotsLeft());
         System.out.println("1. Register as attendee");
         System.out.println("2. Register as camp committee member");
@@ -128,7 +125,7 @@ public class StudentUI {
         System.out.println("5. Manage my enquiries");
 
         int option = InputHandler.nextInt();
-        switch(option){
+        switch (option) {
             case 1:
                 try {
                     CampController.registerAttendee(camp);
@@ -153,7 +150,8 @@ public class StudentUI {
                 System.out.println("Enter ~ to quit...");
                 System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = InputHandler.nextLine();
-                if (question.equals("~")) break;
+                if (question.equals("~"))
+                    break;
                 EnquiryController.post(camp, question);
                 System.out.println("Enquiry has been posted!");
                 break;
@@ -191,7 +189,8 @@ public class StudentUI {
         }
         while (true) {
             int option = InputHandler.nextInt();
-            if (option == 0) return;
+            if (option == 0)
+                return;
             if (option < 0 || option > enquiries.size()) {
                 System.out.println("Invalid input!");
                 continue;
@@ -214,7 +213,8 @@ public class StudentUI {
                 System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = InputHandler.nextLine();
 
-                if (question.equals("~")) break;
+                if (question.equals("~"))
+                    break;
 
                 try {
                     EnquiryController.edit(enquiry, question);

@@ -5,7 +5,6 @@ public class Reply implements Message {
 	private String ownerID;
 	private String content;
 
-
 	/**
 	 * @return String
 	 */

@@ -1,6 +1,5 @@
 package app;
 
-
 import entity.CommitteeMember;
 import entity.Staff;
 import entity.User;
@@ -17,7 +16,8 @@ public class SessionInfo {
      * @param user
      */
     public static void setUser(User user) {
-        if (user == null) return;
+        if (user == null)
+            return;
         SessionInfo.user = user;
         if (user instanceof Staff) {
             SessionInfo.userType = "Staff";

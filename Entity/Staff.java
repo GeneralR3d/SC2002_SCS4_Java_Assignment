@@ -6,7 +6,7 @@ public class Staff extends User {
 
 	ArrayList<Camp> createdCamps;
 
-		/**
+	/**
 	 *
 	 * @param userID
 	 * @param faculty
@@ -43,11 +43,10 @@ public class Staff extends User {
 		createdCamps.remove(camp);
 	}
 
-
 	/**
 	 * @return ArrayList<Camp>
 	 */
-	public ArrayList<Camp> getCreatedCamps(){
+	public ArrayList<Camp> getCreatedCamps() {
 		return this.createdCamps;
 	}
 }

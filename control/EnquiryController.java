@@ -7,7 +7,6 @@ import entity.*;
 
 public class EnquiryController {
 
-
   /**
    * @param camp
    * @param content
@@ -71,7 +70,8 @@ public class EnquiryController {
     ArrayList<Enquiry> campEnquiries = camp.getEnquiries();
     for (int i = 0; i < campEnquiries.size(); i++) {
       Enquiry enquiry = campEnquiries.get(i);
-      if (user.equals(enquiry.getOwner())) userEnquiries.add(enquiry);
+      if (user.equals(enquiry.getOwner()))
+        userEnquiries.add(enquiry);
     }
     if (campEnquiries.size() == 0) {
       return null;

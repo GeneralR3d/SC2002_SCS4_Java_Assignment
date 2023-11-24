@@ -9,7 +9,7 @@ public class DisplayHelper {
     /**
      * @param camp
      */
-    //display individual camps
+    // display individual camps
     public static void displayResult(Camp camp) {
         System.out.println("Camp name: " + camp.getName());
         System.out.println("Start date: " + camp.getStartDate());
@@ -23,14 +23,14 @@ public class DisplayHelper {
         System.out.println("Staff in charge: " + camp.getStaffInCharge().getName());
     }
 
-    //display available camps
+    // display available camps
     public static void displayResult(ArrayList<Camp> camps) {
         System.out.println();
         if (camps.size() == 0) {
             System.out.println("There are no camps available!");
             return;
         }
-        for (int i = 0; i < camps.size(); i++){
+        for (int i = 0; i < camps.size(); i++) {
             System.out.println((i + 1) + ": ");
             System.out.println("Camp name: " + camps.get(i).getName());
             System.out.println("Slots Left:");
@@ -40,35 +40,35 @@ public class DisplayHelper {
         }
     }
 
-    //display signed up camps
+    // display signed up camps
     public static void displayResult(ArrayList<Camp> camps, User currUser) {
         System.out.println();
         if (camps.size() == 0) {
             System.out.println("You have not registered for a camp!");
             return;
         }
-        for (int i=1; i<=camps.size(); i++){
-            if (i == 0 && currUser instanceof CommitteeMember){
+        for (int i = 1; i <= camps.size(); i++) {
+            if (i == 0 && currUser instanceof CommitteeMember) {
                 System.out.println(i + ". " + camps.get(i).getName() + " - Committee Member");
-            }
-            else System.out.println(i + ". " + camps.get(i).getName() + " - Attendee");
+            } else
+                System.out.println(i + ". " + camps.get(i).getName() + " - Attendee");
         }
     }
 
-    //display created camps for staff
+    // display created camps for staff
     public static void displayResult(Staff staff) {
         int count = 1;
-        for (Camp camp: staff.getCreatedCamps()){
+        for (Camp camp : staff.getCreatedCamps()) {
             System.out.println(count + ". Camp name: " + camp.getName());
             count++;
         }
     }
 
-    public static void displayResult(Enquiry enquiry){
-        System.out.println("Enquiry by: "+ enquiry.getOwner().getName());
+    public static void displayResult(Enquiry enquiry) {
+        System.out.println("Enquiry by: " + enquiry.getOwner().getName());
         System.out.println(enquiry.view());
         System.out.println("Replies:");
-        for(Reply reply : enquiry.getReplies()){
+        for (Reply reply : enquiry.getReplies()) {
             System.out.println(reply.view());
         }
     }

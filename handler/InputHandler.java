@@ -3,13 +3,15 @@ package handler;
 import java.util.Scanner;
 
 /**
- * Handles the input handling from user, so only one scanner is needed across the entire application.
+ * Handles the input handling from user, so only one scanner is needed across
+ * the entire application.
  */
 public class InputHandler {
     private static Scanner sc = new Scanner(System.in);
 
-
-    /** Analogous to {@link Scanner#next}
+    /**
+     * Analogous to {@link Scanner#next}
+     * 
      * @return String
      */
     public static String next() {
@@ -19,8 +21,9 @@ public class InputHandler {
         return s;
     }
 
-
-    /** Analogous to {@link Scanner#nextLine}
+    /**
+     * Analogous to {@link Scanner#nextLine}
+     * 
      * @return String
      */
     public static String nextLine() {
@@ -30,6 +33,7 @@ public class InputHandler {
 
     /**
      * Analogous to {@link Scanner#nextInt}
+     * 
      * @return int
      */
     public static int nextInt() {

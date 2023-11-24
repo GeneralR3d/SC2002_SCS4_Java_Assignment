@@ -1,10 +1,10 @@
 package entity;
 
-public interface EditableMessage extends Message{
+public interface EditableMessage extends Message {
 
-  boolean isProcessed();
+	boolean isProcessed();
 
-  /**
+	/**
 	 *
 	 * @param content
 	 */

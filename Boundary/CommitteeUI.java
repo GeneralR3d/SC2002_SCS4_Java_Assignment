@@ -49,21 +49,20 @@ public class CommitteeUI {
         }
     }
 
-
     /**
      * @param camp
      */
-    private static void displayCampDetails(Camp camp){
-        System.out.println("Name: "+ camp.getName());
-        System.out.println("Start Date: "+ camp.getStartDate());
-        System.out.println("End Date: "+ camp.getEndDate());
-        System.out.println("Registration close Date: "+ camp.getRegCloseDate());
-        System.out.println("School it is opened to: "+ camp.getOpenToFaculty());
-        System.out.println("Location: "+ camp.getLocation());
-        System.out.println("Total slots available: "+ camp.getTotalSlotsLeft());
-        System.out.println("Total camp committee slots available: "+ camp.getCommSlotsLeft());
-        System.out.println("Description: "+ camp.getDescription());
-        System.out.println("Staff in charge is "+ camp.getStaffInCharge().getUserID());
+    private static void displayCampDetails(Camp camp) {
+        System.out.println("Name: " + camp.getName());
+        System.out.println("Start Date: " + camp.getStartDate());
+        System.out.println("End Date: " + camp.getEndDate());
+        System.out.println("Registration close Date: " + camp.getRegCloseDate());
+        System.out.println("School it is opened to: " + camp.getOpenToFaculty());
+        System.out.println("Location: " + camp.getLocation());
+        System.out.println("Total slots available: " + camp.getTotalSlotsLeft());
+        System.out.println("Total camp committee slots available: " + camp.getCommSlotsLeft());
+        System.out.println("Description: " + camp.getDescription());
+        System.out.println("Staff in charge is " + camp.getStaffInCharge().getUserID());
     }
 
     private static void displayEnquiries(ArrayList<Enquiry> allEnquiries){
@@ -94,9 +93,8 @@ public class CommitteeUI {
 
     }
 
-    private static void generateReport(Camp camp){
+    private static void generateReport(Camp camp) {
         ;
     }
-
 
 }

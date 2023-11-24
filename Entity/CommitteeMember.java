@@ -5,7 +5,6 @@ public class CommitteeMember extends Student {
 	private Camp commiteeMemberFor;
 	private int points = 0;
 
-
 	/**
 	 * @return Camp
 	 */

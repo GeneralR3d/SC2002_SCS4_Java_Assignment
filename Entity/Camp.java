@@ -6,7 +6,8 @@ import java.util.ArrayList;
 /**
  * Represents a camp where all attributes are private.
  * Uses {@link java.util.Date} to store the date information
- * Uses {@link java.util.ArrayList} to store list of attendees, committee members, enquiries and suggestions.
+ * Uses {@link java.util.ArrayList} to store list of attendees, committee
+ * members, enquiries and suggestions.
  */
 public class Camp {
 
@@ -27,19 +28,19 @@ public class Camp {
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
 
-
 	/**
 	 * Accessor method
+	 *
 	 * @return int a unique campID
 	 */
 	public int getCampID() {
 		return this.campID;
 	}
 
-
 	/**
 	 * Accessor method
 	 * Returns the name of the camp(can be duplicated).
+	 *
 	 * @return {@link String} name of camp
 	 */
 	public String getName() {
@@ -49,6 +50,7 @@ public class Camp {
 	/**
 	 * Mutator method
 	 * Mutates the name of the came.
+	 *
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -57,45 +59,44 @@ public class Camp {
 
 	/**
 	 * Accessor method
+	 *
 	 * @return {@link java.util.Date} the start date of the camp
 	 */
 	public Date getStartDate() {
 		return this.startDate;
 	}
 
-
-
 	/**
 	 * Mutator method
+	 *
 	 * @param startDate the start date of the camp of type {@link java.util.Date}
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-
 	/**
 	 * Accessor method
+	 *
 	 * @return {@link java.util.Date} the end date of the camp
 	 */
 	public Date getEndDate() {
 		return this.endDate;
 	}
 
-
-
 	/**
 	 * Mutator method
+	 *
 	 * @param endDate the end date of the camp {@link java.util.Date}
 	 */
 
-	 public void setEndDate(Date endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
-
 	/**
 	 * Accessor method
+	 *
 	 * @return {@link java.util.Date} the registration close date of the camp
 	 */
 	public Date getRegCloseDate() {
@@ -104,7 +105,9 @@ public class Camp {
 
 	/**
 	 * Mutator method
-	 * @param regCloseDate the registration date of the camp of type {@link java.util.Date}
+	 *
+	 * @param regCloseDate the registration date of the camp of type
+	 *                     {@link java.util.Date}
 	 */
 	public void setRegCloseDate(Date regCloseDate) {
 		this.regCloseDate = regCloseDate;
@@ -112,19 +115,20 @@ public class Camp {
 
 	/**
 	 * Accessor method
-	 * Returns an enum value to see which faculty this camp is created in, and which faculty it is open to
+	 * Returns an enum value to see which faculty this camp is created in, and which
+	 * faculty it is open to
 	 * {@code NTU} means it is open to the whole school regardless of faculty
+	 *
 	 * @return {@link Faculty} an enum of faculties
 	 */
 	public Faculty getOpenToFaculty() {
 		return this.openToFaculty;
 	}
 
-
-
 	/**
 	 * Mutator method
 	 * Sets enum value of which faculty this camp is open to
+	 *
 	 * @param openToFaculty an enum of faculties of type {@link Faculty}
 	 */
 	public void setOpenToFaculty(Faculty openToFaculty) {
@@ -133,6 +137,7 @@ public class Camp {
 
 	/**
 	 * Accessor method
+	 *
 	 * @return {@link String} location of camp
 	 */
 	public String getLocation() {
@@ -141,13 +146,12 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 *
 	 * @param location of camp of type {@link String}
 	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-
 
 	/**
 	 * @return int
@@ -162,6 +166,7 @@ public class Camp {
 
 	/**
 	 * Accessor method
+	 *
 	 * @return int the number of committee member slots left
 	 */
 	public int getCommSlotsLeft() {
@@ -170,6 +175,7 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 *
 	 * @param comSlotsLeft the number of committee member slots left
 	 */
 	public void setComSlotsLeft(int comSlotsLeft) {
@@ -178,6 +184,7 @@ public class Camp {
 
 	/**
 	 * Accessor method
+	 *
 	 * @return {@link String} description of camp
 	 */
 	public String getDescription() {
@@ -186,6 +193,7 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 *
 	 * @param description of camp of type {@link String}
 	 */
 	public void setDescription(String description) {
@@ -194,6 +202,7 @@ public class Camp {
 
 	/**
 	 * Accessor method
+	 *
 	 * @return boolean whether this camp is visible to students
 	 */
 	public boolean isVisibleToStudents() {
@@ -202,6 +211,7 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 *
 	 * @param visibleToStudents whether this camp is visible to students
 	 */
 	public void setVisibleToStudents(boolean visibleToStudents) {
@@ -211,6 +221,7 @@ public class Camp {
 	/**
 	 * Accesor method
 	 * Normally the staff in charge of a camp is the staff who created the camp
+	 *
 	 * @return {@link Staff} the staff who is in charge of this camp
 	 */
 	public Staff getStaffInCharge() {
@@ -219,6 +230,7 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 *
 	 * @deprecated not supposed to change the in-charge
 	 * @param staffInCharge the staff who is in charge of this camp
 	 */
@@ -228,6 +240,7 @@ public class Camp {
 
 	/**
 	 * Accesor method
+	 *
 	 * @return {@link java.util.ArrayList} the list of attendees of a camp
 	 */
 	public ArrayList<Student> getAttendees() {
@@ -236,6 +249,7 @@ public class Camp {
 
 	/**
 	 * Accesor method
+	 *
 	 * @return {@link java.util.ArrayList} the list of committee members of a camp
 	 */
 	public ArrayList<CommitteeMember> getCommittee() {
@@ -244,6 +258,7 @@ public class Camp {
 
 	/**
 	 * Accesor method
+	 *
 	 * @return {@link java.util.ArrayList} the list of enquiries of a camp
 	 */
 	public ArrayList<Enquiry> getEnquiries() {
@@ -252,6 +267,7 @@ public class Camp {
 
 	/**
 	 * Accesor method
+	 *
 	 * @return {@link java.util.ArrayList} the list of suggestions of a camp
 	 */
 	public ArrayList<Suggestion> getSuggestions() {
@@ -264,19 +280,24 @@ public class Camp {
 
 	/**
 	 * Constructor
-	 * @param campID unqiue integer
-	 * @param name type {@link String}
-	 * @param startDate type {@link java.util.Date}
-	 * @param endDate type {@link java.util.Date}
-	 * @param regCloseDate type {@link java.util.Date}
-	 * @param openToFaculty enum type {@link Faculty} to indicate which faculty this camp is created in
-	 * @param location type {@link String}
-	 * @param totalSlotsLeft total number of slots available for the camp
-	 * @param comSlotsLeft total number of committe member slots available for the camp
-	 * @param description type {@link String}
-	 * @param visibleToStudents boolean value indicating whether the camp is visible to students
+	 *
+	 * @param campID            unqiue integer
+	 * @param name              type {@link String}
+	 * @param startDate         type {@link java.util.Date}
+	 * @param endDate           type {@link java.util.Date}
+	 * @param regCloseDate      type {@link java.util.Date}
+	 * @param openToFaculty     enum type {@link Faculty} to indicate which faculty
+	 *                          this camp is created in
+	 * @param location          type {@link String}
+	 * @param totalSlotsLeft    total number of slots available for the camp
+	 * @param comSlotsLeft      total number of committe member slots available for
+	 *                          the camp
+	 * @param description       type {@link String}
+	 * @param visibleToStudents boolean value indicating whether the camp is visible
+	 *                          to students
 	 */
-	public Camp(int campID, String name, Date startDate, Date endDate, Date regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
+	public Camp(int campID, String name, Date startDate, Date endDate, Date regCloseDate, Faculty openToFaculty,
+			String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
 		this.campID = campID;
 		this.name = name;
 		this.startDate = startDate;
@@ -296,7 +317,9 @@ public class Camp {
 
 	/**
 	 * Checks if there are remaining attendee slots for the camp
-	 * @return {@code true} if there are attendee slots left, {@code false} if there are no attendee slots left
+	 *
+	 * @return {@code true} if there are attendee slots left, {@code false} if there
+	 *         are no attendee slots left
 	 */
 	public boolean hasAttendeeSlots() {
 		return this.totalSlotsLeft != this.commSlotsLeft;
@@ -304,6 +327,7 @@ public class Camp {
 
 	/**
 	 * Adds one attendee to the list of attendees of the camp
+	 *
 	 * @param attendee the attendee to be added of type {@link Student}
 	 */
 	public void addAttendee(Student attendee) {
@@ -313,6 +337,7 @@ public class Camp {
 
 	/**
 	 * Removes one attendee from the list of attendee of the camp
+	 *
 	 * @param attendee the attendee to be removed of type {@link Student}
 	 */
 	public void removeAttendee(Student attendee) {
@@ -322,6 +347,7 @@ public class Camp {
 
 	/**
 	 * Checks whether the are remaining slots for new committee members to join
+	 *
 	 * @return boolean
 	 */
 	public boolean hasCommitteeSlots() {
@@ -330,7 +356,9 @@ public class Camp {
 
 	/**
 	 * Adds one committee member to the list of committee members of the camp
-	 * @param committee the committee member to be added of type {@link CommitteeMember}
+	 *
+	 * @param committee the committee member to be added of type
+	 *                  {@link CommitteeMember}
 	 */
 	public void addCommittee(CommitteeMember committee) {
 		committeeList.add(committee);
@@ -340,7 +368,9 @@ public class Camp {
 
 	/**
 	 * Removes one committee member from the list of committee members of the camp
-	 * @param committee the committee member to be removed of type {@link CommitteeMember}
+	 *
+	 * @param committee the committee member to be removed of type
+	 *                  {@link CommitteeMember}
 	 */
 	public void removeCommittee(CommitteeMember committee) {
 		committeeList.remove(committee);
@@ -350,6 +380,7 @@ public class Camp {
 
 	/**
 	 * Adds one enquiry to the list of enquiries of the camp
+	 *
 	 * @param enquiry the enquiry to be added of type {@link Enquiry}
 	 */
 	public void addEnquiry(Enquiry enquiry) {
@@ -358,6 +389,7 @@ public class Camp {
 
 	/**
 	 * Removes one enquiry from the list of enquiries of the camp
+	 *
 	 * @param enquiry the enruiry to be removed of type {@link Enquiry}
 	 */
 	public void removeEnquiry(Enquiry enquiry) {
@@ -366,6 +398,7 @@ public class Camp {
 
 	/**
 	 * Adds one suggestion to the list of suggestions of the camp
+	 *
 	 * @param suggestion the enquiry to be added of type {@link Suggestion}
 	 */
 	public void addSuggestion(Suggestion suggestion) {
@@ -374,6 +407,7 @@ public class Camp {
 
 	/**
 	 * Removes one suggestion from the list of suggestions of the camp
+	 *
 	 * @param suggestion the enruiry to be removed of type {@link Suggestion}
 	 */
 	public void removeSuggestion(Suggestion suggestion) {
