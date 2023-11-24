@@ -65,11 +65,16 @@ public class DisplayHelper {
     }
 
     public static void displayResult(Enquiry enquiry) {
+        System.out.println();
         System.out.println("Enquiry by: " + enquiry.getOwner().getName());
         System.out.println(enquiry.view());
         System.out.println("Replies:");
+        if (enquiry.getReplies().size() == 0) {
+            System.out.println("Status: Not processed");
+            return;
+        }
         for (Reply reply : enquiry.getReplies()) {
-            System.out.println(reply.view());
+            System.out.println("Replied by " + reply.getOwnerID() + ": " + reply.view());
         }
     }
 

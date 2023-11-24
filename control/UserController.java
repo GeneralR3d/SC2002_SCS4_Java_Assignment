@@ -30,10 +30,6 @@ public class UserController {
         SessionInfo.getUser().changepassword(newPassword);
     }
 
-    public static boolean checkPermission(Class<?> c) {
-        return c.isInstance(SessionInfo.getUser());
-    }
-
     public static void assertUserType(Class<?>... clist) throws Exception {
         for (int i = 0; i < clist.length; i++) {
             if (!clist[i].isInstance(SessionInfo.getUser()))

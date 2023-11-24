@@ -44,6 +44,8 @@ public class StudentUI {
                     AccountUI.logout();
                     option = 0;
                     break;
+                case 6:
+                    CommitteeUI.displayMenu();
                 default:
                     break;
             }
@@ -180,12 +182,6 @@ public class StudentUI {
         System.out.println("Enter 0 to go back");
         for (int i = 0; i < enquiries.size(); i++) {
             DisplayHelper.displayResult(enquiries.get(i));
-            if (enquiries.get(i).isProcessed()) {
-                System.out.println("Status: Processed");
-            }
-            if (!enquiries.get(i).isProcessed()) {
-                System.out.println("Status: Not Processed");
-            }
         }
         while (true) {
             int option = InputHandler.nextInt();

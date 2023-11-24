@@ -1,9 +1,6 @@
 package boundary;
 
-import java.util.ArrayList;
-
 import app.SessionInfo;
-import control.DataController;
 import control.UserController;
 import handler.InputHandler;
 import entity.*;

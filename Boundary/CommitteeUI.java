@@ -3,7 +3,6 @@ package boundary;
 import handler.InputHandler;
 
 import entity.*;
-import control.CampController;
 import control.EnquiryController;
 import control.SuggestionController;
 
@@ -13,36 +12,36 @@ import app.SessionInfo;
 
 public class CommitteeUI {
 
-    public static void displayMenu(){
+    public static void displayMenu() {
+        CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
+        Camp camp = committee.getCommiteeMemberFor();
+        System.out.println("You are a committee member for camp " + camp.getName());
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
-
-        Camp campCurrent = CampController.getCommiteeMemberFor(SessionInfo.getUser());
-        System.out.println("You are a committee member for camp "+ campCurrent.getName());
         System.out.println("1. View details for camp");
         System.out.println("2. Submit suggestion");
         System.out.println("3. View enquries");
         System.out.println("4. Generate report");
         int option = InputHandler.nextInt();
-        switch(option){
+        switch (option) {
             case 1:
-                displayCampDetails(campCurrent);
+                displayCampDetails(camp);
                 break;
             case 2:
-                System.out.println("Enter ~ to quit…");
-                System.out.println("Key in suggestion, press enter to confirm: ")
+                System.out.println("Enter ~ to quit");
+                System.out.println("Key in suggestion, press enter to confirm: ");
                 String suggestion = InputHandler.nextLine();
-                if (suggestion.charAt(0)=='~')
+                if (suggestion.equals("~"))
                     break;
                 else
-                    SuggestionController.post(SessionInfo.user,campCurrent,suggestion);
+                    SuggestionController.post(SessionInfo.getUser(), camp, suggestion);
+                System.out.println("Suggestion has been posted!");
                 break;
             case 3:
-                ArrayList<Enquiry> allEnquiries = campCurrent.getEnquiries();
-                displayEnquiries(allEnquiries);
+                displayEnquiries(camp);
                 break;
             case 4:
-                generateReport(campCurrent);
+                generateReport(camp);
                 break;
             default:
                 break;
@@ -65,32 +64,31 @@ public class CommitteeUI {
         System.out.println("Staff in charge is " + camp.getStaffInCharge().getUserID());
     }
 
-    private static void displayEnquiries(ArrayList<Enquiry> allEnquiries){
-        System.out.println("Command Options: ");
-        System.out.println("Enter number to reply....");
-        System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= allEnquiries.size();i++){
-            System.out.print(i + ". " + allEnquiries.get(i-1).getContent() + ": ");
-            if(allEnquiries.get(i-1).isProcessed())
-            System.out.println("Processed");
-            else
-            System.out.println("Not Processed");
-        }
-        int option = InputHandler.nextInt();
-        if (option == 0)
-            committeeMainMenu();
-        else if (option <0 || option >allEnquiries.size())
-            return;
-        else
-            System.out.println("Enter ~ to quit…");
-            System.out.println("Key in reply, press enter to confirm: ")
-            String reply = InputHandler.nextLine();
-            if (reply.charAt(0)=='~')
+    private static void displayEnquiries(Camp camp) {
+        ArrayList<Enquiry> enquiries = camp.getEnquiries();
+        while (true) {
+            System.out.println("Command Options: ");
+            System.out.println("Enter number to reply....");
+            System.out.println("Enter 0 to go back");
+            for (int i = 0; i < enquiries.size(); i++) {
+                DisplayHelper.displayResult(enquiries.get(i));
+            }
+            while (true) {
+                int option = InputHandler.nextInt();
+                if (option == 0)
+                    return;
+                if (option < 0 || option > enquiries.size())
+                    return;
+                else
+                    System.out.println("Enter ~ to go back");
+                System.out.println("Key in reply, press enter to confirm: ");
+                String reply = InputHandler.nextLine();
+                if (reply.equals("~"))
+                    break;
+                EnquiryController.addReply(camp, enquiries.get(option - 1), reply);
                 break;
-            else
-                EnquiryController.addReply(campCurrent,allEnquiries.get(option-1),reply);
-            break;
-
+            }
+        }
     }
 
     private static void generateReport(Camp camp) {

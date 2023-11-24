@@ -11,7 +11,7 @@ public class InputHandler {
 
     /**
      * Analogous to {@link Scanner#next}
-     * 
+     *
      * @return String
      */
     public static String next() {
@@ -23,7 +23,7 @@ public class InputHandler {
 
     /**
      * Analogous to {@link Scanner#nextLine}
-     * 
+     *
      * @return String
      */
     public static String nextLine() {
@@ -33,7 +33,7 @@ public class InputHandler {
 
     /**
      * Analogous to {@link Scanner#nextInt}
-     * 
+     *
      * @return int
      */
     public static int nextInt() {

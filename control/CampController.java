@@ -59,6 +59,8 @@ public class CampController {
     public static ArrayList<Camp> getAllCamps() throws Exception {
         UserController.assertUserType(Staff.class);
         ArrayList<Camp> allCamps = DataController.getCamps();
+        if (allCamps.size() == 0)
+            throw new Exception("There are no camps!");
         return allCamps;
     }
 
@@ -68,13 +70,8 @@ public class CampController {
      */
     public static ArrayList<Camp> getCreatedCamps() throws Exception {
         UserController.assertUserType(Staff.class);
-        ArrayList<Camp> allCamps = DataController.getCamps();
-        ArrayList<Camp> createdCamps = new ArrayList<Camp>();
-        for (int i = 0; i < allCamps.size(); i++) {
-            Camp camp = allCamps.get(i);
-            if (camp.getStaffInCharge().getUserID().equals(SessionInfo.getUser().getUserID()))
-                createdCamps.add(camp);
-        }
+        Staff staff = (Staff) SessionInfo.getUser();
+        ArrayList<Camp> createdCamps = staff.getCreatedCamps();
         return createdCamps;
     }
 

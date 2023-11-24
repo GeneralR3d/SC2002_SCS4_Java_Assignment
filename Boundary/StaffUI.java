@@ -1,7 +1,6 @@
 package boundary;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import control.CampController;
 import control.SuggestionController;
@@ -19,6 +18,7 @@ public class StaffUI {
             System.out.println("0. Quit");
             System.out.println("Please select an option...");
             int choice = InputHandler.nextInt();
+            System.out.println("Choice: " + choice);
             if (choice == 0)
                 break;
             switch (choice) {
@@ -41,17 +41,10 @@ public class StaffUI {
     public static void menu_ViewAllCamps() {
         // get all camps
         ArrayList<Camp> allCamps;
-        try {
-            allCamps = CampController.getAllCamps();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        allCamps = CampController.getAvailableCamps();
         while (true) {
             System.out.println("All Camps:");
-            for (int i = 0; i < allCamps.size(); i++) {
-                System.out.println(i + " " + allCamps.get(i).getName());
-            }
+            DisplayHelper.displayResult(allCamps);
             System.out.println("0. Exit");
             System.out.println("Select a camp to view its details...");
             int choice = InputHandler.nextInt();
@@ -71,15 +64,12 @@ public class StaffUI {
         try {
             createdCamps = CampController.getCreatedCamps();
         } catch (Exception e) {
-            // TODO: handle exception
             System.out.println(e.getMessage());
             return;
         }
         while (true) {
             System.out.println("Created Camps:");
-            for (int i = 0; i < createdCamps.size(); i++) {
-                System.out.println(i + " " + createdCamps.get(i).getName());
-            }
+            DisplayHelper.displayResult(createdCamps);
             System.out.println("0. Exit");
             System.out.println("Select a camp to manage it...");
             int choice = InputHandler.nextInt();
