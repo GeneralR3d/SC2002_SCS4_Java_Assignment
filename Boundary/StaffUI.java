@@ -15,6 +15,8 @@ public class StaffUI {
             System.out.println("1. View All Camps");
             System.out.println("2. View Created Camps");
             System.out.println("3. Create New Camp");
+            System.out.println("4. Change Password");
+            System.out.println("5. Logout");
             System.out.println("0. Quit");
             System.out.println("Please select an option...");
             int choice = InputHandler.nextInt();
@@ -30,6 +32,13 @@ public class StaffUI {
                     break;
                 case 3: // Create New Camp
                     menu_CreateNewCamp();
+                    break;
+                case 4:
+                    AccountUI.changePasswordMenu();
+                    break;
+                case 5:
+                    AccountUI.logout();
+                    choice = 0;
                     break;
                 default:
                     break;
