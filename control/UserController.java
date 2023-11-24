@@ -28,4 +28,8 @@ public class UserController {
     public static void changePassword(String newPassword) {
         SessionInfo.user.changePw(newPassword);
     }
+
+    public static boolean checkPermission(String permission) {
+        return permission.equals(SessionInfo.userType);
+    }
 }

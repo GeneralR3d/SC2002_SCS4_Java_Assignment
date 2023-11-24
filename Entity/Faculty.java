@@ -1,7 +1,7 @@
 package entity;
 
 public enum Faculty {
-  PACE,
+	PACE,
 	CoE,
 	CoHASS,
 	CoS,
