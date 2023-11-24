@@ -1,8 +1,8 @@
 package app;
 
 import Boundary.AccountUI;
-import Entity.SessionInfo;
 import control.DataController;
+import entity.SessionInfo;
 
 
 public class CAMS {
