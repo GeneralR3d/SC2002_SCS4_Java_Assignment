@@ -29,7 +29,7 @@ public class UserController {
         SessionInfo.user.changePw(newPassword);
     }
 
-    public static boolean checkPermission(String permission) {
-        return permission.equals(SessionInfo.userType);
+    public static boolean checkPermission(Class<?> c) {
+        return c.isInstance(SessionInfo.getUser());
     }
 }
