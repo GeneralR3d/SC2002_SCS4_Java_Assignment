@@ -9,13 +9,15 @@ import control.SuggestionController;
 
 import java.util.ArrayList;
 
-public class CommitteeUI{
+import app.SessionInfo;
+
+public class CommitteeUI {
 
     public static void displayMenu(){
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
 
-        Camp campCurrent = CampController.getCommiteeMemberFor(SessionInfo.user);
+        Camp campCurrent = CampController.getCommiteeMemberFor(SessionInfo.getUser());
         System.out.println("You are a committee member for camp "+ campCurrent.getName());
         System.out.println("1. View details for camp");
         System.out.println("2. Submit suggestion");

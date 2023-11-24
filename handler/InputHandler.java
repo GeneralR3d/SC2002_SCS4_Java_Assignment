@@ -8,16 +8,18 @@ import java.util.Scanner;
 public class InputHandler {
     private static Scanner sc = new Scanner(System.in);
 
-    
+
     /** Analogous to {@link Scanner#next}
      * @return String
      */
     public static String next() {
         System.out.print(">> ");
-        return sc.next();
+        String s = sc.next();
+        sc.nextLine();
+        return s;
     }
 
-    
+
     /** Analogous to {@link Scanner#nextLine}
      * @return String
      */
@@ -32,6 +34,8 @@ public class InputHandler {
      */
     public static int nextInt() {
         System.out.print(">> ");
-        return sc.nextInt();
+        int num = sc.nextInt();
+        sc.nextLine();
+        return num;
     }
 }

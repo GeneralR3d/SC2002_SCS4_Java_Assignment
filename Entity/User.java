@@ -5,7 +5,7 @@ public abstract class User {
 	private String name;
 	private String userID;
 	private Faculty faculty;
-	private String pw = "password";
+	private String password = "password";
 
 
 	/**
@@ -23,6 +23,10 @@ public abstract class User {
 		return this.faculty;
 	}
 
+	public String getPassword() {
+		return this.password;
+	}
+
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
@@ -31,13 +35,13 @@ public abstract class User {
 	 *
 	 * @param userID
 	 * @param faculty
-	 * @param pw
+	 * @param password
 	 */
-	public User(String name, String userID, Faculty faculty, String pw) {
+	public User(String name, String userID, Faculty faculty, String password) {
 		this.name = name;
 		this.userID = userID;
 		this.faculty = faculty;
-		this.pw = pw;
+		this.password = password;
 	}
 
 	/**
@@ -54,25 +58,25 @@ public abstract class User {
 	/**
 	 *
 	 * @param userID
-	 * @param pw
+	 * @param password
 	 */
-	public boolean signIn(String userID, String pw) {
-		return userID.equals(this.userID) && pw.equals(this.pw);
+	public boolean signIn(String userID, String password) {
+		return userID.equals(this.userID) && password.equals(this.password);
 	};
 
 	/**
 	 *
-	 * @param pw
+	 * @param password
 	 */
-	public void changePw(String pw) {
-		this.pw = pw;
+	public void changepassword(String password) {
+		this.password = password;
 	}
 
 	/**
 	 *
-	 * @param pw
+	 * @param password
 	 */
-	public boolean verifyPassword(String pw) {
-		return pw.equals(this.pw);
+	public boolean verifyPassword(String password) {
+		return password.equals(this.password);
 	}
 }

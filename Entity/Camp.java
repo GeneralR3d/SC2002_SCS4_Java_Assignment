@@ -17,7 +17,7 @@ public class Camp {
 	private Date regCloseDate;
 	private Faculty openToFaculty;
 	private String location;
-	private int attendeeSlotsLeft;
+	private int totalSlotsLeft;
 	private int commSlotsLeft;
 	private String description;
 	private boolean visibleToStudents;
@@ -44,6 +44,15 @@ public class Camp {
 	 */
 	public String getName() {
 		return this.name;
+	}
+
+	/**
+	 * Mutator method
+	 * Mutates the name of the came.
+	 * @param name
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -143,12 +152,12 @@ public class Camp {
 	/**
 	 * @return int
 	 */
-	public int getAttendeeSlotsLeft() {
-		return this.attendeeSlotsLeft;
+	public int getTotalSlotsLeft() {
+		return this.totalSlotsLeft;
 	}
 
-	public void setattendeeSlotsLeft(int attendeeSlotsLeft) {
-		this.attendeeSlotsLeft = attendeeSlotsLeft;
+	public void setTotalSlotsLeft(int totalSlotsLeft) {
+		this.totalSlotsLeft = totalSlotsLeft;
 	}
 
 	/**
@@ -249,6 +258,10 @@ public class Camp {
 		return this.suggestionList;
 	}
 
+	public int getAttendeeSlotsLeft() {
+		return this.totalSlotsLeft - this.commSlotsLeft;
+	}
+
 	/**
 	 * Constructor
 	 * @param campID unqiue integer
@@ -271,7 +284,7 @@ public class Camp {
 		this.regCloseDate = regCloseDate;
 		this.openToFaculty = openToFaculty;
 		this.location = location;
-		this.attendeeSlotsLeft = totalSlots - commSlots;
+		this.totalSlotsLeft = totalSlots;
 		this.commSlotsLeft = commSlots;
 		this.description = description;
 		this.visibleToStudents = visibleToStudents;
@@ -286,7 +299,7 @@ public class Camp {
 	 * @return {@code true} if there are attendee slots left, {@code false} if there are no attendee slots left
 	 */
 	public boolean hasAttendeeSlots() {
-		return attendeeSlotsLeft != 0;
+		return this.totalSlotsLeft != this.commSlotsLeft;
 	}
 
 	/**
@@ -295,7 +308,7 @@ public class Camp {
 	 */
 	public void addAttendee(Student attendee) {
 		attendeeList.add(attendee);
-		this.attendeeSlotsLeft--;
+		this.totalSlotsLeft--;
 	}
 
 	/**
@@ -304,6 +317,7 @@ public class Camp {
 	 */
 	public void removeAttendee(Student attendee) {
 		attendeeList.remove(attendee);
+		this.totalSlotsLeft++;
 	}
 
 	/**
@@ -321,6 +335,7 @@ public class Camp {
 	public void addCommittee(CommitteeMember committee) {
 		committeeList.add(committee);
 		this.commSlotsLeft--;
+		this.totalSlotsLeft--;
 	}
 
 	/**
@@ -330,6 +345,7 @@ public class Camp {
 	public void removeCommittee(CommitteeMember committee) {
 		committeeList.remove(committee);
 		this.commSlotsLeft++;
+		this.totalSlotsLeft++;
 	}
 
 	/**

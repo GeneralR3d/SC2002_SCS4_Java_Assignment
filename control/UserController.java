@@ -1,6 +1,6 @@
 package control;
 
-import entity.SessionInfo;
+import app.SessionInfo;
 import entity.User;
 
 public class UserController {
@@ -10,23 +10,24 @@ public class UserController {
      * @param password
      * @return boolean
      */
-    public static boolean login(String userID, String password) {
+    public static User login(String userID, String password) {
         User user = DataController.findUser(userID);
         if (user == null)
-            return false;
-        if (user.verifyPassword(password)) {
-            SessionInfo.setUser(user);
-            return true;
-        } else
-            return false;
+            return null;
+        if (!user.verifyPassword(password)) {
+            return null;
+        }
+        SessionInfo.setUser(user);
+        return user;
     }
 
     public static void logout() {
+        DataController.save();
         SessionInfo.setUser(null);
     }
 
     public static void changePassword(String newPassword) {
-        SessionInfo.user.changePw(newPassword);
+        SessionInfo.getUser().changepassword(newPassword);
     }
 
     public static boolean checkPermission(Class<?> c) {

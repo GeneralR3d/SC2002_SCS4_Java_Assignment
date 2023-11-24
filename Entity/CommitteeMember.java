@@ -13,14 +13,14 @@ public class CommitteeMember extends Student {
 		return this.commiteeMemberFor;
 	}
 
-	public void setCommiteeMemberFor(Camp commiteeMemberFor) {
-		this.commiteeMemberFor = commiteeMemberFor;
-	}
-
 	public int getPoints() {
 		return this.points;
 	}
 
+	public void register(Camp camp) {
+		super.register(camp);
+		this.commiteeMemberFor = camp;
+	}
 
 	/**
 	 *

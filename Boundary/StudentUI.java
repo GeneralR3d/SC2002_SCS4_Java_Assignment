@@ -6,17 +6,24 @@ import entity.*;
 import handler.InputHandler;
 import java.util.ArrayList;
 
+import app.SessionInfo;
+
 public class StudentUI {
     public static void displayMenu() {
         int option;
         do {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
-            //System.out.println("Enter 0 to go back/exit…");
             System.out.println("1. View open camps");
             System.out.println("2. See all registered camps");
             System.out.println("3. Withdraw from registered camps");
-            if (SessionInfo.user instanceof CommitteeMember) System.out.println("4. Committee member menu");
+            System.out.println("4. Change Password");
+            System.out.println("5. Logout");
+            if (SessionInfo.getUserType() == "CommitteeMember") {
+                System.out.println();
+                System.out.println("You are a committee member");
+                System.out.println("6. Committee member menu");
+            }
 
             option = InputHandler.nextInt();
             switch(option){
@@ -32,12 +39,16 @@ public class StudentUI {
                     withdrawRegisteredCamps();
                     break;
                 case 4:
-                    //pass thru curr user and check if is committee member
+                    AccountUI.changePasswordMenu();
+                    break;
+                case 5:
+                    AccountUI.logout();
+                    option = 0;
                     break;
                 default:
                     break;
             }
-        } while(option != 0);
+        } while (option != 0);
         AccountUI.loginMenu();
     }
 
@@ -46,30 +57,31 @@ public class StudentUI {
      * @param openCamps
      */
     private static void displayOpenCamps(ArrayList<Camp> openCamps) {
+        System.out.println();
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
-        System.out.println("Enter 0 to go back/exit…");
+        System.out.println("Enter 0 to go back.");
 
         DisplayHelper.displayResult(openCamps);
 
 
-        while (true){
+        while (true) {
             int option = InputHandler.nextInt();
             if (option == 0)
-                break;
-            else if (option <0 || option >openCamps.size()){
+                return;
+            else if (option < 0 || option > openCamps.size()){
                 System.out.println("Invalid input!");
                 continue;
             }
             else viewCampOptions(openCamps.get(option-1));
         }
-        displayMenu();
     }
 
     private static void displayRegisteredCamps(ArrayList<Camp> registeredCamps) {
+        System.out.println();
         System.out.println("Command Options: ");
-        System.out.println("Enter 0 to go back/exit…");
-        DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
+        System.out.println("Enter 0 to go back");
+        DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
         while (true){
             int option = InputHandler.nextInt();
             if (option == 0)
@@ -87,8 +99,8 @@ public class StudentUI {
 
         System.out.println("Command Options: ");
         System.out.println("Enter number to withdraw from that camp....");
-        System.out.println("Enter 0 to go back/exit…");
-        DisplayHelper.displayResult(registeredCamps, SessionInfo.user);
+        System.out.println("Enter 0 to go back");
+        DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
 
         while (true){
             int option = InputHandler.nextInt();
@@ -106,48 +118,57 @@ public class StudentUI {
     private static void viewCampOptions(Camp camp) {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
-        System.out.println("Enter 0 to go back/exit…");
+        System.out.println("Enter 0 to go back");
         System.out.println("Number of slots left for "+ camp.getName());
-        System.out.println("Attendees: " + camp.getAttendeeSlotsLeft() + ", " + camp.getCommSlotsLeft());
+        System.out.println("Attendees: " + camp.getAttendeeSlotsLeft() + ", Committee: " + camp.getCommSlotsLeft());
         System.out.println("1. Register as attendee");
         System.out.println("2. Register as camp committee member");
         System.out.println("3. Submit enquiry about camp");
-        System.out.println("4. Manage my enquiries");
+        System.out.println("4. View all enquiries");
+        System.out.println("5. Manage my enquiries");
 
         int option = InputHandler.nextInt();
         switch(option){
             case 1:
-                if(CampController.registerAttendee(camp)){
+                try {
+                    CampController.registerAttendee(camp);
                     System.out.println("You have successfully registered as attendee!");
-                    System.out.println("Enter 0 to go back/exit…");
-                }
-                else{
-                    System.out.println("You are already registered for this camp!");
-                    System.out.println("Enter 0 to go back/exit…");
+                    System.out.println("Enter 0 to go back");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("Enter 0 to go back");
                 }
                 break;
             case 2:
-                if(CampController.registerCommittee(camp)){
-                    System.out.println("You have successfully registered as camp committee member!");
-                    System.out.println("Enter 0 to go back/exit…");
-                }
-                else{
-                    System.out.println("You are already a committee member for this camp!");
-                    System.out.println("Enter 0 to go back/exit…");
+                try {
+                    CampController.registerCommittee(camp);
+                    System.out.println("You have successfully registered as Committee Member!");
+                    System.out.println("Enter 0 to go back");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    System.out.println("Enter 0 to go back");
                 }
                 break;
             case 3:
-                System.out.println("Enter ~ to quit…");
+                System.out.println("Enter ~ to quit...");
                 System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = InputHandler.nextLine();
-                if (question.charAt(0)=='~')
-                    break;
-                else
-                    EnquiryController.post(camp, question);
+                if (question.equals("~")) break;
+                EnquiryController.post(camp, question);
+                System.out.println("Enquiry has been posted!");
                 break;
             case 4:
-                ArrayList<Enquiry> enquiriesByStudent = EnquiryController.viewUserEnquiriesForCamp(camp);
-                displayEnquiries(camp, enquiriesByStudent);
+                ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
+                for (int i = 0; i < enquiries.size(); i++) {
+                    DisplayHelper.displayResult(enquiries.get(i));
+                }
+            case 5:
+                ArrayList<Enquiry> enquiriesByStudent = EnquiryController.getUserEnquiries(camp);
+                if (enquiriesByStudent == null) {
+                    System.out.println("You have no enquiries for this camp!");
+                    break;
+                }
+                displayMyEnquiries(camp, enquiriesByStudent);
                 break;
             default:
                 System.out.println("Invalid input!");
@@ -155,46 +176,62 @@ public class StudentUI {
         }
     }
 
-    private static void displayEnquiries(Camp camp, ArrayList<Enquiry> enquiriesByStudent) {
+    private static void displayMyEnquiries(Camp camp, ArrayList<Enquiry> enquiries) {
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
-        System.out.println("Enter 0 to go back/exit…");
-        for(int i = 1; i<= enquiriesByStudent.size();i++){
-            System.out.print(i + ". " + enquiriesByStudent.get(i-1).view() + ": ");
-            if(enquiriesByStudent.get(i-1).isProcessed())
-            System.out.println("Processed");
-            else
-            System.out.println("Not Processed");
+        System.out.println("Enter 0 to go back");
+        for (int i = 0; i < enquiries.size(); i++) {
+            DisplayHelper.displayResult(enquiries.get(i));
+            if (enquiries.get(i).isProcessed()) {
+                System.out.println("Status: Processed");
+            }
+            if (!enquiries.get(i).isProcessed()) {
+                System.out.println("Status: Not Processed");
+            }
         }
-        int option = InputHandler.nextInt();
-        if (option == 0)
-            displayMenu();
-        else if (option < 0 || option > enquiriesByStudent.size())
-            return;
-        else
-            viewEnquiryOptions(camp, enquiriesByStudent.get(option-1));
+        while (true) {
+            int option = InputHandler.nextInt();
+            if (option == 0) return;
+            if (option < 0 || option > enquiries.size()) {
+                System.out.println("Invalid input!");
+                continue;
+            }
+            viewEnquiryOptions(camp, enquiries.get(option));
+        }
     }
 
     private static void viewEnquiryOptions(Camp camp, Enquiry enquiry) {
 
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
-        System.out.println("Enter 0 to go back/exit…");
+        System.out.println("Enter 0 to go back");
         System.out.println("1. Edit enquiry");
         System.out.println("2. Delete enquiry");
         int option = InputHandler.nextInt();
         switch (option) {
             case 1:
-                System.out.println("Enter ~ to quit…");
+                System.out.println("Enter ~ to quit");
                 System.out.println("Key in enquiry, press enter to confirm: ");
                 String question = InputHandler.nextLine();
-                if (question.charAt(0)=='~')
-                    break;
-                else
+
+                if (question.equals("~")) break;
+
+                try {
                     EnquiryController.edit(enquiry, question);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    break;
+                }
+                System.out.println("Enquiry has been edited!");
                 break;
             case 2:
-                EnquiryController.delete(camp, enquiry);
+                try {
+                    EnquiryController.delete(camp, enquiry);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    break;
+                }
+                System.out.println("Enquiry has been edited!");
                 break;
             default:
                 break;

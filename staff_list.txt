@@ -1,6 +1,2 @@
 Name	Email	Faculty
-Madhukumar	HUKUMAR@NTU.EDU.SG	SCSE
-Alexei 	OURIN@ntu.edu.sg	ADM
-Chattopadhyay	UPAM@NTU.EDU.SG	EEE
-Datta	ANWIT@NTU.EDU.SG	SCSE
-Arvind 	ARVI@NTU.EDU.SG	NBS
+Madhukumar	HUKUMAR@NTU.EDU.SG	SCSEAlexei	OURIN@NTU.EDU.SG	ADMChattopadhyay	UPAM@NTU.EDU.SG	EEEDatta	ANWIT@NTU.EDU.SG	SCSEArvind	ARVI@NTU.EDU.SG	NBS

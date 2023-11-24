@@ -22,6 +22,6 @@ public enum Faculty {
 	SPMS,
 	SSS,
 	ASE,
-	WKWSCI
-
+	WKWSCI,
+	NTU,
 }

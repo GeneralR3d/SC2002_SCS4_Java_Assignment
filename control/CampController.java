@@ -3,6 +3,9 @@ package control;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.crypto.Data;
+
+import app.SessionInfo;
 import entity.*;
 
 public class CampController {
@@ -37,7 +40,7 @@ public class CampController {
      * @return boolean
      */
     public static void deleteCamp(Camp deletingCamp) throws Exception {
-        if (!UserController.checkPermission(Staff.class.toString()))
+        if (!UserController.checkPermission(Staff.class))
             throw new Exception("Error: Current user is not allowed to run this operation.");
         ArrayList<Camp> allCamps = DataController.getCamps();
 
@@ -55,7 +58,7 @@ public class CampController {
      * @throws Exception
      */
     public static ArrayList<Camp> getAllCamps() throws Exception {
-        if (!UserController.checkPermission(Staff.class.toString()))
+        if (!UserController.checkPermission(Staff.class))
             throw new Exception("Error: Current user is not allowed to run this operation.");
         ArrayList<Camp> allCamps = DataController.getCamps();
         return allCamps;
@@ -66,13 +69,13 @@ public class CampController {
      * @throws Exception
      */
     public static ArrayList<Camp> getCreatedCamps() throws Exception {
-        if (!UserController.checkPermission(Staff.class.toString()))
+        if (!UserController.checkPermission(Staff.class))
             throw new Exception("Error: Current user is not allowed to run this operation.");
         ArrayList<Camp> allCamps = DataController.getCamps();
         ArrayList<Camp> createdCamps = new ArrayList<Camp>();
         for (int i = 0; i < allCamps.size(); i++) {
             Camp camp = allCamps.get(i);
-            if (camp.getStaffInCharge().getUserID().equals(SessionInfo.user.getUserID()))
+            if (camp.getStaffInCharge().getUserID().equals(SessionInfo.getUser().getUserID()))
                 createdCamps.add(camp);
         }
         return createdCamps;
@@ -84,32 +87,16 @@ public class CampController {
         Date today = new Date();
 
         // add committeememberfor camp and add as first in result
-        switch (SessionInfo.userType) {
+        switch (SessionInfo.getUserType()) {
             case "Student":
-                for (Camp currCamp : campData) {
-                    // check for RegCloseDate
-                    // check visibility and faculty of camp
-                    // TODO: update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() &&
-                            (currCamp.getOpenToFaculty() == Faculty.NTU
-                                    || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty())
-                            &&
-                            !today.after(currCamp.getRegCloseDate())) {
-                        availableCamps.add(currCamp);
-                    }
-                }
-                break;
             case "CommitteeMember":
-                CommitteeMember currUser = (CommitteeMember) SessionInfo.user;
-                for (Camp currCamp : campData) {
+                for (Camp currCamp: campData) {
                     // check for RegCloseDate
                     // check visibility and faculty of camp
-                    // TODO: update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() &&
-                            (currCamp.getOpenToFaculty() == Faculty.NTU
-                                    || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty())
-                            &&
-                            !today.after(currCamp.getRegCloseDate())) {
+                    if (currCamp.isVisibleToStudents()
+                        && !today.after(currCamp.getRegCloseDate())
+                        && (currCamp.getOpenToFaculty() == Faculty.NTU
+                        || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
                         availableCamps.add(currCamp);
                     }
                 }
@@ -123,15 +110,15 @@ public class CampController {
 
     public static ArrayList<Camp> getSignedUpCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
-        switch (SessionInfo.userType) {
+        switch (SessionInfo.getUserType()) {
             case "Student":
-                for (Camp camp : ((Student) SessionInfo.user).getSignedUpCamps())
+                for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
                     registeredCamps.add(camp);
                 break;
             case "CommitteeMember":
                 // add first camp as committeemember camp
-                registeredCamps.add(((CommitteeMember) SessionInfo.user).getCommiteeMemberFor());
-                for (Camp camp : ((CommitteeMember) SessionInfo.user).getSignedUpCamps())
+                registeredCamps.add(((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor());
+                for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps())
                     registeredCamps.add(camp);
                 break;
         }
@@ -141,11 +128,9 @@ public class CampController {
     public static boolean removeAttendee(Camp camp) {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
-            if (attendees.get(i).getUserID() == SessionInfo.user.getUserID()) {
-                // TODO: does not work! need dataController to have editCamps or make array of
+            if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
                 // camps public
                 camp.removeAttendee(attendees.get(i));
-                camp.setattendeeSlotsLeft(camp.getAttendeeSlotsLeft() + 1);
                 return true;
             }
         }
@@ -153,47 +138,46 @@ public class CampController {
         return false;
     }
 
-    public static boolean registerAttendee(Camp camp) {
+    public static void registerAttendee(Camp camp) throws Exception {
+        // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
-        // check for registration deadline
-        // Date today = new Date();
-        // if (today.after(camp.getRegCloseDate())) return false;
-
-        // check if user already signed up
         for (int i = 0; i < attendees.size(); i++) {
-            if (attendees.get(i).getUserID() == SessionInfo.user.getUserID()) {
-                return false;
+            if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
+                throw new Exception("You have already registered as attendee!");
             }
         }
-        // add into camps
-        attendees.add((Student) SessionInfo.user);
-        // TODO: does not work! need dataController to have editCamps or make array of
-        // camps public
-        camp.addAttendee((Student) SessionInfo.user);
-        return true;
+
+        // check if user already signed up as committee member
+        ArrayList<CommitteeMember> commMembers = camp.getCommittee();
+        for (int i = 0; i < commMembers.size(); i++) {
+            if (commMembers.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
+                throw new Exception("You have already registered as a committee member!");
+            }
+        }
+
+        Student student = (Student) SessionInfo.getUser();
+        student.register(camp);
+        camp.addAttendee((Student) SessionInfo.getUser());
     }
 
-    public static boolean registerCommittee(Camp camp) {
-        ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
-        // check for registration deadline
-        // Date today = new Date();
-        // if (today.after(camp.getRegCloseDate())) return false;
-
-        // check if already committee member
-        for (int i = 0; i < committeeMembers.size(); i++) {
-            if (committeeMembers.get(i).getUserID() == SessionInfo.user.getUserID()) {
-                return false;
+    public static void registerCommittee(Camp camp) throws Exception {
+        // check if user already signed up as attendee
+        ArrayList<Student> attendees = camp.getAttendees();
+        for (int i = 0; i < attendees.size(); i++) {
+            if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
+                throw new Exception("You have already registered as attendee!");
             }
         }
 
-        User currUser = SessionInfo.user;
-        // TODO: add getpw() in entity
-        CommitteeMember newCommMember = new CommitteeMember(currUser.getName(), currUser.getUserID(),
-                currUser.getFaculty(), currUser.getPW(), camp);
-        // TODO: does not work! need dataController to have editCamps or make array of
-        // camps public
-        DataController.addCommMember(newCommMember);
-        camp.addCommittee(newCommMember);
-        return true;
+        // check if user is already a committee member
+        if (UserController.checkPermission(CommitteeMember.class)) throw new Exception("You are already a committee member!");
+
+        // if they are not, convert them into a committee member
+        Student student = (Student) SessionInfo.getUser();
+        RoleController.studentToCommittee(student, camp);
+
+        CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
+        committee.register(camp);
+        camp.addCommittee(committee);
     }
 }
