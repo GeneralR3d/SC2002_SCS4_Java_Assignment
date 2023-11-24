@@ -1,6 +1,6 @@
 package app;
 
-import Boundary.AccountUI;
+import boundary.AccountUI;
 import control.DataController;
 import entity.SessionInfo;
 

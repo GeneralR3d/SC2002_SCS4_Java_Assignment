@@ -50,7 +50,12 @@ public class DisplayHelper {
     }
 
     public static void displayResult(Enquiry enquiry){
-
+        System.out.println("Enquiry by: "+ enquiry.getOwner().getName());
+        System.out.println(enquiry.getContent());
+        System.out.println("Replies:");
+        for(Reply reply : enquiry.getReplies()){
+            System.out.println(reply.view());
+        }
     }
 
     public static void displayResult(Suggestion suggestion){
