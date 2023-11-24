@@ -1,4 +1,4 @@
-package Boundary;
+package boundary;
 
 import handler.InputHandler;
 import control.SuggestionController;
@@ -73,8 +73,8 @@ public class StaffUI {
         }
     }
 
-    
-    /** 
+
+    /**
      * @param campID
      */
     public static void menu_ManageMyCamp(int campID) {

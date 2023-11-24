@@ -1,8 +1,8 @@
-package Boundary;
+package boundary;
 
 import handler.InputHandler;
 
-import Entity.*;
+import entity.*;
 import control.CampController;
 import control.EnquiryController;
 import control.SuggestionController;
@@ -47,8 +47,8 @@ public class CommitteeUI{
         }
     }
 
-    
-    /** 
+
+    /**
      * @param camp
      */
     private static void displayCampDetails(Camp camp){

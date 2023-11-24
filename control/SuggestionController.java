@@ -1,14 +1,14 @@
 package control;
 
-import Entity.Camp;
-import Entity.CommitteeMember;
-import Entity.Suggestion;
-import Entity.User;
+import entity.Camp;
+import entity.CommitteeMember;
+import entity.Suggestion;
+import entity.User;
 
 public class SuggestionController {
 
-  
-  /** 
+
+  /**
    * @param user
    * @param camp
    * @param content

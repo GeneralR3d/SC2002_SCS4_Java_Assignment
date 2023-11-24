@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 import java.util.ArrayList;
 
@@ -8,8 +8,8 @@ public class Enquiry implements EditableMessage {
 	private String content;
 	private ArrayList<Reply> replies;
 
-	
-	/** 
+
+	/**
 	 * @return Student
 	 */
 	public Student getOwner() {

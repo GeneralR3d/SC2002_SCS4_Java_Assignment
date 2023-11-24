@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public class Suggestion implements EditableMessage {
 
@@ -6,8 +6,8 @@ public class Suggestion implements EditableMessage {
 	private String content;
 	private Status status;
 
-	
-	/** 
+
+	/**
 	 * @return CommitteeMember
 	 */
 	public CommitteeMember getOwner() {

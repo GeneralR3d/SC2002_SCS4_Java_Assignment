@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 import java.util.ArrayList;
 
@@ -43,8 +43,8 @@ public class Staff extends User {
 		createdCamps.remove(camp);
 	}
 
-	
-	/** 
+
+	/**
 	 * @return ArrayList<Camp>
 	 */
 	public ArrayList<Camp> getCreatedCamps(){

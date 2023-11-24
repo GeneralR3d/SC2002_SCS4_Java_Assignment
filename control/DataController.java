@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 import java.util.ArrayList;
 
-import Entity.*;
+import entity.*;
 
 public class DataController {
   public static final String SEPARATOR = "\t";
@@ -79,7 +79,7 @@ public class DataController {
         e.printStackTrace();
         System.exit(0);
     }
-  
+
 
   }
 
@@ -133,14 +133,14 @@ public class DataController {
       e.printStackTrace();
       System.exit(0);
     }
-  
+
 
   }
 
 
 
-  
-  /** 
+
+  /**
    * @return ArrayList<Camp>
    */
   public static ArrayList<Camp> getCamps() {

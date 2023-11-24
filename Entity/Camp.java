@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 import java.util.Date;
 import java.util.ArrayList;
@@ -27,8 +27,8 @@ public class Camp {
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
 
-	
-	/** 
+
+	/**
 	 * Accessor method
 	 * @return int a unique campID
 	 */
@@ -36,8 +36,8 @@ public class Camp {
 		return this.campID;
 	}
 
-	
-	/** 
+
+	/**
 	 * Accessor method
 	 * Returns the name of the camp(can be duplicated).
 	 * @return {@link String} name of camp
@@ -55,8 +55,8 @@ public class Camp {
 	}
 
 
-	
-	/** 
+
+	/**
 	 * Mutator method
 	 * @param startDate the start date of the camp of type {@link java.util.Date}
 	 */
@@ -64,8 +64,8 @@ public class Camp {
 		this.startDate = startDate;
 	}
 
-	
-	/** 
+
+	/**
 	 * Accessor method
 	 * @return {@link java.util.Date} the end date of the camp
 	 */
@@ -74,18 +74,18 @@ public class Camp {
 	}
 
 
-	
-	/** 
+
+	/**
 	 * Mutator method
 	 * @param endDate the end date of the camp {@link java.util.Date}
 	 */
-	
+
 	 public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
 
-	/** 
+	/**
 	 * Accessor method
 	 * @return {@link java.util.Date} the registration close date of the camp
 	 */
@@ -93,7 +93,7 @@ public class Camp {
 		return this.regCloseDate;
 	}
 
-	/** 
+	/**
 	 * Mutator method
 	 * @param regCloseDate the registration date of the camp of type {@link java.util.Date}
 	 */
@@ -101,7 +101,7 @@ public class Camp {
 		this.regCloseDate = regCloseDate;
 	}
 
-	/** 
+	/**
 	 * Accessor method
 	 * Returns an enum value to see which faculty this camp is created in, and which faculty it is open to
 	 * {@code NTU} means it is open to the whole school regardless of faculty
@@ -112,8 +112,8 @@ public class Camp {
 	}
 
 
-	
-	/** 
+
+	/**
 	 * Mutator method
 	 * Sets enum value of which faculty this camp is open to
 	 * @param openToFaculty an enum of faculties of type {@link Faculty}
@@ -122,7 +122,7 @@ public class Camp {
 		this.openToFaculty = openToFaculty;
 	}
 
-	/** 
+	/**
 	 * Accessor method
 	 * @return {@link String} location of camp
 	 */
@@ -139,8 +139,8 @@ public class Camp {
 	}
 
 
-	
-	/** 
+
+	/**
 	 * @return int
 	 */
 	public int getAttendeeSlotsLeft() {
@@ -167,7 +167,7 @@ public class Camp {
 		this.commSlotsLeft = comSlotsLeft;
 	}
 
-	/** 
+	/**
 	 * Accessor method
 	 * @return {@link String} description of camp
 	 */
@@ -175,15 +175,15 @@ public class Camp {
 		return this.description;
 	}
 
-	/** 
+	/**
 	 * Mutator method
-	 * @param description of camp of type {@link String} 
+	 * @param description of camp of type {@link String}
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	/** 
+	/**
 	 * Accessor method
 	 * @return boolean whether this camp is visible to students
 	 */
@@ -191,7 +191,7 @@ public class Camp {
 		return this.visibleToStudents;
 	}
 
-	/** 
+	/**
 	 * Mutator method
 	 * @param visibleToStudents whether this camp is visible to students
 	 */
@@ -308,7 +308,7 @@ public class Camp {
 
 	/**
 	 * Checks whether the are remaining slots for new committee members to join
-	 * @return boolean 
+	 * @return boolean
 	 */
 	public boolean hasCommitteeSlots() {
 		return commSlotsLeft != 0;

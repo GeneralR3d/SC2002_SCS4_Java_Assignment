@@ -1,11 +1,11 @@
-package Entity;
+package entity;
 
 public class SessionInfo {
     public static User user;
     public static String userType;
 
-    
-    /** 
+
+    /**
      * @param user
      */
     public static void setUser(User user) {

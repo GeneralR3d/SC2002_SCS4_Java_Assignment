@@ -1,12 +1,12 @@
-package Boundary;
+package boundary;
 
 import java.util.ArrayList;
 
-import Entity.*;
+import entity.*;
 
 public class DisplayHelper {
-    
-    /** 
+
+    /**
      * @param camp
      */
     //display individual camps

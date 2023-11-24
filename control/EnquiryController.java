@@ -2,12 +2,12 @@ package control;
 
 import java.util.ArrayList;
 
-import Entity.*;
+import entity.*;
 
 public class EnquiryController {
 
-  
-  /** 
+
+  /**
    * @param camp
    * @param content
    */

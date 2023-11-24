@@ -1,8 +1,8 @@
-package Boundary;
+package boundary;
 
 
 import control.*;
-import Entity.*;
+import entity.*;
 import handler.InputHandler;
 import java.util.ArrayList;
 
@@ -41,8 +41,8 @@ public class StudentUI {
         AccountUI.loginMenu();
     }
 
-    
-    /** 
+
+    /**
      * @param openCamps
      */
     private static void displayOpenCamps(ArrayList<Camp> openCamps) {
@@ -176,7 +176,7 @@ public class StudentUI {
     }
 
     private static void viewEnquiryOptions(Camp camp, Enquiry enquiry) {
-    
+
         System.out.println("Command Options: ");
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back/exit…");

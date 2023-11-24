@@ -1,11 +1,11 @@
 package control;
 
-import Entity.SessionInfo;
-import Entity.User;
+import entity.SessionInfo;
+import entity.User;
 
 public class UserController {
-    
-    /** 
+
+    /**
      * @param userID
      * @param password
      * @return boolean

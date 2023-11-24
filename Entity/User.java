@@ -1,4 +1,4 @@
-package Entity;
+package entity;
 
 public abstract class User {
 
@@ -7,8 +7,8 @@ public abstract class User {
 	private Faculty faculty;
 	private String pw = "password";
 
-	
-	/** 
+
+	/**
 	 * @return String
 	 */
 	public String getName() {

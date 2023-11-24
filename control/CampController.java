@@ -3,11 +3,11 @@ package control;
 import java.util.ArrayList;
 import java.util.Date;
 
-import Entity.*;
+import entity.*;
 
 public class CampController {
-    
-    /** 
+
+    /**
      * @param newCamp
      */
     public static void addCamp(Camp newCamp) {
@@ -24,7 +24,7 @@ public class CampController {
             case 1:
                 //TODO: add setName in camp
                 camp.setName();
-                break;                
+                break;
         }
         //
     }
@@ -54,7 +54,7 @@ public class CampController {
                     //check for RegCloseDate
                     //check visibility and faculty of camp
                     //TODO: update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() && 
+                    if (currCamp.isVisibleToStudents() &&
                         (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty()) &&
                         !today.after(currCamp.getRegCloseDate())){
                         availableCamps.add(currCamp);
@@ -67,7 +67,7 @@ public class CampController {
                     //check for RegCloseDate
                     //check visibility and faculty of camp
                     //TODO: update enum of 'NTU'
-                    if (currCamp.isVisibleToStudents() && 
+                    if (currCamp.isVisibleToStudents() &&
                         (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.user.getFaculty()) &&
                         !today.after(currCamp.getRegCloseDate())){
                         availableCamps.add(currCamp);

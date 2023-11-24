@@ -1,4 +1,4 @@
-package Boundary;
+package boundary;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 import control.DataController;
 import control.UserController;
 import handler.InputHandler;
-import Entity.*;
+import entity.*;
 
 public class AccountUI {
     public static void loginMenu(){
