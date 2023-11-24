@@ -40,8 +40,7 @@ public class CampController {
      * @return boolean
      */
     public static void deleteCamp(Camp deletingCamp) throws Exception {
-        if (!UserController.checkPermission(Staff.class))
-            throw new Exception("Error: Current user is not allowed to run this operation.");
+        UserController.assertUserType(Staff.class);
         ArrayList<Camp> allCamps = DataController.getCamps();
 
         // check if deletingcamp is in camps
@@ -58,8 +57,7 @@ public class CampController {
      * @throws Exception
      */
     public static ArrayList<Camp> getAllCamps() throws Exception {
-        if (!UserController.checkPermission(Staff.class))
-            throw new Exception("Error: Current user is not allowed to run this operation.");
+        UserController.assertUserType(Staff.class);
         ArrayList<Camp> allCamps = DataController.getCamps();
         return allCamps;
     }
@@ -69,8 +67,7 @@ public class CampController {
      * @throws Exception
      */
     public static ArrayList<Camp> getCreatedCamps() throws Exception {
-        if (!UserController.checkPermission(Staff.class))
-            throw new Exception("Error: Current user is not allowed to run this operation.");
+        UserController.assertUserType(Staff.class);
         ArrayList<Camp> allCamps = DataController.getCamps();
         ArrayList<Camp> createdCamps = new ArrayList<Camp>();
         for (int i = 0; i < allCamps.size(); i++) {
@@ -90,13 +87,13 @@ public class CampController {
         switch (SessionInfo.getUserType()) {
             case "Student":
             case "CommitteeMember":
-                for (Camp currCamp: campData) {
+                for (Camp currCamp : campData) {
                     // check for RegCloseDate
                     // check visibility and faculty of camp
                     if (currCamp.isVisibleToStudents()
-                        && !today.after(currCamp.getRegCloseDate())
-                        && (currCamp.getOpenToFaculty() == Faculty.NTU
-                        || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
+                            && !today.after(currCamp.getRegCloseDate())
+                            && (currCamp.getOpenToFaculty() == Faculty.NTU
+                                    || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
                         availableCamps.add(currCamp);
                     }
                 }
@@ -170,7 +167,8 @@ public class CampController {
         }
 
         // check if user is already a committee member
-        if (UserController.checkPermission(CommitteeMember.class)) throw new Exception("You are already a committee member!");
+        if (UserController.checkPermission(CommitteeMember.class))
+            throw new Exception("You are already a committee member!");
 
         // if they are not, convert them into a committee member
         Student student = (Student) SessionInfo.getUser();
