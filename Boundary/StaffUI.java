@@ -1,5 +1,6 @@
 package boundary;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import control.CampController;
@@ -248,35 +249,68 @@ public class StaffUI {
     }
 
     public static void menu_CreateNewCamp() {
-        // TODO: error handling
         String name, location, description;
-        String startDate, endDate, regCloseDate;
+        LocalDate startDate, endDate, regCloseDate;
         Faculty openToFaculty;
         int totalSlots, commSlots;
         boolean visibleToStudents;
 
+        System.out.println("Enter ~ to cancel and exit.");
+        // Name
         System.out.println("Name:");
         name = InputHandler.nextLine();
-        System.out.println("Start Date (DD/MM/YYYY):");
-        startDate = InputHandler.nextLine();
-        System.out.println("Start Date (DD/MM/YYYY):");
-        endDate = InputHandler.nextLine();
-        System.out.println("Registration Closing Date (DD/MM/YYYY):");
-        regCloseDate = InputHandler.nextLine();
+        // Start Date
+        while (true) {
+            try {
+                System.out.println("Start Date (YYYY-MM-DD):");
+                startDate = LocalDate.parse(InputHandler.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Error: Invalid Date");
+            }
+        }
+        // End Date
+        while (true) {
+            try {
+                System.out.println("End Date (YYYY-MM-DD):");
+                endDate = LocalDate.parse(InputHandler.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Error: Invalid Date");
+            }
+        }
+        // Registration CLosing Date
+        while (true) {
+            try {
+                System.out.println("Registration Closing Date (YYYY-MM-DD):");
+                regCloseDate = LocalDate.parse(InputHandler.nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Error: Invalid Date");
+            }
+        }
+        // Faculty
         System.out.println("Faculty:");
-        openToFaculty = Faculty.values()[InputHandler.nextInt()];
+        for (Faculty f : Faculty.values())
+            System.out.println((f.ordinal() + 1) + ". " + f);
+        openToFaculty = Faculty.values()[InputHandler.nextInt() - 1];
+        // Location
         System.out.println("Location:");
         location = InputHandler.nextLine();
+        // Total Slots
         System.out.println("Total Slots:");
         totalSlots = InputHandler.nextInt();
+        // Committee Member Slots
         System.out.println("Committee Member Slots:");
         commSlots = InputHandler.nextInt();
+        // Description
         System.out.println("Description:");
         description = InputHandler.nextLine();
+        // Visible to Students
         System.out.println("Visible to Students (0 - no | 1 - yes):");
-        visibleToStudents = (InputHandler.nextInt() == 1);
+        visibleToStudents = (InputHandler.nextInt() != 0);
 
-        // TODO: CampController.createCamp(name, null, null, null, openToFaculty,
-        // location, totalSlots, commSlots, description, visibleToStudents);
+        CampController.createCamp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
+                commSlots, description, visibleToStudents);
     }
 }

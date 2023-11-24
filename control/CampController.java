@@ -1,5 +1,6 @@
 package control;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,26 +14,21 @@ public class CampController {
     /**
      * @param newCamp
      */
-    public static void addCamp(Camp newCamp) {
+    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate,
+            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
+            String description, boolean visibleToStudents) {
+        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
+                commSlots, description, visibleToStudents);
         DataController.addCamp(newCamp);
     }
 
     /**
      * @param camp
      */
-    public static void editCamp(Camp camp) {
-        // TODO: need set camps function
-        ArrayList<Camp> campData = DataController.getCamps();
-        // TODO: change staffUI
-        int choice = boundary.StaffUI.menu_EditMyCamp();
-
-        switch (choice) {
-            case 1:
-                // TODO: add setName in camp
-                camp.setName();
-                break;
-        }
-        //
+    public static void editCamp(int campID, String name, LocalDate startDate, LocalDate endDate,
+            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
+            String description, boolean visibleToStudents) {
+        // TODO: edit camp
     }
 
     /**
@@ -76,6 +72,7 @@ public class CampController {
     }
 
     public static ArrayList<Camp> getAvailableCamps() {
+        // TODO: fix localdate
         ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
         Date today = new Date();
@@ -164,7 +161,7 @@ public class CampController {
         }
 
         // check if user is already a committee member
-        if (UserController.checkPermission(CommitteeMember.class))
+        if (SessionInfo.getUserType().equals("CommitteeMember"))
             throw new Exception("You are already a committee member!");
 
         // if they are not, convert them into a committee member

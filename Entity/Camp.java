@@ -1,11 +1,11 @@
 package entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
  * Represents a camp where all attributes are private.
- * Uses {@link java.util.Date} to store the date information
+ * Uses {@link java.time.LocalDate} to store the date information
  * Uses {@link java.util.ArrayList} to store list of attendees, committee
  * members, enquiries and suggestions.
  */
@@ -13,9 +13,9 @@ public class Camp {
 
 	private int campID;
 	private String name;
-	private Date startDate;
-	private Date endDate;
-	private Date regCloseDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
+	private LocalDate regCloseDate;
 	private Faculty openToFaculty;
 	private String location;
 	private int totalSlotsLeft;
@@ -62,7 +62,7 @@ public class Camp {
 	 *
 	 * @return {@link java.util.Date} the start date of the camp
 	 */
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return this.startDate;
 	}
 
@@ -71,7 +71,7 @@ public class Camp {
 	 *
 	 * @param startDate the start date of the camp of type {@link java.util.Date}
 	 */
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
@@ -80,7 +80,7 @@ public class Camp {
 	 *
 	 * @return {@link java.util.Date} the end date of the camp
 	 */
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return this.endDate;
 	}
 
@@ -90,7 +90,7 @@ public class Camp {
 	 * @param endDate the end date of the camp {@link java.util.Date}
 	 */
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 
@@ -99,7 +99,7 @@ public class Camp {
 	 *
 	 * @return {@link java.util.Date} the registration close date of the camp
 	 */
-	public Date getRegCloseDate() {
+	public LocalDate getRegCloseDate() {
 		return this.regCloseDate;
 	}
 
@@ -109,7 +109,7 @@ public class Camp {
 	 * @param regCloseDate the registration date of the camp of type
 	 *                     {@link java.util.Date}
 	 */
-	public void setRegCloseDate(Date regCloseDate) {
+	public void setRegCloseDate(LocalDate regCloseDate) {
 		this.regCloseDate = regCloseDate;
 	}
 
@@ -296,7 +296,8 @@ public class Camp {
 	 * @param visibleToStudents boolean value indicating whether the camp is visible
 	 *                          to students
 	 */
-	public Camp(int campID, String name, Date startDate, Date endDate, Date regCloseDate, Faculty openToFaculty,
+	public Camp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
+			Faculty openToFaculty,
 			String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
 		this.campID = campID;
 		this.name = name;
