@@ -19,8 +19,9 @@ public class StudentUI {
             System.out.println("4. Change Password");
             System.out.println("5. Logout");
             if (SessionInfo.getUserType() == "CommitteeMember") {
+                CommitteeMember commMember = (CommitteeMember) SessionInfo.getUser();
                 System.out.println();
-                System.out.println("You are a committee member");
+                System.out.println("You are a committee member. Points: " + commMember.getPoints());
                 System.out.println("6. Committee member menu");
             }
 
@@ -39,7 +40,7 @@ public class StudentUI {
                     break;
                 case 4:
                     AccountUI.changePasswordMenu();
-                    break;
+                    return;
                 case 5:
                     AccountUI.logout();
                     option = 0;
