@@ -50,6 +50,8 @@ public class CampController {
         for (Camp camp : allCamps) {
             if (deletingCamp.getCampID() == camp.getCampID()) {
                 DataController.removeCamp(deletingCamp);
+                Staff staff = (Staff) SessionInfo.getUser();
+                staff.deleteCamp(camp);
                 return;
             }
         }

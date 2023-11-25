@@ -28,7 +28,8 @@ public class StaffUI {
             int choice = InputHandler.nextInt();
             switch (choice) {
                 case 1: // View All Camps
-                    menu_ViewAllCamps();
+                    ArrayList<Camp> allCamps = CampController.getAvailableCamps();
+                    menu_ViewAllCamps(allCamps);
                     break;
                 case 2:
                     menu_SearchForCamp();
@@ -53,36 +54,35 @@ public class StaffUI {
     }
     //
 
-    public static void menu_ViewAllCamps() {
+    public static void menu_ViewAllCamps(ArrayList<Camp> camps) {
         // get all camps
-        ArrayList<Camp> allCamps;
-        allCamps = CampController.getAvailableCamps();
         while (true) {
-            System.out.println("All Camps:");
-            DisplayHandler.displayResult(allCamps);
+            DisplayHandler.displayResult(camps);
             System.out.println("0. Exit");
             System.out.println("Select a camp to view its details...");
             int choice = InputHandler.nextInt();
             if (choice == 0) // exit
                 return;
-            if (choice < 0 || choice > allCamps.size()) {
+            if (choice < 0 || choice > camps.size()) {
                 System.out.println("Invalid Option");
                 continue;
             }
-            DisplayHandler.displayResult(allCamps.get(choice - 1));
+            DisplayHandler.displayResult(camps.get(choice - 1));
         }
     }
 
     public static void menu_ViewCreatedCamps() {
         // get created camps
         ArrayList<Camp> createdCamps;
-        try {
-            createdCamps = CampController.getCreatedCamps();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
+        
         while (true) {
+            try {
+                createdCamps = CampController.getCreatedCamps();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return;
+            }
+
             if (createdCamps.size() == 0) {
                 System.out.println();
                 System.out.println("You do not have any created camps");
@@ -135,6 +135,8 @@ public class StaffUI {
                     if (InputHandler.nextLine().equals("CONFIRM"))
                         try {
                             CampController.deleteCamp(camp);
+                            System.out.println("Camp has been deleted!");
+                            return;
                         } catch (Exception e) {
                             System.out.println(e.getMessage());
                         }
@@ -420,26 +422,26 @@ public class StaffUI {
                     System.out.println("Enter camp name:");
                     String campName = InputHandler.nextLine();
                     result = SearchController.searchByCampName(campName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 case 2:
                     System.out.println("Enter camp start date (YYYY-MM-DD):");
                     LocalDate startDate = InputHandler.nextDate();
                     result = SearchController.searchByStartDate(startDate);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 case 3:
                     System.out.println("Enter camp end date (YYYY-MM-DD):");
                     LocalDate endDate = InputHandler.nextDate();
                     result = SearchController.searchByEndDate(endDate);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 case 4:
                     System.out.println("Enter camp faculty:");
                     try {
                         Faculty faculty = Faculty.valueOf(InputHandler.nextLine());
                         result = SearchController.searchByFaculty(faculty);
-                        DisplayHandler.displaySearchResult(result);
+                        menu_ViewAllCamps(result);
                     } catch (Exception e) {
                         System.out.println("No results found!");
                     }
@@ -448,19 +450,19 @@ public class StaffUI {
                     System.out.println("Enter camp location:");
                     String location = InputHandler.nextLine();
                     result = SearchController.searchByLocation(location);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 case 6:
                     System.out.println("Enter attendee name:");
                     String attendeeName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(attendeeName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 case 7:
                     System.out.println("Enter committee member name:");
                     String commMemberName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(commMemberName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_ViewAllCamps(result);
                     break;
                 default:
                     System.out.println("Invalid input!");
