@@ -114,37 +114,37 @@ public class StudentUI {
                     System.out.println("Enter camp name:");
                     String campName = InputHandler.nextLine();
                     result = SearchController.searchByCampName(campName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 case 2:
                     System.out.println("Enter camp start date (YYYY-MM-DD):");
                     LocalDate startDate = InputHandler.nextDate();
                     result = SearchController.searchByStartDate(startDate);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 case 3:
                     System.out.println("Enter camp end date (YYYY-MM-DD):");
                     LocalDate endDate = InputHandler.nextDate();
                     result = SearchController.searchByEndDate(endDate);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 case 4:
                     System.out.println("Enter camp location:");
                     String location = InputHandler.nextLine();
                     result = SearchController.searchByLocation(location);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 case 5:
                     System.out.println("Enter attendee name:");
                     String attendeeName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(attendeeName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 case 6:
                     System.out.println("Enter committee member name:");
                     String commMemberName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(commMemberName);
-                    DisplayHandler.displaySearchResult(result);
+                    menu_DisplayOpenCamps(result);
                     break;
                 default:
                     System.out.println("Invalid input!");
