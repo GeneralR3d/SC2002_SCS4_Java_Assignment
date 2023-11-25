@@ -223,7 +223,6 @@ public class StaffUI {
                         System.out.println(e.getMessage());
                     }
                     break;
-                    ;
                 case 2: // Reject
                     try {
                         SuggestionController.reject(suggestion);
