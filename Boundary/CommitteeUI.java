@@ -179,7 +179,7 @@ public class CommitteeUI {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-                    break;
+                    return;
                 case 2:
                     try {
                         SuggestionController.delete(camp, suggestion);

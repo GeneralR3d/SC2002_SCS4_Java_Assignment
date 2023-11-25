@@ -27,6 +27,9 @@ public class SuggestionController {
       throw new Exception("Suggestion has already been processed!");
     }
     camp.removeSuggestion(suggestion);
+    User user = SessionInfo.getUser();
+    CommitteeMember commMember = (CommitteeMember) user;
+    commMember.deductPoint();
   }
 
   public static void edit(Suggestion suggestion, String content) throws Exception {
