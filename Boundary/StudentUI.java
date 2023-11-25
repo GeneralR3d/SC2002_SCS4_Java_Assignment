@@ -8,7 +8,6 @@ import handler.InputHandler;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-
 import app.SessionInfo;
 
 public class StudentUI {
@@ -105,7 +104,6 @@ public class StudentUI {
             System.out.println("5. Attendee");
             System.out.println("6. Committee member");
 
-
             option = InputHandler.nextInt();
 
             ArrayList<Camp> result;
@@ -162,7 +160,7 @@ public class StudentUI {
         DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
         int option;
         while (true) {
-                
+
             option = InputHandler.nextInt();
 
             if (option == 0)
@@ -183,7 +181,6 @@ public class StudentUI {
             System.out.println("Enter number to withdraw from that camp....");
             System.out.println("Enter 0 to go back");
             DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
-
 
             option = InputHandler.nextInt();
 

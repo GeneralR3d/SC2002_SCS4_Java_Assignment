@@ -187,20 +187,24 @@ public class StaffUI {
         ArrayList<Suggestion> suggestions = camp.getSuggestions();
         while (true) {
             for (int i = 0; i < suggestions.size(); i++) {
-                System.out.println(i + " " + suggestions.get(i).view());
+                System.out.println();
+                System.out.println((i + 1) + ": ");
+                DisplayHandler.displayResult(suggestions.get(i));
             }
+            System.out.println();
             System.out.println("0. Exit");
             System.out.println("Select a suggestion to approve / reject it");
             int choice = InputHandler.nextInt();
             if (choice == 0)
                 break;
 
-            menu_SetSuggestionStatus(suggestions.get(choice));
+            menu_SetSuggestionStatus(suggestions.get(choice - 1));
         }
     }
 
     public static void menu_SetSuggestionStatus(Suggestion suggestion) {
         while (true) {
+            System.out.println();
             System.out.println("1. Approve");
             System.out.println("2. Reject");
             System.out.println("0. Cancel");
@@ -214,14 +218,17 @@ public class StaffUI {
                     try {
                         SuggestionController.approve(suggestion);
                         System.out.println("Suggestion has been approved!");
+                        return;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
+                    ;
                 case 2: // Reject
                     try {
                         SuggestionController.reject(suggestion);
                         System.out.println("Suggestion has been rejected!");
+                        return;
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -334,6 +341,8 @@ public class StaffUI {
         // Name
         System.out.println("Name:");
         name = InputHandler.nextLine();
+        if (name.equals("~"))
+            return;
         // Start Date
         System.out.println("Start Date (YYYY-MM-DD):");
         startDate = InputHandler.nextDate();
@@ -371,9 +380,8 @@ public class StaffUI {
             System.out.println(e.getMessage());
         }
     }
-}
 
- private static void menu_SearchForCamp() {
+    private static void menu_SearchForCamp() {
         int option;
         while (true) {
             System.out.println("Command Options: ");
@@ -387,7 +395,6 @@ public class StaffUI {
             System.out.println("5. Camp location");
             System.out.println("6. Attendee");
             System.out.println("7. Committee member");
-
 
             option = InputHandler.nextInt();
 
@@ -447,3 +454,4 @@ public class StaffUI {
             }
         }
     }
+}
