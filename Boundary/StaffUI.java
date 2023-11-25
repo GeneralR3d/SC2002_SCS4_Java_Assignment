@@ -219,37 +219,16 @@ public class StaffUI {
                 name = InputHandler.nextLine();
                 break;
             case 2: // Edit Start Date
-                while (true) {
-                    try {
-                        System.out.println("Start Date (YYYY-MM-DD):");
-                        startDate = LocalDate.parse(InputHandler.nextLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("Error: Invalid Date");
-                    }
-                }
+                System.out.println("Start Date (YYYY-MM-DD):");
+                startDate = InputHandler.nextDate();
                 break;
             case 3: // Edit End Date
-                while (true) {
-                    try {
-                        System.out.println("End Date (YYYY-MM-DD):");
-                        endDate = LocalDate.parse(InputHandler.nextLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("Error: Invalid Date");
-                    }
-                }
+                System.out.println("End Date (YYYY-MM-DD):");
+                endDate = InputHandler.nextDate();
                 break;
             case 4: // Edit Registration Closing Date
-                while (true) {
-                    try {
-                        System.out.println("Registration Closing Date (YYYY-MM-DD):");
-                        regCloseDate = LocalDate.parse(InputHandler.nextLine());
-                        break;
-                    } catch (Exception e) {
-                        System.out.println("Error: Invalid Date");
-                    }
-                }
+                System.out.println("Registration Closing Date (YYYY-MM-DD):");
+                regCloseDate = InputHandler.nextDate();
                 break;
             case 5: // Edit School
                 System.out.println("Faculty:");
@@ -303,35 +282,14 @@ public class StaffUI {
         System.out.println("Name:");
         name = InputHandler.nextLine();
         // Start Date
-        while (true) {
-            try {
-                System.out.println("Start Date (YYYY-MM-DD):");
-                startDate = LocalDate.parse(InputHandler.nextLine());
-                break;
-            } catch (Exception e) {
-                System.out.println("Error: Invalid Date");
-            }
-        }
+        System.out.println("Start Date (YYYY-MM-DD):");
+        startDate = InputHandler.nextDate();
         // End Date
-        while (true) {
-            try {
-                System.out.println("End Date (YYYY-MM-DD):");
-                endDate = LocalDate.parse(InputHandler.nextLine());
-                break;
-            } catch (Exception e) {
-                System.out.println("Error: Invalid Date");
-            }
-        }
+        System.out.println("End Date (YYYY-MM-DD):");
+        endDate = InputHandler.nextDate();
         // Registration CLosing Date
-        while (true) {
-            try {
-                System.out.println("Registration Closing Date (YYYY-MM-DD):");
-                regCloseDate = LocalDate.parse(InputHandler.nextLine());
-                break;
-            } catch (Exception e) {
-                System.out.println("Error: Invalid Date");
-            }
-        }
+        System.out.println("Registration Closing Date (YYYY-MM-DD):");
+        regCloseDate = InputHandler.nextDate();
         // Faculty
         System.out.println("Faculty:");
         for (Faculty f : Faculty.values())
