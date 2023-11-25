@@ -35,32 +35,32 @@ public class CommitteeUI {
             option = InputHandler.nextInt();
 
             switch (option) {
-                case 0:
-                    return;
-                case 1:
-                    menu_DisplayCampDetails(camp);
+            case 0:
+                return;
+            case 1:
+                menu_DisplayCampDetails(camp);
+                break;
+            case 2:
+                menu_DisplayEnquiries(camp);
+                break;
+            case 3:
+                System.out.println("Enter ~ to quit");
+                System.out.println("Key in suggestion, press enter to confirm: ");
+                String suggestion = InputHandler.nextLine();
+                if (suggestion.equals("~"))
                     break;
-                case 2:
-                    menu_DisplayEnquiries(camp);
-                    break;
-                case 3:
-                    System.out.println("Enter ~ to quit");
-                    System.out.println("Key in suggestion, press enter to confirm: ");
-                    String suggestion = InputHandler.nextLine();
-                    if (suggestion.equals("~"))
-                        break;
-                    else
-                        SuggestionController.post(camp, suggestion);
-                    System.out.println("Suggestion has been posted!");
-                    break;
-                case 4:
-                    menu_DisplayMySuggestions(camp);
-                    break;
-                case 5:
-                    menu_GenerateReport(camp);
-                    break;
-                default:
-                    break;
+                else
+                    SuggestionController.post(camp, suggestion);
+                System.out.println("Suggestion has been posted!");
+                break;
+            case 4:
+                menu_DisplayMySuggestions(camp);
+                break;
+            case 5:
+                menu_GenerateReport(camp);
+                break;
+            default:
+                break;
             }
         }
     }
@@ -130,6 +130,7 @@ public class CommitteeUI {
             System.out.println();
             System.out.println("Press any key to exit");
             InputHandler.nextLine();
+            return;
         }
         int option;
         while (true) {
@@ -169,32 +170,32 @@ public class CommitteeUI {
             option = InputHandler.nextInt();
 
             switch (option) {
-                case 0:
+            case 0:
+                return;
+            case 1:
+                System.out.println("Enter ~ to go back");
+                System.out.println("Key in your new Suggestion, press enter to confirm: ");
+                String newSuggestion = InputHandler.nextLine();
+                if (newSuggestion.equals("~"))
                     return;
-                case 1:
-                    System.out.println("Enter ~ to go back");
-                    System.out.println("Key in your new Suggestion, press enter to confirm: ");
-                    String newSuggestion = InputHandler.nextLine();
-                    if (newSuggestion.equals("~"))
-                        return;
-                    try {
-                        SuggestionController.edit(suggestion, newSuggestion);
-                        System.out.println("Suggestion has been edited successfully!");
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    return;
-                case 2:
-                    try {
-                        SuggestionController.delete(camp, suggestion);
-                        System.out.println("Suggestion has been deleted successfully!");
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
+                try {
+                    SuggestionController.edit(suggestion, newSuggestion);
+                    System.out.println("Suggestion has been edited successfully!");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                return;
+            case 2:
+                try {
+                    SuggestionController.delete(camp, suggestion);
+                    System.out.println("Suggestion has been deleted successfully!");
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                break;
+            default:
+                System.out.println("Invalid Input");
+                break;
             }
 
         }
@@ -244,25 +245,21 @@ public class CommitteeUI {
             if (option == 1) {
                 reportStream.write("Camp Attendees: \r");
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from "
-                            + attendees.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "\r");
                 }
                 reportStream.write("Camp Committee Members: \r");
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from "
-                            + committeeMembers.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "\r");
                 }
             }
             if (option == 2) {
                 reportStream.write("Camp Committee Members: \r");
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from "
-                            + committeeMembers.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "\r");
                 }
                 reportStream.write("Camp Attendees: \r");
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from "
-                            + attendees.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "\r");
                 }
             }
 
