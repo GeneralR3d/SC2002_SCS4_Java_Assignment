@@ -223,7 +223,10 @@ public class StaffUI {
             int choice = InputHandler.nextInt();
             if (choice == 0)
                 break;
-
+            if (choice < 0 || choice > suggestions.size()){
+                System.out.println("Invalid input!");
+                continue;
+            }
             menu_SetSuggestionStatus(suggestions.get(choice - 1));
         }
     }

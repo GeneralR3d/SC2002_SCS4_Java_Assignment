@@ -193,6 +193,7 @@ public class StudentUI {
                 continue;
             }
             CampController.removeAttendee(registeredCamps.get(option - 1));
+            System.out.println("You have succesfully withdrew from the camp!");
         }
     }
 
