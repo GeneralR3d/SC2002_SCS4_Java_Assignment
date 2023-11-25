@@ -83,6 +83,13 @@ public class StaffUI {
             return;
         }
         while (true) {
+            if (createdCamps.size() == 0) {
+                System.out.println();
+                System.out.println("You do not have any created camps");
+                System.out.println("Enter 0 to go back");
+                InputHandler.nextLine();
+                return;
+            }
             System.out.println("Created Camps:");
             DisplayHandler.displayResult(createdCamps);
             System.out.println("0. Exit");
