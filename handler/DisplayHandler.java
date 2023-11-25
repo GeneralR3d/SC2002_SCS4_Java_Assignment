@@ -11,6 +11,7 @@ public class DisplayHandler {
      */
     // display individual camps
     public static void displayResult(Camp camp) {
+        System.out.println();
         System.out.println("Camp name: " + camp.getName());
         System.out.println("Start date: " + camp.getStartDate());
         System.out.println("End date: " + camp.getEndDate());
@@ -33,6 +34,7 @@ public class DisplayHandler {
         for (int i = 0; i < camps.size(); i++) {
             System.out.println((i + 1) + ": ");
             System.out.println("Camp name: " + camps.get(i).getName());
+            System.out.println("Description: " + camps.get(i).getDescription());
             System.out.println("Slots Left:");
             System.out.println("Attendees: " + camps.get(i).getAttendeeSlotsLeft());
             System.out.println("Committee: " + camps.get(i).getCommSlotsLeft());
@@ -49,9 +51,9 @@ public class DisplayHandler {
         }
         for (int i = 0; i < camps.size(); i++) {
             if (i == 0 && currUser instanceof CommitteeMember) {
-                System.out.println((i+1) + ". " + camps.get(i).getName() + " - Committee Member");
+                System.out.println((i + 1) + ". " + camps.get(i).getName() + " - Committee Member");
             } else
-                System.out.println((i+1) + ". " + camps.get(i).getName() + " - Attendee");
+                System.out.println((i + 1) + ". " + camps.get(i).getName() + " - Attendee");
         }
     }
 
@@ -65,12 +67,11 @@ public class DisplayHandler {
     }
 
     public static void displayResult(Enquiry enquiry) {
-        System.out.println();
         System.out.println("Enquiry by: " + enquiry.getOwner().getName());
         System.out.println(enquiry.view());
         System.out.println("Replies:");
         if (!enquiry.isProcessed()) {
-            System.out.println("Status: Not processed");
+            System.out.println("There are currently no replies!");
             return;
         }
         for (Reply reply : enquiry.getReplies()) {
@@ -79,17 +80,19 @@ public class DisplayHandler {
     }
 
     public static void displayResult(Suggestion suggestion) {
-
+        System.out.println("Suggestion by: " + suggestion.getOwner().getName());
+        System.out.println(suggestion.view());
+        System.out.println("Status: " + suggestion.getStatus());
     }
 
-    public static void displaySearchResult(ArrayList<Camp> result){
+    public static void displaySearchResult(ArrayList<Camp> result) {
         System.out.println();
         if (result.size() == 0) {
             System.out.println("No search results found!");
             return;
         }
         for (int i = 0; i < result.size(); i++) {
-            System.out.println((i+1) + ". " + result.get(i).getName());
+            System.out.println((i + 1) + ". " + result.get(i).getName());
         }
         System.out.println();
     }

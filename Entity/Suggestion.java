@@ -2,7 +2,8 @@ package entity;
 
 /**
  * Concrete class for {@link EditableMessage}
- * Represents an sugesstion with an owner who is a {@link Student}, and a status of type {@link Status}
+ * Represents an sugesstion with an owner who is a {@link Student}, and a status
+ * of type {@link Status}
  */
 public class Suggestion implements EditableMessage {
 
@@ -12,6 +13,7 @@ public class Suggestion implements EditableMessage {
 
 	/**
 	 * Accessor
+	 * 
 	 * @return CommitteeMember the committee member who created the suggestion
 	 */
 	public CommitteeMember getOwner() {
@@ -19,23 +21,35 @@ public class Suggestion implements EditableMessage {
 	}
 
 	/**
-     * Accesor
-     * @return the content of this enquiry which is a {@link String}
-     */
+	 * Accesor
+	 * 
+	 * @return the content of this enquiry which is a {@link String}
+	 */
 	public String view() {
 		return this.content;
 	}
 
 	/**
-     *Allows editing of the string content of the {@link Message}
+	 * Accesor
+	 * 
+	 * @return the content of this enquiry which is a {@link Status}
+	 */
+	public Status getStatus() {
+		return this.status;
+	}
+
+	/**
+	 * Allows editing of the string content of the {@link Message}
+	 * 
 	 * @param content the new {@link String}
-     */
+	 */
 	public void edit(String content) {
 		this.content = content;
 	}
 
 	/**
 	 * Checks if the suggestion is approved by a {@link Staff}
+	 * 
 	 * @return
 	 */
 	public boolean isApproved() {
@@ -51,6 +65,7 @@ public class Suggestion implements EditableMessage {
 
 	/**
 	 * Constructor
+	 * 
 	 * @param commMember the commiteee member who created the suggestion
 	 * @param content
 	 */
@@ -66,6 +81,7 @@ public class Suggestion implements EditableMessage {
 	public void approve() {
 		this.status = Status.APPROVED;
 	}
+
 	/**
 	 * Allows a {@link Staff} to reject the suggestion
 	 */

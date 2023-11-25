@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import app.SessionInfo;
 import entity.Camp;
 import entity.CommitteeMember;
@@ -35,13 +36,31 @@ public class SuggestionController {
     suggestion.edit(content);
   }
 
-  public static void approve(Suggestion suggestion) {
+  public static void approve(Suggestion suggestion) throws Exception {
+    if (suggestion.isProcessed()) {
+      throw new Exception("Suggestion has already been processed!");
+    }
     suggestion.approve();
     suggestion.getOwner().addPoint();
   }
 
-  public static void reject(Suggestion suggestion) {
+  public static void reject(Suggestion suggestion) throws Exception {
+    if (suggestion.isProcessed()) {
+      throw new Exception("Suggestion has already been processed!");
+    }
     suggestion.reject();
+  }
+
+  public static ArrayList<Suggestion> getMySuggestions(Camp camp) {
+    CommitteeMember commMember = (CommitteeMember) SessionInfo.getUser();
+    ArrayList<Suggestion> suggestions = camp.getSuggestions();
+    ArrayList<Suggestion> mySuggestions = new ArrayList<Suggestion>();
+    for (Suggestion suggestion : suggestions) {
+      if (suggestion.getOwner().equals(commMember)) {
+        mySuggestions.add(suggestion);
+      }
+    }
+    return mySuggestions;
   }
 
 }

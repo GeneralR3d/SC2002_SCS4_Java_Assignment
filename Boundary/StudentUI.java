@@ -15,6 +15,7 @@ public class StudentUI {
     public static void displayMenu() {
         int option;
         while (true) {
+            String userType = SessionInfo.getUserType();
             System.out.println();
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
@@ -24,7 +25,7 @@ public class StudentUI {
             System.out.println("4. Withdraw from registered camps");
             System.out.println("5. Change Password");
             System.out.println("6. Logout");
-            if (SessionInfo.getUserType() == "CommitteeMember") {
+            if (userType.equals("CommitteeMember")) {
                 CommitteeMember commMember = (CommitteeMember) SessionInfo.getUser();
                 System.out.println();
                 System.out.println("You are a committee member. Points: " + commMember.getPoints());
@@ -60,9 +61,14 @@ public class StudentUI {
                     AccountUI.logout();
                     return;
                 case 7:
+                    if (!userType.equals("CommitteeMember")) {
+                        System.out.println("Invalid input!");
+                        break;
+                    }
                     CommitteeUI.displayMenu();
                     break;
                 default:
+                    System.out.println("Invalid input!");
                     break;
             }
         }
@@ -80,14 +86,14 @@ public class StudentUI {
             System.out.println("Enter 0 to go back.");
 
             DisplayHandler.displayResult(openCamps);
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
-            if (option == 0) return;
+            if (option == 0)
+                return;
             if (option < 0 || option > openCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
@@ -98,7 +104,7 @@ public class StudentUI {
 
     private static void menu_SearchForCamp() {
         int option;
-        while(true){
+        while (true) {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
@@ -111,14 +117,13 @@ public class StudentUI {
             System.out.println("6. Attendee");
             System.out.println("7. Committee member");
 
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
-            
+
             ArrayList<Camp> result;
             switch (option) {
                 case 0:
@@ -143,11 +148,11 @@ public class StudentUI {
                     break;
                 case 4:
                     System.out.println("Enter camp faculty:");
-                    try{
+                    try {
                         Faculty faculty = Faculty.valueOf(InputHandler.nextLine());
                         result = SearchController.searchByFaculty(faculty);
                         DisplayHandler.displaySearchResult(result);
-                    } catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println("No results found!");
                     }
                     break;
@@ -183,14 +188,14 @@ public class StudentUI {
         DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
         int option;
         while (true) {
-            try{
-            option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            try {
+                option = InputHandler.nextInt();
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
-            if (option == 0) return;
+            if (option == 0)
+                return;
             if (option < 0 || option > registeredCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
@@ -207,15 +212,15 @@ public class StudentUI {
             System.out.println("Enter number to withdraw from that camp....");
             System.out.println("Enter 0 to go back");
             DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
-            
-            try{
+
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
-            if (option == 0) return;
+            if (option == 0)
+                return;
             if (option < 0 || option > registeredCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;
@@ -226,22 +231,22 @@ public class StudentUI {
 
     private static void menu_ViewCampOptions(Camp camp) {
         int option;
-        while(true){
+        while (true) {
+            System.out.println();
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
+            System.out.println();
             System.out.println("Number of slots left for " + camp.getName());
             System.out.println("Attendees: " + camp.getAttendeeSlotsLeft() + ", Committee: " + camp.getCommSlotsLeft());
             System.out.println("1. Register as attendee");
             System.out.println("2. Register as camp committee member");
             System.out.println("3. Submit enquiry about camp");
-            System.out.println("4. View all enquiries");
-            System.out.println("5. Manage my enquiries");
+            System.out.println("4. Manage my enquiries");
 
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
@@ -253,20 +258,16 @@ public class StudentUI {
                     try {
                         CampController.registerAttendee(camp);
                         System.out.println("You have successfully registered as attendee!");
-                        System.out.println("Enter 0 to go back");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Enter 0 to go back");
                     }
                     break;
                 case 2:
                     try {
                         CampController.registerCommittee(camp);
                         System.out.println("You have successfully registered as Committee Member!");
-                        System.out.println("Enter 0 to go back");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        System.out.println("Enter 0 to go back");
                     }
                     break;
                 case 3:
@@ -279,15 +280,6 @@ public class StudentUI {
                     System.out.println("Enquiry has been posted!");
                     break;
                 case 4:
-                    ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
-                    if(enquiries == null) {
-                        System.out.println("There are no enquiries for this camp!");
-                        break;
-                    }
-                    for (int i = 0; i < enquiries.size(); i++) {
-                        DisplayHandler.displayResult(enquiries.get(i));
-                    }
-                case 5:
                     menu_DisplayMyEnquiries(camp);
                     break;
                 default:
@@ -305,44 +297,49 @@ public class StudentUI {
                 System.out.println("You have no enquiries for this camp!");
                 return;
             }
+            System.out.println();
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < enquiriesByStudent.size(); i++) {
+                System.out.println();
+                System.out.println((i + 1) + ":");
                 DisplayHandler.displayResult(enquiriesByStudent.get(i));
             }
-            while(true){
-                try{
+            while (true) {
+                try {
                     option = InputHandler.nextInt();
-                }
-                catch(InputMismatchException e){
+                } catch (InputMismatchException e) {
                     InputHandler.next();
                     continue;
                 }
-                if (option == 0) return;
+                if (option == 0)
+                    return;
                 if (option < 0 || option > enquiriesByStudent.size()) {
                     System.out.println("Invalid input!");
                     continue;
                 }
-                menu_ViewEnquiryOptions(camp, enquiriesByStudent.get(option));
+                menu_ViewEnquiryOptions(camp, enquiriesByStudent.get(option - 1));
                 break;
+            }
         }
     }
-}
 
     private static void menu_ViewEnquiryOptions(Camp camp, Enquiry enquiry) {
         int option;
-        while(true){
+        String userType = SessionInfo.getUserType();
+        while (true) {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
             System.out.println("1. Edit enquiry");
             System.out.println("2. Delete enquiry");
+            if (userType.equals("CommitteeMember"))
+                System.out.println("3. Reply enquiry");
 
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
+            } catch (InputMismatchException e) {
                 InputHandler.next();
                 continue;
             }
@@ -374,11 +371,16 @@ public class StudentUI {
                     }
                     System.out.println("Enquiry has been edited!");
                     break;
+                case 3:
+                    if (!userType.equals("CommitteeMember")) {
+                        System.out.println("Invalid input!");
+                        break;
+                    }
+                    CommitteeUI.menu_ReplyEnquiry(camp, enquiry);
                 default:
                     System.out.println("Invalid input!");
                     break;
             }
         }
+    }
 }
-}
-

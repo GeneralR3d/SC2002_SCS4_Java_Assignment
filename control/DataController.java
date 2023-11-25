@@ -112,6 +112,14 @@ public class DataController {
             BufferedWriter studentStream = new BufferedWriter(new FileWriter("student_list.txt"));
             // skip first line
             studentStream.write("Name\tEmail\tFaculty\n");
+            for (CommitteeMember commMember : commMembers) {
+
+                String name = commMember.getName();
+                String email = commMember.getUserID() + "@NTU.EDU.SG";
+                String faculty = commMember.getFaculty().toString();
+
+                studentStream.write(name + "\t" + email + "\t" + faculty + "\r");
+            }
             for (Student student : students) {
 
                 String name = student.getName();

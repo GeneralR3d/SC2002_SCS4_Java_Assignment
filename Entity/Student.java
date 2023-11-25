@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Represents a student who is a sub-class of {@link User}
- * Has a {@link java.util.ArrayList} to store all the camps they have signed up for, both as attendee and committee member
+ * Has a {@link java.util.ArrayList} to store all the camps they have signed up
+ * for, both as attendee and committee member
  */
 public class Student extends User {
 
@@ -12,10 +13,11 @@ public class Student extends User {
 
 	/**
 	 * Constructor
+	 *
 	 * @param name
 	 * @param userID
 	 * @param faculty of type {@link Faculty}
-	 * @param pw password
+	 * @param pw      password
 	 */
 	public Student(String name, String userID, Faculty faculty, String pw) {
 		super(name, userID, faculty, pw);
@@ -24,6 +26,7 @@ public class Student extends User {
 
 	/**
 	 * Constructor
+	 *
 	 * @param name
 	 * @param userID
 	 * @param faculty of type {@link Faculty}
@@ -35,6 +38,7 @@ public class Student extends User {
 
 	/**
 	 * Adds that camp to a list of camps the student is registered for
+	 *
 	 * @param camp
 	 */
 	public void register(Camp camp) {
@@ -43,13 +47,16 @@ public class Student extends User {
 
 	/**
 	 * Removes that camp from a list of camps the student is registered for
+	 *
 	 * @param camp
 	 */
 	public void withdraw(Camp camp) {
 		signedUpCamps.remove(camp);
 	}
 
-	/** Returns a list of camps the student is registered for
+	/**
+	 * Returns a list of camps the student is registered for
+	 *
 	 * @return ArrayList<Camp>
 	 */
 	public ArrayList<Camp> getSignedUpCamps() {
