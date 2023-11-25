@@ -13,7 +13,7 @@ public class RoleController {
     SessionInfo.setUser(committee);
   };
 
-  public static void CommitteeToStudent(CommitteeMember committee) {
+  public static void committeeToStudent(CommitteeMember committee) {
     Student student = new Student(committee.getName(), committee.getUserID(), committee.getFaculty());
     DataController.addStudent(student);
     DataController.removeCommMember(committee);
