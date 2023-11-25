@@ -32,12 +32,12 @@ public class DisplayHandler {
             return;
         }
         for (int i = 0; i < camps.size(); i++) {
-            System.out.println((i + 1) + ": ");
-            System.out.println("Camp name: " + camps.get(i).getName());
-            System.out.println("Description: " + camps.get(i).getDescription());
-            System.out.println("Slots Left:");
-            System.out.println("Attendees: " + camps.get(i).getAttendeeSlotsLeft());
-            System.out.println("Committee: " + camps.get(i).getCommSlotsLeft());
+            System.out.print((i + 1) + ":");
+            System.out.println("\tCamp name: " + camps.get(i).getName());
+            System.out.println("\tDescription: " + camps.get(i).getDescription());
+            System.out.println("\tSlots Left: " + camps.get(i).getTotalSlotsLeft());
+            System.out.println("\t- Attendees: " + camps.get(i).getAttendeeSlotsLeft());
+            System.out.println("\t- Committee: " + camps.get(i).getCommSlotsLeft());
             System.out.println();
         }
     }

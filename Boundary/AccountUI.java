@@ -21,24 +21,23 @@ public class AccountUI {
                 System.out.println("Wrong username or password! Please try again");
                 continue;
             }
-            if (password.equals("password")) {
+            if (password.equals("")) {
                 System.out.println();
-                System.out.println(
-                        "Welcome to the CAMS! As this is your first time logging in, please change your password.");
+                System.out.println("Welcome to the CAMS! As this is your first time logging in, please change your password.");
                 changePasswordMenu();
                 continue;
             }
             switch (SessionInfo.getUserType()) {
-                case "Staff":
-                    StaffUI.displayMenu();
-                    break;
-                case "CommitteeMember":
-                case "Student":
-                    StudentUI.displayMenu();
-                    break;
-                default:
-                    System.out.println("Invalid user type");
-                    break;
+            case "Staff":
+                StaffUI.displayMenu();
+                break;
+            case "CommitteeMember":
+            case "Student":
+                StudentUI.displayMenu();
+                break;
+            default:
+                System.out.println("Invalid user type");
+                break;
             }
         }
     }

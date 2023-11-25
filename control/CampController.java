@@ -11,10 +11,9 @@ public class CampController {
     /**
      * @param newCamp
      */
-    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
-            throws Exception {
+    public static void createCamp(String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) throws Exception {
         UserController.assertUserType(Staff.class);
-        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
+        Camp newCamp = new Camp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
         Staff staff = (Staff) SessionInfo.getUser();
         staff.createCamp(newCamp);
         DataController.addCamp(newCamp);
@@ -23,8 +22,7 @@ public class CampController {
     /**
      * @param camp
      */
-    public static void editCamp(Camp camp, int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
-            throws Exception {
+    public static void editCamp(Camp camp, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) throws Exception {
         UserController.assertUserType(Staff.class);
         camp.setName(name);
         camp.setStartDate(startDate);
@@ -118,9 +116,9 @@ public class CampController {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
             if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
-                //remove from camp attendees
+                // remove from camp attendees
                 camp.removeAttendee(attendees.get(i));
-                //remove from student signedupcamps
+                // remove from student signedupcamps
                 Student currUser = (Student) SessionInfo.getUser();
                 currUser.getSignedUpCamps().remove(camp);
                 return true;
@@ -131,7 +129,8 @@ public class CampController {
     }
 
     public static void registerAttendee(Camp camp) throws Exception {
-        if (camp.getAttendeeSlotsLeft() == 0) throw new Exception("There are no slots available!");
+        if (camp.getAttendeeSlotsLeft() == 0)
+            throw new Exception("There are no slots available!");
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
@@ -155,7 +154,8 @@ public class CampController {
     }
 
     public static void registerCommittee(Camp camp) throws Exception {
-        if (camp.getCommSlotsLeft() == 0) throw new Exception("There are no slots available!");
+        if (camp.getCommSlotsLeft() == 0)
+            throw new Exception("There are no slots available!");
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();

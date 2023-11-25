@@ -5,6 +5,7 @@ import handler.InputHandler;
 
 import entity.*;
 import control.EnquiryController;
+import control.ReportController;
 import control.SuggestionController;
 
 import java.io.BufferedWriter;
@@ -203,9 +204,6 @@ public class CommitteeUI {
     }
 
     private static void menu_GenerateReport(Camp camp) {
-        ArrayList<Student> attendees = camp.getAttendees();
-        ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
-
         int option;
         while (true) {
             System.out.println("How do you want the list of attendees to be displayed?");
@@ -224,77 +222,8 @@ public class CommitteeUI {
             else
                 break;
         }
-
-        try {
-            BufferedWriter reportStream = new BufferedWriter(new FileWriter("committeeReport.txt"));
-            reportStream.write("=====Committee Member Report For Camp " + camp.getName() + " =============\r");
-            // camp details
-            reportStream.write("\n");
-            reportStream.write("Camp Details: \r");
-            reportStream.write("Camp name: " + camp.getName() + "\r");
-            reportStream.write("Start date: " + camp.getStartDate() + "\r");
-            reportStream.write("End date: " + camp.getEndDate() + "\r");
-            reportStream.write("Registration Closing Date: " + camp.getRegCloseDate() + "\r");
-            reportStream.write("Faculty: " + camp.getOpenToFaculty() + "\r");
-            reportStream.write("Location: " + camp.getLocation() + "\r");
-            reportStream.write("Total slots: " + camp.getTotalSlotsLeft() + "\r");
-            reportStream.write("Camp committee slots: " + camp.getCommSlotsLeft() + "\r");
-            reportStream.write("Description: " + camp.getDescription() + "\r");
-            reportStream.write("Staff in charge: " + camp.getStaffInCharge().getName() + "\r");
-            reportStream.write("\n\r");
-            // camp participants
-            reportStream.write("Camp participants: \r");
-            
-            if (option == 1) {
-                int j =1;
-                for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+"\r");
-                }
-                
-                for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee"+"\r");
-                }
-            }
-            if (option == 2) {
-                int j =1;
-                for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() +"---- attendee"+ "\r");
-                }
-                reportStream.write("Camp Attendees: \r");
-                for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+ "\r");
-                }
-            }
-
-            // camp enquiries
-            reportStream.write("\n\r");
-            reportStream.write("All Camp Enquiries: \r");
-
-            ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
-            if (enquiries == null)
-                reportStream.write("No enquiries!");
-            else
-                for (Enquiry enquiry : enquiries) {
-
-                    reportStream.write("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view() + "\r");
-                    if (!enquiry.isProcessed()) {
-                        reportStream.write("\tThere are currently no replies!\r");
-                    } else
-                        for (Reply reply : enquiry.getReplies()) {
-                            reportStream.write("\tReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
-                        }
-                }
-
-            reportStream.write("============End-of-Report=========================================");
-            reportStream.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("committeeReport.txt not found!\n\r" + e.getMessage());
-            System.exit(0);
-        } catch (IOException e) {
-            System.out.println("file error!\n\r" + e.getMessage());
-            e.printStackTrace();
-            System.exit(0);
-        }
+        ReportController.generateReport(camp, option, "CommitteeReport.txt");
+        System.out.println("SUCCESS: Report saved to 'CommitteeReport.txt'");
     }
 
 }
