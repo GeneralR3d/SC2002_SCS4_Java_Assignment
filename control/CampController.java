@@ -14,20 +14,15 @@ public class CampController {
     /**
      * @param newCamp
      */
-    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate,
-            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
-            String description, boolean visibleToStudents) {
-        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
-                commSlots, description, visibleToStudents);
+    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
+        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents);
         DataController.addCamp(newCamp);
     }
 
     /**
      * @param camp
      */
-    public static void editCamp(int campID, String name, LocalDate startDate, LocalDate endDate,
-            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
-            String description, boolean visibleToStudents) {
+    public static void editCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
         // TODO: edit camp
     }
 
@@ -79,21 +74,18 @@ public class CampController {
 
         // add committeememberfor camp and add as first in result
         switch (SessionInfo.getUserType()) {
-            case "Student":
-            case "CommitteeMember":
-                for (Camp currCamp : campData) {
-                    // check for RegCloseDate
-                    // check visibility and faculty of camp
-                    if (currCamp.isVisibleToStudents()
-                            && !today.after(currCamp.getRegCloseDate())
-                            && (currCamp.getOpenToFaculty() == Faculty.NTU
-                                    || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
-                        availableCamps.add(currCamp);
-                    }
+        case "Student":
+        case "CommitteeMember":
+            for (Camp currCamp : campData) {
+                // check for RegCloseDate
+                // check visibility and faculty of camp
+                if (currCamp.isVisibleToStudents() && !today.after(currCamp.getRegCloseDate()) && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
+                    availableCamps.add(currCamp);
                 }
-                break;
-            case "Staff":
-                availableCamps = campData;
+            }
+            break;
+        case "Staff":
+            availableCamps = campData;
         }
 
         return availableCamps;
@@ -102,16 +94,16 @@ public class CampController {
     public static ArrayList<Camp> getSignedUpCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         switch (SessionInfo.getUserType()) {
-            case "Student":
-                for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
-                    registeredCamps.add(camp);
-                break;
-            case "CommitteeMember":
-                // add first camp as committeemember camp
-                registeredCamps.add(((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor());
-                for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps())
-                    registeredCamps.add(camp);
-                break;
+        case "Student":
+            for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
+                registeredCamps.add(camp);
+            break;
+        case "CommitteeMember":
+            // add first camp as committeemember camp
+            registeredCamps.add(((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor());
+            for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps())
+                registeredCamps.add(camp);
+            break;
         }
         return registeredCamps;
     }

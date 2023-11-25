@@ -8,6 +8,7 @@ import control.SuggestionController;
 import entity.Camp;
 import entity.Faculty;
 import entity.Suggestion;
+import handler.DisplayHandler;
 import handler.InputHandler;
 
 public class StaffUI {
@@ -25,24 +26,24 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-                case 1: // View All Camps
-                    menu_ViewAllCamps();
-                    break;
-                case 2: // View Created Camps
-                    menu_ViewCreatedCamps();
-                    break;
-                case 3: // Create New Camp
-                    menu_CreateNewCamp();
-                    break;
-                case 4:
-                    AccountUI.changePasswordMenu();
-                    break;
-                case 5:
-                    AccountUI.logout();
-                    choice = 0;
-                    break;
-                default:
-                    break;
+            case 1: // View All Camps
+                menu_ViewAllCamps();
+                break;
+            case 2: // View Created Camps
+                menu_ViewCreatedCamps();
+                break;
+            case 3: // Create New Camp
+                menu_CreateNewCamp();
+                break;
+            case 4:
+                AccountUI.changePasswordMenu();
+                break;
+            case 5:
+                AccountUI.logout();
+                choice = 0;
+                break;
+            default:
+                break;
             }
         }
     }
@@ -54,7 +55,7 @@ public class StaffUI {
         allCamps = CampController.getAvailableCamps();
         while (true) {
             System.out.println("All Camps:");
-            DisplayHelper.displayResult(allCamps);
+            DisplayHandler.displayResult(allCamps);
             System.out.println("0. Exit");
             System.out.println("Select a camp to view its details...");
             int choice = InputHandler.nextInt();
@@ -64,7 +65,7 @@ public class StaffUI {
                 System.out.println("Invalid Option");
                 continue;
             }
-            DisplayHelper.displayResult(allCamps.get(choice));
+            DisplayHandler.displayResult(allCamps.get(choice));
         }
     }
 
@@ -79,7 +80,7 @@ public class StaffUI {
         }
         while (true) {
             System.out.println("Created Camps:");
-            DisplayHelper.displayResult(createdCamps);
+            DisplayHandler.displayResult(createdCamps);
             System.out.println("0. Exit");
             System.out.println("Select a camp to manage it...");
             int choice = InputHandler.nextInt();
@@ -98,7 +99,7 @@ public class StaffUI {
      */
     public static void menu_ManageCreatedCamp(Camp camp) {
         while (true) {
-            DisplayHelper.displayResult(camp);
+            DisplayHandler.displayResult(camp);
             System.out.println("1. View Enquiries");
             System.out.println("2. View Suggestions");
             System.out.println("3. Edit Camp");
@@ -108,26 +109,26 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-                case 1: // View Enquiries
-                    menu_ViewEnquiries(camp);
-                    break;
-                case 2: // View Suggestions
-                    menu_ViewSuggestions(camp);
-                    break;
-                case 3: // Edit Camp
-                    menu_EditCreatedCamp(camp);
-                    break;
-                case 4: // Delete Camp
-                    System.out.println("Type CONFIRM to confirm deletion of this camp (this action CANNOT be undone).");
-                    if (InputHandler.nextLine().equals("CONFIRM"))
-                        try {
-                            CampController.deleteCamp(camp);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    break;
-                default:
-                    break;
+            case 1: // View Enquiries
+                menu_ViewEnquiries(camp);
+                break;
+            case 2: // View Suggestions
+                menu_ViewSuggestions(camp);
+                break;
+            case 3: // Edit Camp
+                menu_EditCreatedCamp(camp);
+                break;
+            case 4: // Delete Camp
+                System.out.println("Type CONFIRM to confirm deletion of this camp (this action CANNOT be undone).");
+                if (InputHandler.nextLine().equals("CONFIRM"))
+                    try {
+                        CampController.deleteCamp(camp);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                break;
+            default:
+                break;
             }
         }
     }
@@ -175,32 +176,33 @@ public class StaffUI {
                 break;
 
             switch (choice) {
-                case 1: // Approve
-                    // TODO: setSuggestionStatus(campID, suggestionID, APPROVED);
-                    SuggestionController.approve(null, null, null);
-                    System.out.println("TODO: approve suggestion");
-                    break;
-                case 2: // Reject
-                    // TODO: setSuggestionStatus(campID, suggestionID, REJECTED);
-                    System.out.println("TODO: reject suggestions");
-                    break;
-                default:
-                    break;
+            case 1: // Approve
+                // TODO: setSuggestionStatus(campID, suggestionID, APPROVED);
+                SuggestionController.approve(null, null, null);
+                System.out.println("TODO: approve suggestion");
+                break;
+            case 2: // Reject
+                // TODO: setSuggestionStatus(campID, suggestionID, REJECTED);
+                System.out.println("TODO: reject suggestions");
+                break;
+            default:
+                break;
             }
         }
     }
 
     public static void menu_EditCreatedCamp(Camp camp) {
         while (true) {
-            System.out.println("1. Toggle Visibility On / Off");
-            System.out.println("2. Edit Name");
-            System.out.println("3. Edit Start Date");
-            System.out.println("4. Edit End Date");
-            System.out.println("5. Edit Registration Closing Date");
-            System.out.println("6. Edit School");
-            System.out.println("7. Edit Location");
-            System.out.println("8. Edit Total Slots");
-            System.out.println("9. Edit Camp Committee Slots");
+            DisplayHandler.displayResult(camp);
+            System.out.println("1.  Toggle Visibility On / Off");
+            System.out.println("2.  Edit Name");
+            System.out.println("3.  Edit Start Date");
+            System.out.println("4.  Edit End Date");
+            System.out.println("5.  Edit Registration Closing Date");
+            System.out.println("6.  Edit School");
+            System.out.println("7.  Edit Location");
+            System.out.println("8.  Edit Total Slots");
+            System.out.println("9.  Edit Camp Committee Slots");
             System.out.println("10. Edit Description");
             System.out.println("11. Apply Changes");
             System.out.println("0.  Exit WITHOUT Saving");
@@ -208,51 +210,51 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-                case 1: // Toggle Visibility On / Off
-                    menu_ViewAllCamps();
-                    break;
-                case 2: // Edit Name
-                    // menu_ViewMyCamps();
-                    break;
-                case 3: // Edit Start Date
-                    // TODO: Edit Start Date
-                    System.out.println("TODO: Edit Start Date");
-                    break;
-                case 4: // Edit End Date
-                    // TODO: Edit End Date
-                    System.out.println("TODO: Edit End Date");
-                    break;
-                case 5: // Edit Registration Closing Date
-                    // TODO: Edit Registration Closing Date
-                    System.out.println("TODO: Edit Registration Closing Date");
-                    break;
-                case 6: // Edit School
-                    // TODO: Edit School
-                    System.out.println("TODO: Edit School");
-                    break;
-                case 7: // Edit Location
-                    // TODO: Edit Location
-                    System.out.println("TODO: Edit Location");
-                    break;
-                case 8: // Edit Total Slots
-                    // TODO: Edit Total Slots
-                    System.out.println("TODO: Edit Total Slots");
-                    break;
-                case 9: // Edit Camp Committee Slots
-                    // TODO: Edit Camp Committee Slots
-                    System.out.println("TODO: Edit Camp Committee Slots");
-                    break;
-                case 10: // Edit Description
-                    // TODO: Edit Description
-                    System.out.println("TODO: Edit Description");
-                    break;
-                case 11: // Apply Changes
-                    System.out.println("TODO: Apply Changes");
-                    // CampController.editCamp(camp, )
-                    break;
-                default:
-                    System.out.println("Invalid Input");
-                    break;
+            case 1: // Toggle Visibility On / Off
+                menu_ViewAllCamps();
+                break;
+            case 2: // Edit Name
+                // menu_ViewMyCamps();
+                break;
+            case 3: // Edit Start Date
+                // TODO: Edit Start Date
+                System.out.println("TODO: Edit Start Date");
+                break;
+            case 4: // Edit End Date
+                // TODO: Edit End Date
+                System.out.println("TODO: Edit End Date");
+                break;
+            case 5: // Edit Registration Closing Date
+                // TODO: Edit Registration Closing Date
+                System.out.println("TODO: Edit Registration Closing Date");
+                break;
+            case 6: // Edit School
+                // TODO: Edit School
+                System.out.println("TODO: Edit School");
+                break;
+            case 7: // Edit Location
+                // TODO: Edit Location
+                System.out.println("TODO: Edit Location");
+                break;
+            case 8: // Edit Total Slots
+                // TODO: Edit Total Slots
+                System.out.println("TODO: Edit Total Slots");
+                break;
+            case 9: // Edit Camp Committee Slots
+                // TODO: Edit Camp Committee Slots
+                System.out.println("TODO: Edit Camp Committee Slots");
+                break;
+            case 10: // Edit Description
+                // TODO: Edit Description
+                System.out.println("TODO: Edit Description");
+                break;
+            case 11: // Apply Changes
+                System.out.println("TODO: Apply Changes");
+                // CampController.editCamp(camp, )
+                break;
+            default:
+                System.out.println("Invalid Input");
+                break;
             }
         }
     }
@@ -319,7 +321,6 @@ public class StaffUI {
         System.out.println("Visible to Students (0 - no | 1 - yes):");
         visibleToStudents = (InputHandler.nextInt() != 0);
 
-        CampController.createCamp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
-                commSlots, description, visibleToStudents);
+        CampController.createCamp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents);
     }
 }

@@ -1,6 +1,7 @@
 package boundary;
 
 import app.SessionInfo;
+import control.DataController;
 import control.UserController;
 import handler.InputHandler;
 import entity.*;
@@ -24,21 +25,20 @@ public class AccountUI {
             }
             System.out.println();
             if (password.equals("password")) {
-                System.out.println(
-                        "Welcome to the CAMs! As this is your first time logging in, please change your password.");
+                System.out.println("Welcome to the CAMS! As this is your first time logging in, please change your password.");
                 changePasswordMenu();
                 continue;
             }
             switch (SessionInfo.getUserType()) {
-                case "Staff":
-                    StaffUI.displayMenu();
-                    break;
-                case "Student":
-                    StudentUI.displayMenu();
-                    break;
-                default:
-                    System.out.println("Invalid user type");
-                    break;
+            case "Staff":
+                StaffUI.displayMenu();
+                break;
+            case "Student":
+                StudentUI.displayMenu();
+                break;
+            default:
+                System.out.println("Invalid user type");
+                break;
             }
         }
     }

@@ -1,5 +1,6 @@
 package boundary;
 
+import handler.DisplayHandler;
 import handler.InputHandler;
 
 import entity.*;
@@ -14,6 +15,7 @@ import app.SessionInfo;
 public class CommitteeUI {
 
     public static void displayMenu() {
+<<<<<<< HEAD
         int option;
         while(true){
             CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
@@ -58,6 +60,40 @@ public class CommitteeUI {
                 default:
                     break;
             }
+=======
+        CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
+        Camp camp = committee.getCommiteeMemberFor();
+        System.out.println("You are a committee member for camp " + camp.getName());
+        System.out.println("Command Options: ");
+        System.out.println("Enter number to select....");
+        System.out.println("1. View details for camp");
+        System.out.println("2. Submit suggestion");
+        System.out.println("3. View enquries");
+        System.out.println("4. Generate report");
+        int option = InputHandler.nextInt();
+        switch (option) {
+        case 1:
+            displayCampDetails(camp);
+            break;
+        case 2:
+            System.out.println("Enter ~ to quit");
+            System.out.println("Key in suggestion, press enter to confirm: ");
+            String suggestion = InputHandler.nextLine();
+            if (suggestion.equals("~"))
+                break;
+            else
+                SuggestionController.post(SessionInfo.getUser(), camp, suggestion);
+            System.out.println("Suggestion has been posted!");
+            break;
+        case 3:
+            displayEnquiries(camp);
+            break;
+        case 4:
+            generateReport(camp);
+            break;
+        default:
+            break;
+>>>>>>> 94225883b8abe4c73896d331b9c42396514116a6
         }
     }
 
@@ -89,8 +125,12 @@ public class CommitteeUI {
             System.out.println("Enter number to reply....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < enquiries.size(); i++) {
+<<<<<<< HEAD
                 System.out.println((i+1)+": ");
                 DisplayHelper.displayResult(enquiries.get(i));
+=======
+                DisplayHandler.displayResult(enquiries.get(i));
+>>>>>>> 94225883b8abe4c73896d331b9c42396514116a6
             }
             while(true){
                 try{

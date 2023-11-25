@@ -2,6 +2,7 @@ package boundary;
 
 import control.*;
 import entity.*;
+import handler.DisplayHandler;
 import handler.InputHandler;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,7 +12,7 @@ import app.SessionInfo;
 public class StudentUI {
     public static void displayMenu() {
         int option;
-        while(true){
+        while (true) {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("1. View open camps");
@@ -25,11 +26,10 @@ public class StudentUI {
                 System.out.println("You are a committee member. Points: " + commMember.getPoints());
                 System.out.println("6. Committee member menu");
             }
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
-                //clear input buffer
+            } catch (InputMismatchException e) {
+                // clear input buffer
                 InputHandler.next();
                 continue;
             }
@@ -70,7 +70,7 @@ public class StudentUI {
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back.");
 
-        DisplayHelper.displayResult(openCamps);
+        DisplayHandler.displayResult(openCamps);
 
         int option;
         while (true) {
@@ -94,7 +94,7 @@ public class StudentUI {
         System.out.println();
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back");
-        DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
+        DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
         int option;
         while (true) {
             try{
