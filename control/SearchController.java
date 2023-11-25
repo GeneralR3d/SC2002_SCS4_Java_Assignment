@@ -16,7 +16,6 @@ public class SearchController {
             if (camp.getName().equals(campName))
                 result.add(camp);
         }
-        // TODO: sort result in alphabetical order
 
         return result;
     }
@@ -28,8 +27,8 @@ public class SearchController {
             if (camp.getStartDate().isEqual(startDate))
                 result.add(camp);
         }
-        // TODO: sort result in alphabetical order
 
+        sort(result);
         return result;
     }
 
@@ -40,8 +39,8 @@ public class SearchController {
             if (camp.getEndDate().isEqual(endDate))
                 result.add(camp);
         }
-        // TODO: sort result in alphabetical order
 
+        sort(result);
         return result;
     }
 
@@ -52,8 +51,8 @@ public class SearchController {
             if (camp.getOpenToFaculty() == faculty)
                 result.add(camp);
         }
-        // TODO: sort result in alphabetical order
 
+        sort(result);
         return result;
     }
 
@@ -64,8 +63,8 @@ public class SearchController {
             if (camp.getLocation().equals(location))
                 result.add(camp);
         }
-        // TODO: sort result in alphabetical order
 
+        sort(result);
         return result;
     }
 
@@ -80,8 +79,8 @@ public class SearchController {
                 break; // skip the rest of students as student found
             }
         }
-        // TODO: sort result in alphabetical order
 
+        sort(result);
         return result;
     }
 
@@ -95,5 +94,11 @@ public class SearchController {
             }
         }
         return result;
+    }
+
+    public static void sort(ArrayList<Camp> arr) {
+        arr.sort((o1, o2)
+                  -> o1.getName().compareTo(
+                      o2.getName()));
     }
 }
