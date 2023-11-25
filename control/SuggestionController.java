@@ -19,22 +19,18 @@ public class SuggestionController {
     commMember.addPoint();
   }
 
-  public static void delete(User user, Camp camp, Suggestion suggestion) {
+  public static void delete(User user, Camp camp, Suggestion suggestion) throws Exception {
     if (suggestion.isProcessed()) {
-      // call boundary class
-      return;
+      throw new Exception("Suggestion has already been processed!");
     }
     camp.removeSuggestion(suggestion);
-    // call boundary class
   }
 
-  public static void edit(User user, Suggestion suggestion, String content) {
+  public static void edit(User user, Suggestion suggestion, String content) throws Exception {
     if (suggestion.isProcessed()) {
-      // call boundary class
-      return;
+      throw new Exception("Suggestion has already been processed!");
     }
     suggestion.edit(content);
-    // call boundary class
   }
 
   public static void approve(User user, Camp camp, Suggestion suggestion) {
