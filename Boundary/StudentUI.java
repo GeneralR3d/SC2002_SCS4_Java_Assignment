@@ -120,7 +120,7 @@ public class StudentUI {
             System.out.println("Command Options: ");
             System.out.println("Enter number to withdraw from that camp....");
             System.out.println("Enter 0 to go back");
-            DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
+            DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
             
             try{
                 option = InputHandler.nextInt();
@@ -199,7 +199,7 @@ public class StudentUI {
                         break;
                     }
                     for (int i = 0; i < enquiries.size(); i++) {
-                        DisplayHelper.displayResult(enquiries.get(i));
+                        DisplayHandler.displayResult(enquiries.get(i));
                     }
                 case 5:
                     menu_DisplayMyEnquiries(camp);
@@ -223,7 +223,7 @@ public class StudentUI {
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < enquiriesByStudent.size(); i++) {
-                DisplayHelper.displayResult(enquiriesByStudent.get(i));
+                DisplayHandler.displayResult(enquiriesByStudent.get(i));
             }
             while(true){
                 try{
