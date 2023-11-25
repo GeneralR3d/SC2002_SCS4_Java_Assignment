@@ -70,7 +70,6 @@ public class CampController {
     }
 
     public static ArrayList<Camp> getAvailableCamps() {
-        // TODO: fix localdate
         ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
         LocalDate today = LocalDate.now();
