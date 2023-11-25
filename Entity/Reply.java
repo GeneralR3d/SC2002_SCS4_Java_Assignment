@@ -1,33 +1,34 @@
 package entity;
 
+/**
+ * A non-editable message
+ * Contains the ownerID as a {@link String} and the content as a {@link String}
+ */
 public class Reply implements Message {
 
 	private String ownerID;
 	private String content;
 
 	/**
-	 * @return String
+	 * Accesor
+	 * @return String the ownerID
 	 */
 	public String getOwnerID() {
 		return this.ownerID;
 	}
 
+	/**
+     * Accesor
+     * @return the content of this enquiry which is a {@link String}
+     */
 	public String view() {
-		return content;
+		return this.content;
 	}
 
 	/**
-	 *
-	 * @param content
-	 */
-	public void edit(String content) {
-		this.content = content;
-	}
-
-	/**
-	 *
-	 * @param userID
-	 * @param content
+	 * Constructor
+	 * @param userID a {@link String}
+	 * @param content a {@link String}
 	 */
 	public Reply(String userID, String content) {
 		this.ownerID = userID;
