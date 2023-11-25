@@ -28,7 +28,7 @@ public class DisplayHandler {
     public static void displayResult(ArrayList<Camp> camps) {
         System.out.println();
         if (camps.size() == 0) {
-            System.out.println("There are no camps available!");
+            System.out.println("No camps found!");
             return;
         }
         for (int i = 0; i < camps.size(); i++) {
@@ -82,15 +82,15 @@ public class DisplayHandler {
         System.out.println("Status: " + suggestion.getStatus());
     }
 
-    public static void displaySearchResult(ArrayList<Camp> result) {
-        System.out.println();
-        if (result.size() == 0) {
-            System.out.println("No search results found!");
-            return;
-        }
-        for (int i = 0; i < result.size(); i++) {
-            System.out.println((i + 1) + ". " + result.get(i).getName());
-        }
-        System.out.println();
-    }
+    // public static void displaySearchResult(ArrayList<Camp> result) {
+    //     System.out.println();
+    //     if (result.size() == 0) {
+    //         System.out.println("No search results found!");
+    //         return;
+    //     }
+    //     for (int i = 0; i < result.size(); i++) {
+    //         System.out.println((i + 1) + ". " + result.get(i).getName());
+    //     }
+    //     System.out.println();
+    // }
 }
