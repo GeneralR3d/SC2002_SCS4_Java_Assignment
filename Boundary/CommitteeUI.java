@@ -242,25 +242,24 @@ public class CommitteeUI {
             reportStream.write("Description: " + camp.getDescription() + "\r");
             reportStream.write("Staff in charge: " + camp.getStaffInCharge().getName() + "\r");
             // camp participants
-            reportStream.write("\n");
+            reportStream.write("Camp participants: \r");
+            reportStream.write("\n\r");
             if (option == 1) {
-                reportStream.write("Camp Attendees: \r");
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+"\r");
                 }
-                reportStream.write("Camp Committee Members: \r");
+                
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee"+"\r");
                 }
             }
             if (option == 2) {
-                reportStream.write("Camp Committee Members: \r");
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() +"---- attendee"+ "\r");
                 }
                 reportStream.write("Camp Attendees: \r");
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "\r");
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+ "\r");
                 }
             }
 
@@ -279,7 +278,7 @@ public class CommitteeUI {
                         reportStream.write("\tThere are currently no replies!\r");
                     } else
                         for (Reply reply : enquiry.getReplies()) {
-                            reportStream.write("\rReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
+                            reportStream.write("\tReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
                         }
                 }
 
