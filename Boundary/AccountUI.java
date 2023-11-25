@@ -8,6 +8,7 @@ import entity.*;
 public class AccountUI {
     public static void loginMenu() {
         while (true) {
+            DataController.init();
             System.out.println();
             System.out.println("Camp Application and Management System (CAMS) Login");
             System.out.println("Please enter your username:");
@@ -34,6 +35,9 @@ public class AccountUI {
                     break;
                 case "Student":
                     StudentUI.displayMenu();
+                    break;
+                default:
+                    System.out.println("Invalid user type");
                     break;
             }
         }
@@ -70,6 +74,7 @@ public class AccountUI {
     }
 
     public static void logout() {
+        DataController.save();
         UserController.logout();
         System.out.println("You have been logged out.");
     }

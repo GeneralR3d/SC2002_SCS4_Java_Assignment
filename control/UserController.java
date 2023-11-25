@@ -22,7 +22,6 @@ public class UserController {
     }
 
     public static void logout() {
-        DataController.save();
         SessionInfo.setUser(null);
     }
 

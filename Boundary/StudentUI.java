@@ -4,13 +4,14 @@ import control.*;
 import entity.*;
 import handler.InputHandler;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 import app.SessionInfo;
 
 public class StudentUI {
     public static void displayMenu() {
         int option;
-        do {
+        while(true){
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("1. View open camps");
@@ -24,8 +25,15 @@ public class StudentUI {
                 System.out.println("You are a committee member. Points: " + commMember.getPoints());
                 System.out.println("6. Committee member menu");
             }
+            try{
+                option = InputHandler.nextInt();
+            }
+            catch(InputMismatchException e){
+                //clear input buffer
+                InputHandler.next();
+                continue;
+            }
 
-            option = InputHandler.nextInt();
             switch (option) {
                 case 1:
                     ArrayList<Camp> openCamps = CampController.getAvailableCamps();
@@ -43,15 +51,13 @@ public class StudentUI {
                     return;
                 case 5:
                     AccountUI.logout();
-                    option = 0;
-                    break;
+                    return;
                 case 6:
                     CommitteeUI.displayMenu();
                 default:
                     break;
             }
-        } while (option != 0);
-        AccountUI.loginMenu();
+        }
     }
 
     /**

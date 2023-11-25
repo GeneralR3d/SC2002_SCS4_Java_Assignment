@@ -1,5 +1,6 @@
 package handler;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -14,7 +15,7 @@ public class InputHandler {
      *
      * @return String
      */
-    public static String next() {
+    public static String next(){
         System.out.print(">> ");
         String s = sc.next();
         sc.nextLine();
@@ -26,7 +27,7 @@ public class InputHandler {
      *
      * @return String
      */
-    public static String nextLine() {
+    public static String nextLine(){
         System.out.print(">> ");
         return sc.nextLine();
     }
@@ -36,8 +37,8 @@ public class InputHandler {
      *
      * @return int
      */
-    public static int nextInt() {
-        System.out.print(">> ");
+    public static int nextInt() throws InputMismatchException{
+        System.out.print(">>> ");
         int num = sc.nextInt();
         sc.nextLine();
         return num;
