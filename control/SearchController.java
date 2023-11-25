@@ -10,7 +10,7 @@ import entity.Student;
 
 public class SearchController {
     public static ArrayList<Camp> searchByCampName(String campName) {
-        ArrayList<Camp> campData = DataController.getCamps();
+        ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
             if (camp.getName() ==  campName) result.add(camp);
@@ -21,7 +21,7 @@ public class SearchController {
     }
 
     public static ArrayList<Camp> searchByStartDate(LocalDate startDate) {
-        ArrayList<Camp> campData = DataController.getCamps();
+        ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
             if (camp.getStartDate().isEqual(startDate)) result.add(camp);
@@ -32,7 +32,7 @@ public class SearchController {
     }
 
     public static ArrayList<Camp> searchByEndDate(LocalDate endDate) {
-        ArrayList<Camp> campData = DataController.getCamps();
+        ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
             if (camp.getEndDate().isEqual(endDate)) result.add(camp);
@@ -43,7 +43,7 @@ public class SearchController {
     }
 
     public static ArrayList<Camp> searchByFaculty(Faculty faculty) {
-        ArrayList<Camp> campData = DataController.getCamps();
+        ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
             if (camp.getOpenToFaculty() == faculty) result.add(camp);
@@ -54,7 +54,7 @@ public class SearchController {
     }
 
     public static ArrayList<Camp> searchByLocation(String location) {
-        ArrayList<Camp> campData = DataController.getCamps();
+        ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
             if (camp.getLocation().equals(location)) result.add(camp);
