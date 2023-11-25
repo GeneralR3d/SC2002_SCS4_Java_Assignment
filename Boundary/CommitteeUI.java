@@ -24,27 +24,27 @@ public class CommitteeUI {
         System.out.println("4. Generate report");
         int option = InputHandler.nextInt();
         switch (option) {
-            case 1:
-                displayCampDetails(camp);
+        case 1:
+            displayCampDetails(camp);
+            break;
+        case 2:
+            System.out.println("Enter ~ to quit");
+            System.out.println("Key in suggestion, press enter to confirm: ");
+            String suggestion = InputHandler.nextLine();
+            if (suggestion.equals("~"))
                 break;
-            case 2:
-                System.out.println("Enter ~ to quit");
-                System.out.println("Key in suggestion, press enter to confirm: ");
-                String suggestion = InputHandler.nextLine();
-                if (suggestion.equals("~"))
-                    break;
-                else
-                    SuggestionController.post(SessionInfo.getUser(), camp, suggestion);
-                System.out.println("Suggestion has been posted!");
-                break;
-            case 3:
-                displayEnquiries(camp);
-                break;
-            case 4:
-                generateReport(camp);
-                break;
-            default:
-                break;
+            else
+                SuggestionController.post(SessionInfo.getUser(), camp, suggestion);
+            System.out.println("Suggestion has been posted!");
+            break;
+        case 3:
+            displayEnquiries(camp);
+            break;
+        case 4:
+            generateReport(camp);
+            break;
+        default:
+            break;
         }
     }
 

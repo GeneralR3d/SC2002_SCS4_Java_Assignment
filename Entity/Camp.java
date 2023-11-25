@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Represents a camp where all attributes are private.
- * Uses {@link java.time.LocalDate} to store the date information
- * Uses {@link java.util.ArrayList} to store list of attendees, committee
- * members, enquiries and suggestions.
+ * Represents a camp where all attributes are private. Uses
+ * {@link java.time.LocalDate} to store the date information Uses
+ * {@link java.util.ArrayList} to store list of attendees, committee members,
+ * enquiries and suggestions.
  */
 public class Camp {
 
@@ -38,8 +38,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accessor method
-	 * Returns the name of the camp(can be duplicated).
+	 * Accessor method Returns the name of the camp(can be duplicated).
 	 *
 	 * @return {@link String} name of camp
 	 */
@@ -48,8 +47,7 @@ public class Camp {
 	}
 
 	/**
-	 * Mutator method
-	 * Mutates the name of the came.
+	 * Mutator method Mutates the name of the came.
 	 *
 	 * @param name
 	 */
@@ -114,10 +112,9 @@ public class Camp {
 	}
 
 	/**
-	 * Accessor method
-	 * Returns an enum value to see which faculty this camp is created in, and which
-	 * faculty it is open to
-	 * {@code NTU} means it is open to the whole school regardless of faculty
+	 * Accessor method Returns an enum value to see which faculty this camp is
+	 * created in, and which faculty it is open to {@code NTU} means it is open to
+	 * the whole school regardless of faculty
 	 *
 	 * @return {@link Faculty} an enum of faculties
 	 */
@@ -126,8 +123,7 @@ public class Camp {
 	}
 
 	/**
-	 * Mutator method
-	 * Sets enum value of which faculty this camp is open to
+	 * Mutator method Sets enum value of which faculty this camp is open to
 	 *
 	 * @param openToFaculty an enum of faculties of type {@link Faculty}
 	 */
@@ -219,8 +215,8 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method
-	 * Normally the staff in charge of a camp is the staff who created the camp
+	 * Accesor method Normally the staff in charge of a camp is the staff who
+	 * created the camp
 	 *
 	 * @return {@link Staff} the staff who is in charge of this camp
 	 */
@@ -296,9 +292,7 @@ public class Camp {
 	 * @param visibleToStudents boolean value indicating whether the camp is visible
 	 *                          to students
 	 */
-	public Camp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
-			Faculty openToFaculty,
-			String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
+	public Camp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
 		this.campID = campID;
 		this.name = name;
 		this.startDate = startDate;

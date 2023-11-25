@@ -11,7 +11,7 @@ import app.SessionInfo;
 public class StudentUI {
     public static void displayMenu() {
         int option;
-        while(true){
+        while (true) {
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("1. View open camps");
@@ -25,37 +25,36 @@ public class StudentUI {
                 System.out.println("You are a committee member. Points: " + commMember.getPoints());
                 System.out.println("6. Committee member menu");
             }
-            try{
+            try {
                 option = InputHandler.nextInt();
-            }
-            catch(InputMismatchException e){
-                //clear input buffer
+            } catch (InputMismatchException e) {
+                // clear input buffer
                 InputHandler.next();
                 continue;
             }
 
             switch (option) {
-                case 1:
-                    ArrayList<Camp> openCamps = CampController.getAvailableCamps();
-                    displayOpenCamps(openCamps);
-                    break;
-                case 2:
-                    ArrayList<Camp> signedUpCamps = CampController.getSignedUpCamps();
-                    displayRegisteredCamps(signedUpCamps);
-                    break;
-                case 3:
-                    withdrawRegisteredCamps();
-                    break;
-                case 4:
-                    AccountUI.changePasswordMenu();
-                    return;
-                case 5:
-                    AccountUI.logout();
-                    return;
-                case 6:
-                    CommitteeUI.displayMenu();
-                default:
-                    break;
+            case 1:
+                ArrayList<Camp> openCamps = CampController.getAvailableCamps();
+                displayOpenCamps(openCamps);
+                break;
+            case 2:
+                ArrayList<Camp> signedUpCamps = CampController.getSignedUpCamps();
+                displayRegisteredCamps(signedUpCamps);
+                break;
+            case 3:
+                withdrawRegisteredCamps();
+                break;
+            case 4:
+                AccountUI.changePasswordMenu();
+                return;
+            case 5:
+                AccountUI.logout();
+                return;
+            case 6:
+                CommitteeUI.displayMenu();
+            default:
+                break;
             }
         }
     }
@@ -135,51 +134,51 @@ public class StudentUI {
 
         int option = InputHandler.nextInt();
         switch (option) {
-            case 1:
-                try {
-                    CampController.registerAttendee(camp);
-                    System.out.println("You have successfully registered as attendee!");
-                    System.out.println("Enter 0 to go back");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Enter 0 to go back");
-                }
+        case 1:
+            try {
+                CampController.registerAttendee(camp);
+                System.out.println("You have successfully registered as attendee!");
+                System.out.println("Enter 0 to go back");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Enter 0 to go back");
+            }
+            break;
+        case 2:
+            try {
+                CampController.registerCommittee(camp);
+                System.out.println("You have successfully registered as Committee Member!");
+                System.out.println("Enter 0 to go back");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println("Enter 0 to go back");
+            }
+            break;
+        case 3:
+            System.out.println("Enter ~ to quit...");
+            System.out.println("Key in enquiry, press enter to confirm: ");
+            String question = InputHandler.nextLine();
+            if (question.equals("~"))
                 break;
-            case 2:
-                try {
-                    CampController.registerCommittee(camp);
-                    System.out.println("You have successfully registered as Committee Member!");
-                    System.out.println("Enter 0 to go back");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Enter 0 to go back");
-                }
+            EnquiryController.post(camp, question);
+            System.out.println("Enquiry has been posted!");
+            break;
+        case 4:
+            ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
+            for (int i = 0; i < enquiries.size(); i++) {
+                DisplayHelper.displayResult(enquiries.get(i));
+            }
+        case 5:
+            ArrayList<Enquiry> enquiriesByStudent = EnquiryController.getUserEnquiries(camp);
+            if (enquiriesByStudent == null) {
+                System.out.println("You have no enquiries for this camp!");
                 break;
-            case 3:
-                System.out.println("Enter ~ to quit...");
-                System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = InputHandler.nextLine();
-                if (question.equals("~"))
-                    break;
-                EnquiryController.post(camp, question);
-                System.out.println("Enquiry has been posted!");
-                break;
-            case 4:
-                ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
-                for (int i = 0; i < enquiries.size(); i++) {
-                    DisplayHelper.displayResult(enquiries.get(i));
-                }
-            case 5:
-                ArrayList<Enquiry> enquiriesByStudent = EnquiryController.getUserEnquiries(camp);
-                if (enquiriesByStudent == null) {
-                    System.out.println("You have no enquiries for this camp!");
-                    break;
-                }
-                displayMyEnquiries(camp, enquiriesByStudent);
-                break;
-            default:
-                System.out.println("Invalid input!");
-                break;
+            }
+            displayMyEnquiries(camp, enquiriesByStudent);
+            break;
+        default:
+            System.out.println("Invalid input!");
+            break;
         }
     }
 
@@ -211,33 +210,33 @@ public class StudentUI {
         System.out.println("2. Delete enquiry");
         int option = InputHandler.nextInt();
         switch (option) {
-            case 1:
-                System.out.println("Enter ~ to quit");
-                System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = InputHandler.nextLine();
+        case 1:
+            System.out.println("Enter ~ to quit");
+            System.out.println("Key in enquiry, press enter to confirm: ");
+            String question = InputHandler.nextLine();
 
-                if (question.equals("~"))
-                    break;
+            if (question.equals("~"))
+                break;
 
-                try {
-                    EnquiryController.edit(enquiry, question);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    break;
-                }
-                System.out.println("Enquiry has been edited!");
+            try {
+                EnquiryController.edit(enquiry, question);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
                 break;
-            case 2:
-                try {
-                    EnquiryController.delete(camp, enquiry);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    break;
-                }
-                System.out.println("Enquiry has been edited!");
+            }
+            System.out.println("Enquiry has been edited!");
+            break;
+        case 2:
+            try {
+                EnquiryController.delete(camp, enquiry);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
                 break;
-            default:
-                break;
+            }
+            System.out.println("Enquiry has been edited!");
+            break;
+        default:
+            break;
         }
     }
 
