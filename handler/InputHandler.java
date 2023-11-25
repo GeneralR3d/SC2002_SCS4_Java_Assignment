@@ -1,5 +1,6 @@
 package handler;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -37,10 +38,32 @@ public class InputHandler {
      *
      * @return int
      */
-    public static int nextInt() throws InputMismatchException {
-        System.out.print(">> ");
-        int num = sc.nextInt();
+    public static int nextInt() {
+        int num;
+        while (true) {
+            try {
+                System.out.print(">> ");
+                num = sc.nextInt();
+                break;
+            } catch (Exception e) {
+                sc.nextLine();
+                System.out.println("Invalid Input");
+            }
+        }
         sc.nextLine();
         return num;
+    }
+
+    public static LocalDate nextDate() {
+        LocalDate date;
+        while (true) {
+            try {
+                date = LocalDate.parse(nextLine());
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid Date");
+            }
+        }
+        return date;
     }
 }

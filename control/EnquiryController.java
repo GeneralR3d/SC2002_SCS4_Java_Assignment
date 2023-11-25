@@ -23,43 +23,34 @@ public class EnquiryController {
       throw new Exception("Enquiry has been processed and cannot be deleted.");
     }
     camp.removeEnquiry(enquiry);
-    // call boundary class
-    System.out.println("Enquiry has been deleted");
   }
 
   public static void edit(Enquiry enquiry, String content) throws Exception {
     if (enquiry.isProcessed()) {
-      // call boundary class
       throw new Exception("Enquiry has been processed and cannot be edited.");
     }
     enquiry.edit(content);
   }
 
-  public static void addReply(Camp camp, Enquiry enquiry, String content) throws Exception{
+  public static void addReply(Camp camp, Enquiry enquiry, String content) throws Exception {
     User user = SessionInfo.getUser();
     if (!(user instanceof CommitteeMember) && !(user instanceof Staff)) {
-      // call boundary class
       throw new Exception("You are not a committee member or a staff");
     }
     if (user instanceof CommitteeMember) {
       CommitteeMember commMember = (CommitteeMember) user;
       if (!camp.equals(commMember.getCommiteeMemberFor())) {
-        // call boundary class
         throw new Exception("You are not a committee member for this camp");
       }
       String userID = user.getUserID();
       Reply reply = new Reply(userID, content);
       enquiry.addReply(reply);
-      // call boundary class
-      System.out.println("Reply has been posted");
       commMember.addPoint();
     }
     if (user instanceof Staff) {
       String userID = user.getUserID();
       Reply reply = new Reply(userID, content);
       enquiry.addReply(reply);
-      // call boundary class
-      System.out.println("Reply has been posted");
     }
   }
 

@@ -81,4 +81,15 @@ public class DisplayHandler {
     public static void displayResult(Suggestion suggestion) {
 
     }
+
+    public static void displaySearchResult(ArrayList<Camp> result){
+        System.out.println();
+        if (result.size() == 0) {
+            System.out.println("No search results found!");
+            return;
+        }
+        for (int i = 0; i < result.size(); i++) {
+            System.out.println((i+1) + ". " + result.get(i).getName());
+        }
+    }
 }

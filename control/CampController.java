@@ -2,9 +2,6 @@ package control;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.xml.crypto.Data;
 
 import app.SessionInfo;
 import entity.*;
@@ -14,16 +11,31 @@ public class CampController {
     /**
      * @param newCamp
      */
-    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
-        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents);
+    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
+            throws Exception {
+        UserController.assertUserType(Staff.class);
+        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
+        Staff staff = (Staff) SessionInfo.getUser();
+        staff.createCamp(newCamp);
         DataController.addCamp(newCamp);
     }
 
     /**
      * @param camp
      */
-    public static void editCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) {
-        // TODO: edit camp
+    public static void editCamp(Camp camp, int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
+            throws Exception {
+        UserController.assertUserType(Staff.class);
+        camp.setName(name);
+        camp.setStartDate(startDate);
+        camp.setEndDate(endDate);
+        camp.setRegCloseDate(regCloseDate);
+        camp.setOpenToFaculty(openToFaculty);
+        camp.setLocation(location);
+        camp.setTotalSlotsLeft(totalSlots);
+        camp.setComSlotsLeft(commSlots);
+        camp.setDescription(description);
+        camp.setVisibleToStudents(visibleToStudents);
     }
 
     /**
@@ -47,18 +59,6 @@ public class CampController {
      * @return ArrayList<Camp>
      * @throws Exception
      */
-    public static ArrayList<Camp> getAllCamps() throws Exception {
-        UserController.assertUserType(Staff.class);
-        ArrayList<Camp> allCamps = DataController.getCamps();
-        if (allCamps.size() == 0)
-            throw new Exception("There are no camps!");
-        return allCamps;
-    }
-
-    /**
-     * @return ArrayList<Camp>
-     * @throws Exception
-     */
     public static ArrayList<Camp> getCreatedCamps() throws Exception {
         UserController.assertUserType(Staff.class);
         Staff staff = (Staff) SessionInfo.getUser();
@@ -70,7 +70,7 @@ public class CampController {
         // TODO: fix localdate
         ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
-        Date today = new Date();
+        LocalDate today = LocalDate.now();
 
         // add committeememberfor camp and add as first in result
         switch (SessionInfo.getUserType()) {
@@ -79,7 +79,7 @@ public class CampController {
             for (Camp currCamp : campData) {
                 // check for RegCloseDate
                 // check visibility and faculty of camp
-                if (currCamp.isVisibleToStudents() && !today.after(currCamp.getRegCloseDate()) && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
+                if (currCamp.isVisibleToStudents() && !today.isAfter(currCamp.getRegCloseDate()) && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
                     availableCamps.add(currCamp);
                 }
             }
