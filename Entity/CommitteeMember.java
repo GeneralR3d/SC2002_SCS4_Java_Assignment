@@ -1,8 +1,10 @@
 package entity;
+
 /**
  * Represents a committee member who is a sub-class of a student.
  * Can only be commitee member of one {@link Camp}.
- * Has points depending on the number of enquries answered and suggestions posted.
+ * Has points depending on the number of enquries answered and suggestions
+ * posted.
  */
 
 public class CommitteeMember extends Student {
@@ -12,27 +14,28 @@ public class CommitteeMember extends Student {
 
 	/**
 	 * Accessor
+	 *
 	 * @return Camp the camp which he/she is in-charge of
 	 */
 	public Camp getCommiteeMemberFor() {
 		return this.commiteeMemberFor;
 	}
 
-	
-	/** 
+	/**
 	 * Accessor
+	 *
 	 * @return int the number of points he/she has
 	 */
 	public int getPoints() {
 		return this.points;
 	}
 
-
 	/**
-	 *Constructor for committee member
+	 * Constructor for committee member
+	 *
 	 * @param userID
 	 * @param faculty of type {@link Faculty}
-	 * @param pw password
+	 * @param pw      password
 	 */
 	public CommitteeMember(String name, String userID, Faculty faculty, String pw, Camp committeeMemberFor) {
 		super(name, userID, faculty, pw);
@@ -44,6 +47,15 @@ public class CommitteeMember extends Student {
 	 */
 	public void addPoint() {
 		points++;
+	}
+
+	/**
+	 * Removes a point because he/she deleted a suggestion
+	 */
+	public void deductPoint() {
+		if (points == 0)
+			return;
+		points--;
 	}
 
 }

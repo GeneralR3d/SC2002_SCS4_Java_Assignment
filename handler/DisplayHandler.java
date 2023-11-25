@@ -78,8 +78,7 @@ public class DisplayHandler {
     }
 
     public static void displayResult(Suggestion suggestion) {
-        System.out.println("Suggestion by: " + suggestion.getOwner().getName());
-        System.out.println(suggestion.view());
+        System.out.println("Suggestion by " + suggestion.getOwner().getName() + ": " + suggestion.view());
         System.out.println("Status: " + suggestion.getStatus());
     }
 
