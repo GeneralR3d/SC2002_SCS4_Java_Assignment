@@ -69,7 +69,7 @@ public class DisplayHelper {
         System.out.println("Enquiry by: " + enquiry.getOwner().getName());
         System.out.println(enquiry.view());
         System.out.println("Replies:");
-        if (enquiry.getReplies().size() == 0) {
+        if (!enquiry.isProcessed()) {
             System.out.println("Status: Not processed");
             return;
         }

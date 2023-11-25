@@ -35,18 +35,17 @@ public class EnquiryController {
     enquiry.edit(content);
   }
 
-  public static void addReply(Camp camp, Enquiry enquiry, String content) {
+  public static void addReply(Camp camp, Enquiry enquiry, String content) throws Exception{
     User user = SessionInfo.getUser();
     if (!(user instanceof CommitteeMember) && !(user instanceof Staff)) {
       // call boundary class
-      System.out.println("You are not a committee member or a staff");
-      return;
+      throw new Exception("You are not a committee member or a staff");
     }
     if (user instanceof CommitteeMember) {
       CommitteeMember commMember = (CommitteeMember) user;
       if (!camp.equals(commMember.getCommiteeMemberFor())) {
         // call boundary class
-        System.out.println("You are not a committee member for this camp");
+        throw new Exception("You are not a committee member for this camp");
       }
       String userID = user.getUserID();
       Reply reply = new Reply(userID, content);
@@ -80,7 +79,8 @@ public class EnquiryController {
   }
 
   public static ArrayList<Enquiry> getAllEnquiries(Camp camp) {
-    return camp.getEnquiries();
+    ArrayList<Enquiry> campEnquiries = camp.getEnquiries();
+    return campEnquiries.size() == 0 ? null : campEnquiries;
   }
 
 }
