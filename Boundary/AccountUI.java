@@ -9,7 +9,6 @@ import entity.*;
 public class AccountUI {
     public static void loginMenu() {
         while (true) {
-            DataController.init();
             System.out.println();
             System.out.println("Camp Application and Management System (CAMS) Login");
             System.out.println("Please enter your username:");

@@ -1,6 +1,7 @@
 package app;
 
 import boundary.AccountUI;
+import control.DataController;
 
 public class CAMS {
 
@@ -8,6 +9,7 @@ public class CAMS {
      * @param args
      */
     public static void main(String[] args) {
+        DataController.init();
         AccountUI.loginMenu();
     }
 }
