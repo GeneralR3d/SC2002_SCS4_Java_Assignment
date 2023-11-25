@@ -20,6 +20,7 @@ public class CommitteeUI {
     public static void displayMenu() {
         int option;
         while (true) {
+            System.out.println();
             CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
             Camp camp = committee.getCommiteeMemberFor();
             System.out.println("You are a committee member for camp " + camp.getName());
@@ -214,7 +215,7 @@ public class CommitteeUI {
 
             option = InputHandler.nextInt();
 
-            if (option != 0 || option != 1 || option != 2) {
+            if (option < 0 || option > 2) {
                 System.out.println("Inavlid input!");
                 continue;
             }

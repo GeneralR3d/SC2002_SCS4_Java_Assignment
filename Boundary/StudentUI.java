@@ -154,13 +154,12 @@ public class StudentUI {
     }
 
     private static void menu_DisplayRegisteredCamps(ArrayList<Camp> registeredCamps) {
-        System.out.println();
-        System.out.println("Command Options: ");
-        System.out.println("Enter 0 to go back");
-        DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
-        int option;
         while (true) {
-
+            System.out.println();
+            System.out.println("Command Options: ");
+            System.out.println("Enter 0 to go back");
+            DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
+            int option;
             option = InputHandler.nextInt();
 
             if (option == 0)

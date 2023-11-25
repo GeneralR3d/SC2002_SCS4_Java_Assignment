@@ -118,8 +118,11 @@ public class CampController {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
             if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
-                // camps public
+                //remove from camp attendees
                 camp.removeAttendee(attendees.get(i));
+                //remove from student signedupcamps
+                Student currUser = (Student) SessionInfo.getUser();
+                currUser.getSignedUpCamps().remove(camp);
                 return true;
             }
         }
@@ -128,6 +131,8 @@ public class CampController {
     }
 
     public static void registerAttendee(Camp camp) throws Exception {
+        if (camp.getAttendeeSlotsLeft() == 0) throw new Exception("There are no slots available!");
+
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
@@ -150,6 +155,8 @@ public class CampController {
     }
 
     public static void registerCommittee(Camp camp) throws Exception {
+        if (camp.getCommSlotsLeft() == 0) throw new Exception("There are no slots available!");
+
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {

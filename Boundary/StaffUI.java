@@ -176,6 +176,7 @@ public class StaffUI {
         while (true) {
             for (int i = 0; i < enquiries.size(); i++) {
                 System.out.println();
+                System.out.println((i+1) + ":");
                 DisplayHandler.displayResult(enquiries.get(i));
             }
             System.out.println();
