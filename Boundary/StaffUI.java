@@ -342,12 +342,16 @@ public class StaffUI {
         name = InputHandler.nextLine();
         if (name.equals("~"))
             return;
-        // Start Date
-        System.out.println("Start Date (YYYY-MM-DD):");
-        startDate = InputHandler.nextDate();
-        // End Date
-        System.out.println("End Date (YYYY-MM-DD):");
-        endDate = InputHandler.nextDate();
+        do {
+            // Start Date
+            System.out.println("Start Date (YYYY-MM-DD):");
+            startDate = InputHandler.nextDate();
+            // End Date
+            System.out.println("End Date (YYYY-MM-DD):");
+            endDate = InputHandler.nextDate();
+            if (startDate.isAfter(endDate))
+                System.out.println("Start date cannot be after end date!");
+        } while (startDate.isAfter(endDate));
         // Registration CLosing Date
         System.out.println("Registration Closing Date (YYYY-MM-DD):");
         regCloseDate = InputHandler.nextDate();
@@ -360,11 +364,15 @@ public class StaffUI {
         System.out.println("Location:");
         location = InputHandler.nextLine();
         // Total Slots
-        System.out.println("Total Slots:");
-        totalSlots = InputHandler.nextInt();
-        // Committee Member Slots
-        System.out.println("Committee Member Slots:");
-        commSlots = InputHandler.nextInt();
+        do {
+            System.out.println("Total Slots:");
+            totalSlots = InputHandler.nextInt();
+            // Committee Member Slots
+            System.out.println("Committee Member Slots:");
+            commSlots = InputHandler.nextInt();
+            if (commSlots > totalSlots)
+                System.out.println("Committee slots cannot be more than the total camp slots");
+        } while (commSlots > totalSlots);
         // Description
         System.out.println("Description:");
         description = InputHandler.nextLine();
