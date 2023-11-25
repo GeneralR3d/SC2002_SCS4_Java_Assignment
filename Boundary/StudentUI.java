@@ -31,13 +31,7 @@ public class StudentUI {
                 System.out.println("You are a committee member. Points: " + commMember.getPoints());
                 System.out.println("7. Committee member menu");
             }
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                // clear input buffer
-                InputHandler.next();
-                continue;
-            }
+            option = InputHandler.nextInt();
 
             switch (option) {
                 case 1:
@@ -86,12 +80,7 @@ public class StudentUI {
             System.out.println("Enter 0 to go back.");
 
             DisplayHandler.displayResult(openCamps);
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+            option = InputHandler.nextInt();
             if (option == 0)
                 return;
             if (option < 0 || option > openCamps.size()) {
@@ -117,12 +106,8 @@ public class StudentUI {
             System.out.println("6. Attendee");
             System.out.println("7. Committee member");
 
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+
+            option = InputHandler.nextInt();
 
             ArrayList<Camp> result;
             switch (option) {
@@ -188,12 +173,9 @@ public class StudentUI {
         DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
         int option;
         while (true) {
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+                
+            option = InputHandler.nextInt();
+
             if (option == 0)
                 return;
             if (option < 0 || option > registeredCamps.size()) {
@@ -213,12 +195,9 @@ public class StudentUI {
             System.out.println("Enter 0 to go back");
             DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
 
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+
+            option = InputHandler.nextInt();
+
             if (option == 0)
                 return;
             if (option < 0 || option > registeredCamps.size()) {
@@ -244,12 +223,7 @@ public class StudentUI {
             System.out.println("3. Submit enquiry about camp");
             System.out.println("4. Manage my enquiries");
 
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+            option = InputHandler.nextInt();
 
             switch (option) {
                 case 0:
@@ -307,12 +281,9 @@ public class StudentUI {
                 DisplayHandler.displayResult(enquiriesByStudent.get(i));
             }
             while (true) {
-                try {
-                    option = InputHandler.nextInt();
-                } catch (InputMismatchException e) {
-                    InputHandler.next();
-                    continue;
-                }
+
+                option = InputHandler.nextInt();
+
                 if (option == 0)
                     return;
                 if (option < 0 || option > enquiriesByStudent.size()) {
@@ -337,12 +308,8 @@ public class StudentUI {
             if (userType.equals("CommitteeMember"))
                 System.out.println("3. Reply enquiry");
 
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+            option = InputHandler.nextInt();
+
             switch (option) {
                 case 0:
                     return;

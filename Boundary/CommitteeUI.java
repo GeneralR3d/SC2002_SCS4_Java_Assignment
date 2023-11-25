@@ -28,12 +28,9 @@ public class CommitteeUI {
             System.out.println("3. Submit suggestion");
             System.out.println("4. Manage suggestions");
             System.out.println("5. Generate report");
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+
+            option = InputHandler.nextInt();
+
             switch (option) {
                 case 0:
                     return;
@@ -91,12 +88,9 @@ public class CommitteeUI {
                 DisplayHandler.displayResult(enquiries.get(i));
             }
             while (true) {
-                try {
-                    option = InputHandler.nextInt();
-                } catch (InputMismatchException e) {
-                    InputHandler.next();
-                    continue;
-                }
+
+                option = InputHandler.nextInt();
+
                 if (option == 0)
                     return;
                 if (option < 0 || option > enquiries.size()) {
@@ -144,12 +138,9 @@ public class CommitteeUI {
                 System.out.println((i + 1) + ":");
                 DisplayHandler.displayResult(mySuggestions.get(i));
             }
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+
+            option = InputHandler.nextInt();
+
             if (option == 0)
                 return;
             if (option < 0 || option > mySuggestions.size()) {
@@ -170,12 +161,9 @@ public class CommitteeUI {
             System.out.println();
             System.out.println("1: Edit Suggestion");
             System.out.println("2: Delete Suggestion");
-            try {
-                option = InputHandler.nextInt();
-            } catch (InputMismatchException e) {
-                InputHandler.next();
-                continue;
-            }
+
+            option = InputHandler.nextInt();
+
             switch (option) {
                 case 0:
                     return;
