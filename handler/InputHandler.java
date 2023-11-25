@@ -38,7 +38,7 @@ public class InputHandler {
      * @return int
      */
     public static int nextInt() throws InputMismatchException {
-        System.out.print(">>> ");
+        System.out.print(">> ");
         int num = sc.nextInt();
         sc.nextLine();
         return num;
