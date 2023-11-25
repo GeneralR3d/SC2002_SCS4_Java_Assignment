@@ -13,7 +13,7 @@ public class SearchController {
         ArrayList<Camp> campData = CampController.getAvailableCamps();
         ArrayList<Camp> result = new ArrayList<Camp>();
         for (Camp camp: campData) {
-            if (camp.getName() ==  campName) result.add(camp);
+            if (camp.getName().equals(campName)) result.add(camp);
         }
         //TODO: sort result in alphabetical order
 
@@ -72,8 +72,8 @@ public class SearchController {
                 for (Camp camp: student.getSignedUpCamps()){
                     result.add(camp);
                 }
+                break; //skip the rest of students as student found
             }
-            break; //skip the rest of students as student found
         }
         //TODO: sort result in alphabetical order
 
