@@ -8,7 +8,6 @@ import control.EnquiryController;
 import control.SuggestionController;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 
 import app.SessionInfo;
 
