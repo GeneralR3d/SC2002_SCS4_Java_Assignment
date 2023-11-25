@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import control.CampController;
 import control.EnquiryController;
 import control.SuggestionController;
+import control.SearchController;
 import entity.Camp;
 import entity.Enquiry;
 import entity.Faculty;
@@ -18,26 +19,30 @@ public class StaffUI {
         while (true) {
             System.out.println();
             System.out.println("1. View All Camps");
-            System.out.println("2. View Created Camps");
-            System.out.println("3. Create New Camp");
-            System.out.println("4. Change Password");
-            System.out.println("5. Logout");
+            System.out.println("2. Search for all camps");
+            System.out.println("3. View Created Camps");
+            System.out.println("4. Create New Camp");
+            System.out.println("5. Change Password");
+            System.out.println("6. Logout");
             System.out.println("Please select an option...");
             int choice = InputHandler.nextInt();
             switch (choice) {
                 case 1: // View All Camps
                     menu_ViewAllCamps();
                     break;
-                case 2: // View Created Camps
+                case 2:
+                    menu_SearchForCamp();
+                    break;
+                case 3: // View Created Camps
                     menu_ViewCreatedCamps();
                     break;
-                case 3: // Create New Camp
+                case 4: // Create New Camp
                     menu_CreateNewCamp();
                     break;
-                case 4: // Change Password
+                case 5: // Change Password
                     AccountUI.changePasswordMenu();
                     return;
-                case 5: // Logout
+                case 6: // Logout
                     AccountUI.logout();
                     return;
                 default:
@@ -367,3 +372,78 @@ public class StaffUI {
         }
     }
 }
+
+ private static void menu_SearchForCamp() {
+        int option;
+        while (true) {
+            System.out.println("Command Options: ");
+            System.out.println("Enter number to select....");
+            System.out.println("Enter 0 to go back");
+            System.out.println("Search by:");
+            System.out.println("1. Camp name");
+            System.out.println("2. Camp start date");
+            System.out.println("3. Camp end date");
+            System.out.println("4. Camp faculty");
+            System.out.println("5. Camp location");
+            System.out.println("6. Attendee");
+            System.out.println("7. Committee member");
+
+
+            option = InputHandler.nextInt();
+
+            ArrayList<Camp> result;
+            switch (option) {
+                case 0:
+                    return;
+                case 1:
+                    System.out.println("Enter camp name:");
+                    String campName = InputHandler.nextLine();
+                    result = SearchController.searchByCampName(campName);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                case 2:
+                    System.out.println("Enter camp start date (YYYY-MM-DD):");
+                    LocalDate startDate = InputHandler.nextDate();
+                    result = SearchController.searchByStartDate(startDate);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                case 3:
+                    System.out.println("Enter camp end date (YYYY-MM-DD):");
+                    LocalDate endDate = InputHandler.nextDate();
+                    result = SearchController.searchByEndDate(endDate);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                case 4:
+                    System.out.println("Enter camp faculty:");
+                    try {
+                        Faculty faculty = Faculty.valueOf(InputHandler.nextLine());
+                        result = SearchController.searchByFaculty(faculty);
+                        DisplayHandler.displaySearchResult(result);
+                    } catch (Exception e) {
+                        System.out.println("No results found!");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Enter camp location:");
+                    String location = InputHandler.nextLine();
+                    result = SearchController.searchByLocation(location);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                case 6:
+                    System.out.println("Enter attendee name:");
+                    String attendeeName = InputHandler.nextLine();
+                    result = SearchController.searchByAttendee(attendeeName);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                case 7:
+                    System.out.println("Enter committee member name:");
+                    String commMemberName = InputHandler.nextLine();
+                    result = SearchController.searchByAttendee(commMemberName);
+                    DisplayHandler.displaySearchResult(result);
+                    break;
+                default:
+                    System.out.println("Invalid input!");
+                    break;
+            }
+        }
+    }
