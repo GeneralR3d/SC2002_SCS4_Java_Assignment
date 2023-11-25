@@ -82,15 +82,29 @@ public class DisplayHandler {
         System.out.println("Status: " + suggestion.getStatus());
     }
 
+    public static void displayResult(ArrayList<Student> students, ArrayList<CommitteeMember> commMembers) {
+        System.out.println();
+        System.out.println("Total Committee Members: " + commMembers.size());
+        for (CommitteeMember commMember : commMembers) {
+            System.out.println(commMember.getName());
+        }
+        System.out.println();
+        System.out.println("Total Attendees: " + students.size());
+        for (Student student : students) {
+            System.out.println(student.getName());
+        }
+        System.out.println();
+    }
+
     // public static void displaySearchResult(ArrayList<Camp> result) {
-    //     System.out.println();
-    //     if (result.size() == 0) {
-    //         System.out.println("No search results found!");
-    //         return;
-    //     }
-    //     for (int i = 0; i < result.size(); i++) {
-    //         System.out.println((i + 1) + ". " + result.get(i).getName());
-    //     }
-    //     System.out.println();
+    // System.out.println();
+    // if (result.size() == 0) {
+    // System.out.println("No search results found!");
+    // return;
+    // }
+    // for (int i = 0; i < result.size(); i++) {
+    // System.out.println((i + 1) + ". " + result.get(i).getName());
+    // }
+    // System.out.println();
     // }
 }

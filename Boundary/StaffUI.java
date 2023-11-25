@@ -8,8 +8,10 @@ import control.EnquiryController;
 import control.SuggestionController;
 import control.SearchController;
 import entity.Camp;
+import entity.CommitteeMember;
 import entity.Enquiry;
 import entity.Faculty;
+import entity.Student;
 import entity.Suggestion;
 import handler.DisplayHandler;
 import handler.InputHandler;
@@ -74,7 +76,7 @@ public class StaffUI {
     public static void menu_ViewCreatedCamps() {
         // get created camps
         ArrayList<Camp> createdCamps;
-        
+
         while (true) {
             try {
                 createdCamps = CampController.getCreatedCamps();
@@ -112,25 +114,29 @@ public class StaffUI {
         while (true) {
             DisplayHandler.displayResult(camp);
             System.out.println();
-            System.out.println("1. View Enquiries");
-            System.out.println("2. View Suggestions");
-            System.out.println("3. Edit Camp");
-            System.out.println("4. Delete Camp");
+            System.out.println("1: View Signups");
+            System.out.println("2. View Enquiries");
+            System.out.println("3. View Suggestions");
+            System.out.println("4. Edit Camp");
+            System.out.println("5. Delete Camp");
             System.out.println("0. Exit");
             int choice = InputHandler.nextInt();
             if (choice == 0)
                 break;
             switch (choice) {
-                case 1: // View Enquiries
+                case 1:
+                    menu_ViewSignUps(camp);
+                    break;
+                case 2: // View Enquiries
                     menu_ViewEnquiries(camp);
                     break;
-                case 2: // View Suggestions
+                case 3: // View Suggestions
                     menu_ViewSuggestions(camp);
                     break;
-                case 3: // Edit Camp
+                case 4: // Edit Camp
                     menu_EditCreatedCamp(camp);
                     break;
-                case 4: // Delete Camp
+                case 5: // Delete Camp
                     System.out.println("Type CONFIRM to confirm deletion of this camp (this action CANNOT be undone).");
                     if (InputHandler.nextLine().equals("CONFIRM"))
                         try {
@@ -146,6 +152,16 @@ public class StaffUI {
                     break;
             }
         }
+    }
+
+    private static void menu_ViewSignUps(Camp camp) {
+        ArrayList<Student> attendees = camp.getAttendees();
+        ArrayList<CommitteeMember> commMembers = camp.getCommittee();
+        System.out.println();
+        System.out.println("Signups for the camp:");
+        DisplayHandler.displayResult(attendees, commMembers);
+        System.out.println("Enter 0 to go back");
+        InputHandler.nextLine();
     }
 
     public static void menu_ViewEnquiries(Camp camp) {
