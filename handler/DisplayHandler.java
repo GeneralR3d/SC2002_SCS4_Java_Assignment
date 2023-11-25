@@ -1,10 +1,10 @@
-package boundary;
+package handler;
 
 import java.util.ArrayList;
 
 import entity.*;
 
-public class DisplayHelper {
+public class DisplayHandler {
 
     /**
      * @param camp

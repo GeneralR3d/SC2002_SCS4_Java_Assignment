@@ -2,6 +2,7 @@ package boundary;
 
 import control.*;
 import entity.*;
+import handler.DisplayHandler;
 import handler.InputHandler;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -68,7 +69,7 @@ public class StudentUI {
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back.");
 
-        DisplayHelper.displayResult(openCamps);
+        DisplayHandler.displayResult(openCamps);
 
         while (true) {
             int option = InputHandler.nextInt();
@@ -86,7 +87,7 @@ public class StudentUI {
         System.out.println();
         System.out.println("Command Options: ");
         System.out.println("Enter 0 to go back");
-        DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
+        DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
         while (true) {
             int option = InputHandler.nextInt();
             if (option == 0)
@@ -105,7 +106,7 @@ public class StudentUI {
         System.out.println("Command Options: ");
         System.out.println("Enter number to withdraw from that camp....");
         System.out.println("Enter 0 to go back");
-        DisplayHelper.displayResult(registeredCamps, SessionInfo.getUser());
+        DisplayHandler.displayResult(registeredCamps, SessionInfo.getUser());
 
         while (true) {
             int option = InputHandler.nextInt();
@@ -166,7 +167,7 @@ public class StudentUI {
         case 4:
             ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
             for (int i = 0; i < enquiries.size(); i++) {
-                DisplayHelper.displayResult(enquiries.get(i));
+                DisplayHandler.displayResult(enquiries.get(i));
             }
         case 5:
             ArrayList<Enquiry> enquiriesByStudent = EnquiryController.getUserEnquiries(camp);
@@ -187,7 +188,7 @@ public class StudentUI {
         System.out.println("Enter number to select....");
         System.out.println("Enter 0 to go back");
         for (int i = 0; i < enquiries.size(); i++) {
-            DisplayHelper.displayResult(enquiries.get(i));
+            DisplayHandler.displayResult(enquiries.get(i));
         }
         while (true) {
             int option = InputHandler.nextInt();

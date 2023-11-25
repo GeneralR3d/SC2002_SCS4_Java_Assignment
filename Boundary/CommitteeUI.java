@@ -1,5 +1,6 @@
 package boundary;
 
+import handler.DisplayHandler;
 import handler.InputHandler;
 
 import entity.*;
@@ -71,7 +72,7 @@ public class CommitteeUI {
             System.out.println("Enter number to reply....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < enquiries.size(); i++) {
-                DisplayHelper.displayResult(enquiries.get(i));
+                DisplayHandler.displayResult(enquiries.get(i));
             }
             while (true) {
                 int option = InputHandler.nextInt();
