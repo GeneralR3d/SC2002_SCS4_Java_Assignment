@@ -187,6 +187,8 @@ public class StudentUI {
 
             if (option == 0)
                 return;
+            if (option == 1 && SessionInfo.getUserType().equals("CommitteeMember")) 
+                System.out.println("Unable to withdraw as committee member!");
             if (option < 0 || option > registeredCamps.size()) {
                 System.out.println("Invalid input!");
                 continue;

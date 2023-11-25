@@ -71,7 +71,7 @@ public class EnquiryController {
 
   public static ArrayList<Enquiry> getAllEnquiries(Camp camp) {
     ArrayList<Enquiry> campEnquiries = camp.getEnquiries();
-    return campEnquiries.size() == 0 ? null : campEnquiries;
+    return campEnquiries;
   }
 
 }
