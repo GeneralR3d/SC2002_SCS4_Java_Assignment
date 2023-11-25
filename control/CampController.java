@@ -11,13 +11,10 @@ public class CampController {
     /**
      * @param newCamp
      */
-    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate,
-            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
-            String description, boolean visibleToStudents)
+    public static void createCamp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
             throws Exception {
         UserController.assertUserType(Staff.class);
-        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
-                commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
+        Camp newCamp = new Camp(campID, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
         Staff staff = (Staff) SessionInfo.getUser();
         staff.createCamp(newCamp);
         DataController.addCamp(newCamp);
@@ -26,9 +23,7 @@ public class CampController {
     /**
      * @param camp
      */
-    public static void editCamp(Camp camp, int campID, String name, LocalDate startDate, LocalDate endDate,
-            LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots,
-            String description, boolean visibleToStudents)
+    public static void editCamp(Camp camp, int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents)
             throws Exception {
         UserController.assertUserType(Staff.class);
         camp.setName(name);
@@ -55,6 +50,7 @@ public class CampController {
         for (Camp camp : allCamps) {
             if (deletingCamp.getCampID() == camp.getCampID()) {
                 DataController.removeCamp(deletingCamp);
+                return;
             }
         }
         throw new Exception("Error: Camp to be deleted cannot be found.");
@@ -79,20 +75,18 @@ public class CampController {
 
         // add committeememberfor camp and add as first in result
         switch (SessionInfo.getUserType()) {
-            case "Student":
-            case "CommitteeMember":
-                for (Camp currCamp : campData) {
-                    // check for RegCloseDate
-                    // check visibility and faculty of camp
-                    if (currCamp.isVisibleToStudents() && !today.isAfter(currCamp.getRegCloseDate())
-                            && (currCamp.getOpenToFaculty() == Faculty.NTU
-                                    || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
-                        availableCamps.add(currCamp);
-                    }
+        case "Student":
+        case "CommitteeMember":
+            for (Camp currCamp : campData) {
+                // check for RegCloseDate
+                // check visibility and faculty of camp
+                if (currCamp.isVisibleToStudents() && !today.isAfter(currCamp.getRegCloseDate()) && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
+                    availableCamps.add(currCamp);
                 }
-                break;
-            case "Staff":
-                availableCamps = campData;
+            }
+            break;
+        case "Staff":
+            availableCamps = campData;
         }
 
         return availableCamps;
@@ -101,20 +95,20 @@ public class CampController {
     public static ArrayList<Camp> getSignedUpCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         switch (SessionInfo.getUserType()) {
-            case "Student":
-                for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
-                    registeredCamps.add(camp);
-                break;
-            case "CommitteeMember":
-                // add first camp as committeemember camp
-                Camp committeCamp = ((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor();
-                registeredCamps.add(committeCamp);
-                for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps()) {
-                    if (camp.equals(committeCamp))
-                        continue;
-                    registeredCamps.add(camp);
-                }
-                break;
+        case "Student":
+            for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
+                registeredCamps.add(camp);
+            break;
+        case "CommitteeMember":
+            // add first camp as committeemember camp
+            Camp committeCamp = ((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor();
+            registeredCamps.add(committeCamp);
+            for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps()) {
+                if (camp.equals(committeCamp))
+                    continue;
+                registeredCamps.add(camp);
+            }
+            break;
         }
         return registeredCamps;
     }
