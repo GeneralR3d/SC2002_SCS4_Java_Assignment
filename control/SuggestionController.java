@@ -35,12 +35,12 @@ public class SuggestionController {
     suggestion.edit(content);
   }
 
-  public static void approve(Camp camp, Suggestion suggestion) {
+  public static void approve(Suggestion suggestion) {
     suggestion.approve();
     suggestion.getOwner().addPoint();
   }
 
-  public static void reject(User user, Suggestion suggestion) {
+  public static void reject(Suggestion suggestion) {
     suggestion.reject();
   }
 
