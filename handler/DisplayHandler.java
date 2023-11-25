@@ -47,11 +47,11 @@ public class DisplayHandler {
             System.out.println("You have not registered for a camp!");
             return;
         }
-        for (int i = 1; i <= camps.size(); i++) {
+        for (int i = 0; i < camps.size(); i++) {
             if (i == 0 && currUser instanceof CommitteeMember) {
-                System.out.println(i + ". " + camps.get(i).getName() + " - Committee Member");
+                System.out.println((i+1) + ". " + camps.get(i).getName() + " - Committee Member");
             } else
-                System.out.println(i + ". " + camps.get(i).getName() + " - Attendee");
+                System.out.println((i+1) + ". " + camps.get(i).getName() + " - Attendee");
         }
     }
 
@@ -91,5 +91,6 @@ public class DisplayHandler {
         for (int i = 0; i < result.size(); i++) {
             System.out.println((i+1) + ". " + result.get(i).getName());
         }
+        System.out.println();
     }
 }
