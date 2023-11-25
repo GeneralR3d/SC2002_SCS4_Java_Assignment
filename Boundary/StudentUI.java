@@ -269,6 +269,8 @@ public class StudentUI {
             ArrayList<Enquiry> enquiriesByStudent = EnquiryController.getUserEnquiries(camp);
             if (enquiriesByStudent == null) {
                 System.out.println("You have no enquiries for this camp!");
+                System.out.println("Enter any key to exit");
+                InputHandler.nextLine();
                 return;
             }
             System.out.println();
@@ -300,6 +302,7 @@ public class StudentUI {
         int option;
         String userType = SessionInfo.getUserType();
         while (true) {
+            System.out.println();
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
@@ -336,8 +339,8 @@ public class StudentUI {
                         System.out.println(e.getMessage());
                         break;
                     }
-                    System.out.println("Enquiry has been edited!");
-                    break;
+                    System.out.println("Enquiry has been deleted!");
+                    return;
                 case 3:
                     if (!userType.equals("CommitteeMember")) {
                         System.out.println("Invalid input!");

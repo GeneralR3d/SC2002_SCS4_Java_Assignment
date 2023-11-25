@@ -67,9 +67,7 @@ public class DisplayHandler {
     }
 
     public static void displayResult(Enquiry enquiry) {
-        System.out.println("Enquiry by: " + enquiry.getOwner().getName());
-        System.out.println(enquiry.view());
-        System.out.println("Replies:");
+        System.out.println("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view());
         if (!enquiry.isProcessed()) {
             System.out.println("There are currently no replies!");
             return;

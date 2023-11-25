@@ -24,8 +24,6 @@ public class StaffUI {
             System.out.println("5. Logout");
             System.out.println("Please select an option...");
             int choice = InputHandler.nextInt();
-            if (choice == 0)
-                break;
             switch (choice) {
                 case 1: // View All Camps
                     menu_ViewAllCamps();
@@ -61,7 +59,7 @@ public class StaffUI {
             System.out.println("Select a camp to view its details...");
             int choice = InputHandler.nextInt();
             if (choice == 0) // exit
-                break;
+                return;
             if (choice < 0 || choice > allCamps.size()) {
                 System.out.println("Invalid Option");
                 continue;
@@ -101,6 +99,7 @@ public class StaffUI {
     public static void menu_ManageCreatedCamp(Camp camp) {
         while (true) {
             DisplayHandler.displayResult(camp);
+            System.out.println();
             System.out.println("1. View Enquiries");
             System.out.println("2. View Suggestions");
             System.out.println("3. Edit Camp");
@@ -146,6 +145,7 @@ public class StaffUI {
         }
         while (true) {
             for (int i = 0; i < enquiries.size(); i++) {
+                System.out.println();
                 DisplayHandler.displayResult(enquiries.get(i));
             }
             System.out.println();
