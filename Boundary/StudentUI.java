@@ -169,6 +169,7 @@ public class StudentUI {
                 System.out.println("Invalid input!");
                 continue;
             }
+            menu_ViewCampOptions(registeredCamps.get(option - 1));
         }
     }
 
