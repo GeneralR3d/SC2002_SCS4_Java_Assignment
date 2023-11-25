@@ -101,10 +101,9 @@ public class StudentUI {
             System.out.println("1. Camp name");
             System.out.println("2. Camp start date");
             System.out.println("3. Camp end date");
-            System.out.println("4. Camp faculty");
-            System.out.println("5. Camp location");
-            System.out.println("6. Attendee");
-            System.out.println("7. Committee member");
+            System.out.println("4. Camp location");
+            System.out.println("5. Attendee");
+            System.out.println("6. Committee member");
 
 
             option = InputHandler.nextInt();
@@ -132,28 +131,18 @@ public class StudentUI {
                     DisplayHandler.displaySearchResult(result);
                     break;
                 case 4:
-                    System.out.println("Enter camp faculty:");
-                    try {
-                        Faculty faculty = Faculty.valueOf(InputHandler.nextLine());
-                        result = SearchController.searchByFaculty(faculty);
-                        DisplayHandler.displaySearchResult(result);
-                    } catch (Exception e) {
-                        System.out.println("No results found!");
-                    }
-                    break;
-                case 5:
                     System.out.println("Enter camp location:");
                     String location = InputHandler.nextLine();
                     result = SearchController.searchByLocation(location);
                     DisplayHandler.displaySearchResult(result);
                     break;
-                case 6:
+                case 5:
                     System.out.println("Enter attendee name:");
                     String attendeeName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(attendeeName);
                     DisplayHandler.displaySearchResult(result);
                     break;
-                case 7:
+                case 6:
                     System.out.println("Enter committee member name:");
                     String commMemberName = InputHandler.nextLine();
                     result = SearchController.searchByAttendee(commMemberName);
