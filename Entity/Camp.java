@@ -3,8 +3,6 @@ package entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import app.SessionInfo;
-
 /**
  * Represents a camp where all attributes are private. Uses
  * {@link java.time.LocalDate} to store the date information Uses
@@ -294,7 +292,9 @@ public class Camp {
 	 * @param visibleToStudents boolean value indicating whether the camp is visible
 	 *                          to students
 	 */
-	public Camp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents, Staff staffInCharge) {
+	public Camp(int campID, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
+			Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
+			boolean visibleToStudents, Staff staffInCharge) {
 		this.campID = campID;
 		this.name = name;
 		this.startDate = startDate;
