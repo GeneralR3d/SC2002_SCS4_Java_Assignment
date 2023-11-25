@@ -16,12 +16,14 @@ public class Student extends User {
 	 *
 	 * @param name
 	 * @param userID
-	 * @param faculty of type {@link Faculty}
-	 * @param pw      password
+	 * @param faculty       of type {@link Faculty}
+	 * @param pw            password
+	 * @param signedUpCamps of type {@link ArrayList}
 	 */
-	public Student(String name, String userID, Faculty faculty, String pw) {
+	public Student(String name, String userID, Faculty faculty, String pw, ArrayList<Camp> signedUpCamps) {
 		super(name, userID, faculty, pw);
-		signedUpCamps = new ArrayList<Camp>();
+		this.signedUpCamps = new ArrayList<Camp>();
+		this.signedUpCamps = signedUpCamps;
 	}
 
 	/**

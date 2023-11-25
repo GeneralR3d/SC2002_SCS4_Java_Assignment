@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.ArrayList;
+
 /**
  * Represents a committee member who is a sub-class of a student.
  * Can only be commitee member of one {@link Camp}.
@@ -34,11 +36,14 @@ public class CommitteeMember extends Student {
 	 * Constructor for committee member
 	 *
 	 * @param userID
-	 * @param faculty of type {@link Faculty}
-	 * @param pw      password
+	 * @param faculty            of type {@link Faculty}
+	 * @param pw                 password
+	 * @param committeeMemberFor of type {@link Camp}
+	 * @param signedUpCamps      of type {@link ArrayList}
 	 */
-	public CommitteeMember(String name, String userID, Faculty faculty, String pw, Camp committeeMemberFor) {
-		super(name, userID, faculty, pw);
+	public CommitteeMember(String name, String userID, Faculty faculty, String pw, Camp committeeMemberFor,
+			ArrayList<Camp> signedUpCamps) {
+		super(name, userID, faculty, pw, signedUpCamps);
 		this.commiteeMemberFor = committeeMemberFor;
 	}
 
