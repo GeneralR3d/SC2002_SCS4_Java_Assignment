@@ -241,30 +241,33 @@ public class CommitteeUI {
             reportStream.write("Camp committee slots: " + camp.getCommSlotsLeft() + "\r");
             reportStream.write("Description: " + camp.getDescription() + "\r");
             reportStream.write("Staff in charge: " + camp.getStaffInCharge().getName() + "\r");
+            reportStream.write("\n\r");
             // camp participants
             reportStream.write("Camp participants: \r");
-            reportStream.write("\n\r");
+            
             if (option == 1) {
+                int j =1;
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+"\r");
+                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+"\r");
                 }
                 
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee"+"\r");
+                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee"+"\r");
                 }
             }
             if (option == 2) {
+                int j =1;
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() +"---- attendee"+ "\r");
+                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() +"---- attendee"+ "\r");
                 }
                 reportStream.write("Camp Attendees: \r");
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+ "\r");
+                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee"+ "\r");
                 }
             }
 
             // camp enquiries
-            reportStream.write("\n");
+            reportStream.write("\n\r");
             reportStream.write("All Camp Enquiries: \r");
 
             ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
