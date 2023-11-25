@@ -18,12 +18,10 @@ public class CommitteeUI {
         while (true) {
             CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
             Camp camp = committee.getCommiteeMemberFor();
-            System.out.println();
-            System.out.println("You are a committee member for camp: " + camp.getName());
+            System.out.println("You are a committee member for camp " + camp.getName());
             System.out.println("Command Options: ");
             System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back.");
-            System.out.println();
             System.out.println("1. View details for camp");
             System.out.println("2. View enquries");
             System.out.println("3. Submit suggestion");
@@ -42,7 +40,6 @@ public class CommitteeUI {
                     menu_DisplayEnquiries(camp);
                     break;
                 case 3:
-                    System.out.println();
                     System.out.println("Enter ~ to quit");
                     System.out.println("Key in suggestion, press enter to confirm: ");
                     String suggestion = InputHandler.nextLine();
@@ -70,7 +67,7 @@ public class CommitteeUI {
     private static void menu_DisplayCampDetails(Camp camp) {
         DisplayHandler.displayResult(camp);
         System.out.println();
-        System.out.println("Enter 0 to go back");
+        System.out.println("Press any key to go back");
         InputHandler.nextLine();
     }
 
@@ -122,20 +119,19 @@ public class CommitteeUI {
     }
 
     private static void menu_DisplayMySuggestions(Camp camp) {
+        ArrayList<Suggestion> mySuggestions = SuggestionController.getMySuggestions(camp);
+        if (mySuggestions.size() == 0) {
+            System.out.println();
+            System.out.println("You have no suggestions!");
+            System.out.println();
+            System.out.println("Press any key to exit");
+            InputHandler.nextLine();
+        }
         int option;
         while (true) {
-            ArrayList<Suggestion> mySuggestions = SuggestionController.getMySuggestions(camp);
-            if (mySuggestions.size() == 0) {
-                System.out.println();
-                System.out.println("You have no suggestions!");
-                System.out.println();
-                System.out.println("Enter 0 to exit");
-                InputHandler.nextLine();
-                return;
-            }
             System.out.println();
             System.out.println("Command Options: ");
-            System.out.println("Enter number to select....");
+            System.out.println("Enter number to reply....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < mySuggestions.size(); i++) {
                 System.out.println();
@@ -160,7 +156,7 @@ public class CommitteeUI {
         while (true) {
             System.out.println();
             System.out.println("Command Options: ");
-            System.out.println("Enter number to select....");
+            System.out.println("Enter number to reply....");
             System.out.println("Enter 0 to go back");
             System.out.println();
             System.out.println("1: Edit Suggestion");
@@ -172,7 +168,6 @@ public class CommitteeUI {
                 case 0:
                     return;
                 case 1:
-                    System.out.println();
                     System.out.println("Enter ~ to go back");
                     System.out.println("Key in your new Suggestion, press enter to confirm: ");
                     String newSuggestion = InputHandler.nextLine();
@@ -192,7 +187,7 @@ public class CommitteeUI {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
-                    return;
+                    break;
                 default:
                     System.out.println("Invalid Input");
                     break;
@@ -202,7 +197,7 @@ public class CommitteeUI {
     }
 
     private static void menu_GenerateReport(Camp camp) {
-        ;
+        System.out.println("How do you want the list of attendees to be ");
     }
 
 }
