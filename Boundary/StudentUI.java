@@ -242,6 +242,7 @@ public class StudentUI {
                 break;
         }
     }
+}
 
     private static void menu_ViewEnquiryOptions(Camp camp, Enquiry enquiry) {
         int option;
@@ -292,7 +293,6 @@ public class StudentUI {
                     break;
             }
         }
-    }
-
-
 }
+}
+
