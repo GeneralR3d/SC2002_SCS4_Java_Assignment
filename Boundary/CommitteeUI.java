@@ -51,7 +51,7 @@ public class CommitteeUI {
                         break;
                     else
                         SuggestionController.post(camp, suggestion);
-                    System.out.println"Suggestion has been posted!");
+                    System.out.println("Suggestion has been posted!");
                     break;
                 case 4:
                     menu_DisplayMySuggestions(camp);
@@ -205,83 +205,86 @@ public class CommitteeUI {
         ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
 
         int option;
-        while(true){
-        System.out.println("How do you want the list of attendees to be displayed?");
-        System.out.println("1: Attendees first");
-        System.out.println("2: Commiteee first");
-        System.out.println("0: exit");
+        while (true) {
+            System.out.println("How do you want the list of attendees to be displayed?");
+            System.out.println("1: Attendees first");
+            System.out.println("2: Commiteee first");
+            System.out.println("0: exit");
 
-        option = InputHandler.nextInt();
+            option = InputHandler.nextInt();
 
-        if(option != 0 || option != 1 || option != 2) {
-            System.out.println("Inavlid input!");
-            continue;
+            if (option != 0 || option != 1 || option != 2) {
+                System.out.println("Inavlid input!");
+                continue;
+            }
+            if (option == 0)
+                return;
+            else
+                break;
         }
-        if(option == 0) return;
-        else break;
-    }
-
 
         try {
             BufferedWriter reportStream = new BufferedWriter(new FileWriter("committeeReport.txt"));
-            reportStream.write("=====Committee Member Report For Camp "+camp.getName()+" =============\r");
-            //camp details
+            reportStream.write("=====Committee Member Report For Camp " + camp.getName() + " =============\r");
+            // camp details
             reportStream.write("\n");
             reportStream.write("Camp Details: \r");
-            reportStream.write("Camp name: " + camp.getName()+"\r");
-            reportStream.write("Start date: " + camp.getStartDate()+"\r");
-            reportStream.write("End date: " + camp.getEndDate()+"\r");
-            reportStream.write("Registration Closing Date: " + camp.getRegCloseDate()+"\r");
-            reportStream.write("Faculty: " + camp.getOpenToFaculty()+"\r");
-            reportStream.write("Location: " + camp.getLocation()+"\r");
-            reportStream.write("Total slots: " + camp.getTotalSlotsLeft()+"\r");
-            reportStream.write("Camp committee slots: " + camp.getCommSlotsLeft()+"\r");
-            reportStream.write("Description: " + camp.getDescription()+"\r");
-            reportStream.write("Staff in charge: " + camp.getStaffInCharge().getName()+"\r");
-            //camp participants
+            reportStream.write("Camp name: " + camp.getName() + "\r");
+            reportStream.write("Start date: " + camp.getStartDate() + "\r");
+            reportStream.write("End date: " + camp.getEndDate() + "\r");
+            reportStream.write("Registration Closing Date: " + camp.getRegCloseDate() + "\r");
+            reportStream.write("Faculty: " + camp.getOpenToFaculty() + "\r");
+            reportStream.write("Location: " + camp.getLocation() + "\r");
+            reportStream.write("Total slots: " + camp.getTotalSlotsLeft() + "\r");
+            reportStream.write("Camp committee slots: " + camp.getCommSlotsLeft() + "\r");
+            reportStream.write("Description: " + camp.getDescription() + "\r");
+            reportStream.write("Staff in charge: " + camp.getStaffInCharge().getName() + "\r");
+            // camp participants
             reportStream.write("\n");
-            if(option ==1){
+            if (option == 1) {
                 reportStream.write("Camp Attendees: \r");
-                for(int i =0;i<attendees.size();i++){
-                    reportStream.write((i+1)+": "+attendees.get(i).getName()+" from "+attendees.get(i).getFaculty()+"\r");
+                for (int i = 0; i < attendees.size(); i++) {
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from "
+                            + attendees.get(i).getFaculty() + "\r");
                 }
                 reportStream.write("Camp Committee Members: \r");
-                for(int i =0;i<committeeMembers.size();i++){
-                    reportStream.write((i+1)+": "+committeeMembers.get(i).getName()+" from "+committeeMembers.get(i).getFaculty()+"\r");
+                for (int i = 0; i < committeeMembers.size(); i++) {
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from "
+                            + committeeMembers.get(i).getFaculty() + "\r");
                 }
             }
-            if(option == 2){
+            if (option == 2) {
                 reportStream.write("Camp Committee Members: \r");
-                for(int i =0;i<committeeMembers.size();i++){
-                    reportStream.write((i+1)+": "+committeeMembers.get(i).getName()+" from "+committeeMembers.get(i).getFaculty()+"\r");
+                for (int i = 0; i < committeeMembers.size(); i++) {
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " from "
+                            + committeeMembers.get(i).getFaculty() + "\r");
                 }
                 reportStream.write("Camp Attendees: \r");
-                for(int i =0;i<attendees.size();i++){
-                    reportStream.write((i+1)+": "+attendees.get(i).getName()+" from "+attendees.get(i).getFaculty()+"\r");
+                for (int i = 0; i < attendees.size(); i++) {
+                    reportStream.write((i + 1) + ": " + attendees.get(i).getName() + " from "
+                            + attendees.get(i).getFaculty() + "\r");
                 }
             }
-            
-            
-            //camp enquiries
+
+            // camp enquiries
             reportStream.write("\n");
             reportStream.write("All Camp Enquiries: \r");
 
             ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
-            if(enquiries == null) reportStream.write("No enquiries!");
+            if (enquiries == null)
+                reportStream.write("No enquiries!");
             else
-            for(Enquiry enquiry: enquiries){
+                for (Enquiry enquiry : enquiries) {
 
-                reportStream.write("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view()+"\r");
-                if (!enquiry.isProcessed()) {
-                    reportStream.write("\tThere are currently no replies!\r");
+                    reportStream.write("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view() + "\r");
+                    if (!enquiry.isProcessed()) {
+                        reportStream.write("\tThere are currently no replies!\r");
+                    } else
+                        for (Reply reply : enquiry.getReplies()) {
+                            reportStream.write("\rReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
+                        }
                 }
-                else 
-                for (Reply reply : enquiry.getReplies()) {
-                    reportStream.write("\rReplied by " + reply.getOwnerID() + ": " + reply.view()+"\r");
-                }
-            }         
-            
-            
+
             reportStream.write("============End-of-Report=========================================");
             reportStream.close();
         } catch (FileNotFoundException e) {
