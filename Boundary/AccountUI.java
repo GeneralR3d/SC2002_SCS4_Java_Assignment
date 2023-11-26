@@ -6,7 +6,15 @@ import control.UserController;
 import entity.User;
 import handler.InputHandler;
 
+/**
+ * Static UI boundary class for manageing user interface for {@code login}, {@code logout} and {@code changePassword} functionalities
+ */
 public class AccountUI {
+    /**
+     * Displays menu for login. This is the main loop of the program when different users {@code login} and {@code logout}.
+     * <div>Prompts {@link User} to change {@code password} upon first {@code login}
+     * <div>After logging in, dislays the current UI menu for the appropriate {@link User} type
+     */
     public static void loginMenu() {
         while (true) {
             System.out.println();
@@ -43,6 +51,11 @@ public class AccountUI {
         }
     }
 
+    /**
+     * Menu for prompting {@link User} to change {@code password}
+     * <div> Validates both {@code password} entries
+     * <div> {@link User} not allowed to change back to deafult {@code password}
+     */
     public static void changePasswordMenu() {
         System.out.println("Change Password");
 
@@ -73,6 +86,10 @@ public class AccountUI {
         logout();
     }
 
+    /**
+     * Displays {@code logout} menu for user
+     * <div> Calls {@link DataController#save()} to write data about current {@link User} to persistent memory 
+     */
     public static void logout() {
         DataController.save();
         UserController.logout();

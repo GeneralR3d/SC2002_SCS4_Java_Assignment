@@ -13,8 +13,17 @@ import control.SearchController;
 import entity.Camp;
 import entity.CommitteeMember;
 import entity.Enquiry;
+import entity.Student;
+import entity.User;
 
+/**
+ * User interface boundary class for {@link Student}
+ */
 public class StudentUI {
+    /**
+     * The main menu.
+     * Only point of exit is through {@code Logout}
+     */
     public static void displayMenu() {
         int option;
         while (true) {
@@ -72,6 +81,8 @@ public class StudentUI {
     }
 
     /**
+     * Displays all {@link Camp}s visible to {@link Student} and he/she fufils the criteria to {@code SignUp}
+     * <div> Allows {@link Student} to select more options regarding a {@link Camp} via {@link StudentUI#menu_ViewCampOptions(Camp)}
      * @param openCamps
      */
     private static void menu_DisplayOpenCamps(ArrayList<Camp> openCamps) {
@@ -92,6 +103,21 @@ public class StudentUI {
         }
     }
 
+    /**
+     * Filters a camp by certain attributes and displays the search results through {@link StudentUI#menu_DisplayOpenCamps(ArrayList)}
+     * <div>Attributes
+     * <ul>
+     * <li>Camp name
+     * <li>Camp start date
+     * <li>Camp end date
+     * <li>Camp faculty
+     * <li>Camp location
+     * <li>A certain Attendee
+     * <li>A certain Committee member
+     * </ul>
+     * <div>Calls {@link SearchController} methods for filtering
+     * @return ArrayList<Camp>
+     */
     private static void menu_SearchForCamp() {
         int option;
         while (true) {
@@ -153,6 +179,13 @@ public class StudentUI {
         }
     }
 
+    /** 
+     * Displays a list of camps the {@link Student} has signed up for, as well as his/her role
+     * <div>Role either as:
+     * Committee Member or Attendee
+     * <div> Calls {@link StudentUI#menu_ViewCampOptions(Camp)} to display more options for a {@link Camp}
+     * @param registeredCamps an {@link java.util.ArrayList}
+     */
     private static void menu_DisplayRegisteredCamps(ArrayList<Camp> registeredCamps) {
         while (true) {
             System.out.println();
@@ -172,6 +205,11 @@ public class StudentUI {
         }
     }
 
+    /**
+     * Displays a list of {@link Camp}s the {@link Student} has signed up for from {@link CampController#getSignedUpCamps()}
+     * <div> Allows withdraw from a {@link Camp} only if he/she is not a committee member
+     * <div> Calls {@link CampController#removeAttendee(Camp)} to perform {@code withdrawl}
+     */
     private static void menu_WithdrawRegisteredCamps() {
         int option;
         while (true) {
@@ -197,6 +235,13 @@ public class StudentUI {
         }
     }
 
+    /** 
+     * Displays more options for a {@link Student} to see more about a {@link Camp}
+     * <div>Calls {@link CampController#registerAttendee(Camp)} to register as attendee
+     * <div>Calls {@link CampController#registerCommittee(Camp)} to register as committee
+     * <div>Calls {@link EnquiryController#post} to add an enquiry to a {@link Camp} even without registering
+     * <div>Calls {@link StudentUI#menu_DisplayMyEnquiries(Camp)} to let {@link Student} manage past {@link Enquiry}s about this {@link Camp}
+    */
     private static void menu_ViewCampOptions(Camp camp) {
         int option;
         while (true) {
@@ -256,6 +301,12 @@ public class StudentUI {
         }
     }
 
+    /**
+     * Gets a list of {@link Enquiry} which current {@link Student} has made about a {@link Camp}
+     * <div>Displays the list via {@link DisplayHandler#displayResult(Enquiry)}
+     * <div>Allows {@link Student} to select more options via {@link StudentUI#menu_ViewEnquiryOptions(Camp, Enquiry)}
+     * @param camp
+     */
     private static void menu_DisplayMyEnquiries(Camp camp) {
         int option;
         while (true) {
@@ -291,6 +342,13 @@ public class StudentUI {
         }
     }
 
+    /**
+     * Displays more options for an {@link Enquiry}
+     * For {@link Student} allows for {@code edit} and {@code delete} of {@link Enquiry} via {@link EnquiryController#edit(Enquiry, String)} and {@link EnquiryController#delete(Camp, Enquiry)}
+     * For {@link CommitteeMember} allows for {@code reply} of {@link Enquiry} via {@link CommitteeUI#menu_ReplyEnquiry(Camp, Enquiry)}
+     * @param camp
+     * @param enquiry
+     */
     private static void menu_ViewEnquiryOptions(Camp camp, Enquiry enquiry) {
         int option;
         String userType = SessionInfo.getUserType();

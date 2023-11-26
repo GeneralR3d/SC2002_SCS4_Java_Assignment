@@ -10,14 +10,23 @@ import control.SuggestionController;
 import entity.Camp;
 import entity.CommitteeMember;
 import entity.Enquiry;
+import entity.Reply;
+import entity.Staff;
 import entity.Suggestion;
 
 import java.util.ArrayList;
 
 import app.SessionInfo;
 
+/**
+ * User interface boundary class for {@link CommitteeMember}
+ */
 public class CommitteeUI {
 
+    /**
+     * The main menu.
+     * Only point of exit is through {@code Logout}
+     */
     public static void displayMenu() {
         int option;
         while (true) {
@@ -68,6 +77,7 @@ public class CommitteeUI {
     }
 
     /**
+     * Displays all camp details of a {@link Camp}
      * @param camp
      */
     private static void menu_DisplayCampDetails(Camp camp) {
@@ -77,6 +87,11 @@ public class CommitteeUI {
         InputHandler.nextLine();
     }
 
+    /**
+     * Displays all {@link Enquiry}s of a {@link Camp}
+     * <div>Also allows user to reply to an {@link Enquiry} via {@link CommitteeUI#menu_ReplyEnquiry(Camp, Enquiry)}
+     * @param camp
+     */
     private static void menu_DisplayEnquiries(Camp camp) {
         int option;
         while (true) {
@@ -109,6 +124,11 @@ public class CommitteeUI {
         }
     }
 
+     /**
+     * Creates and adds {@link Reply} to an {@link Enquiry} from a {@link Camp}
+     * @param camp
+     * @param enquiry
+     */
     public static void menu_ReplyEnquiry(Camp camp, Enquiry enquiry) {
         System.out.println("Enter ~ to go back");
         System.out.println("Key in reply, press enter to confirm: ");
@@ -124,6 +144,12 @@ public class CommitteeUI {
 
     }
 
+    /**
+     * Gets all {@link Suggestion} of a {@link Camp} via {@link SuggestionController#getMySuggestions(Camp)}
+     * <div>Displays {@link Suggestion}s via {@link DisplayHandler#displayResult(Suggestion)}
+     * <div> Allows {@link Committee} to select options for {@link Suggestion} via {@link CommitteeUI#menu_ManageMySuggestions(Camp, Suggestion)}
+     * @param camp
+     */
     private static void menu_DisplayMySuggestions(Camp camp) {
         ArrayList<Suggestion> mySuggestions = SuggestionController.getMySuggestions(camp);
         if (mySuggestions.size() == 0) {
@@ -138,7 +164,7 @@ public class CommitteeUI {
         while (true) {
             System.out.println();
             System.out.println("Command Options: ");
-            System.out.println("Enter number to reply....");
+            System.out.println("Enter number to select....");
             System.out.println("Enter 0 to go back");
             for (int i = 0; i < mySuggestions.size(); i++) {
                 System.out.println();
@@ -158,6 +184,12 @@ public class CommitteeUI {
         }
     }
 
+    /**
+     * Allows {@link CommitteeMember} to {@code edit} or {@code delete} {@link Suggestion}s which are still {@code PENDING}
+     * <div> Calls {@link SuggestionController#edit(Suggestion, String)} and {@link SuggestionController#delete(Camp, Suggestion)}
+     * @param camp
+     * @param suggestion
+     */
     private static void menu_ManageMySuggestions(Camp camp, Suggestion suggestion) {
         int option;
         while (true) {
@@ -203,6 +235,11 @@ public class CommitteeUI {
         }
     }
 
+    /**
+     * Generates {@link CommitteeMember} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
+     * <div> {@link CommitteeMember} can only generate report for the {@link Camp} they are in-charge-of
+     * <div> Allows {@link CommitteeMember} to select filter to choose the order which the attendees and committee appears
+     */
     private static void menu_GenerateReport(Camp camp) {
         int option;
         while (true) {

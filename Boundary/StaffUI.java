@@ -13,12 +13,21 @@ import entity.Camp;
 import entity.CommitteeMember;
 import entity.Enquiry;
 import entity.Faculty;
+import entity.Reply;
+import entity.Staff;
 import entity.Student;
 import entity.Suggestion;
 import handler.DisplayHandler;
 import handler.InputHandler;
 
+/**
+ * User interface boundary class for {@link Staff}
+ */
 public class StaffUI {
+    /**
+     * The main menu.
+     * Only point of exit is through {@code Logout}
+     */
     public static void displayMenu() {
         while (true) {
             System.out.println();
@@ -61,7 +70,8 @@ public class StaffUI {
     }
 
     /**
-     * @param camps
+     * Displays a list of {@link Camp}s and allows the user to select camps to navigate into each {@link Camp} to see more details
+     * @param camps {@link java.util.ArrayList}
      */
     public static void menu_ViewCamps(ArrayList<Camp> camps) {
         if (camps.size() == 0) {
@@ -88,6 +98,22 @@ public class StaffUI {
         }
     }
 
+    /**
+     * Filters a camp by certain attributes and displays the search results through {@link StaffUI#menu_ViewCamps(ArrayList)}
+     * <div>returns an {@link java.util.ArrayList} of {@link Camp}
+     * <div>Attributes
+     * <ul>
+     * <li>Camp name
+     * <li>Camp start date
+     * <li>Camp end date
+     * <li>Camp faculty
+     * <li>Camp location
+     * <li>A certain Attendee
+     * <li>A certain Committee member
+     * </ul>
+     * <div>Calls {@link SearchController} methods for filtering
+     * @return ArrayList<Camp>
+     */
     private static ArrayList<Camp> menu_SearchForCamp() {
 
         System.out.println();
@@ -161,6 +187,10 @@ public class StaffUI {
         return result;
     }
 
+    /**
+     * Allows {@link Staff} to see list of {@link Camp}s created
+     * Allows navigation into each {@link Camp} to see more options via {@link StaffUI#menu_ManageMyCamp(Camp)}
+     */
     public static void menu_ViewMyCamps() {
         // get created camps
         ArrayList<Camp> myCamps;
@@ -195,6 +225,12 @@ public class StaffUI {
     }
 
     /**
+     * Displays more options for a {@link Staff} to see more about the {@link Camp}
+     * <div>Calls {@link StaffUI#menu_ViewSignUps(Camp)} to see all the signups
+     * <div>Calls {@link StaffUI#menu_ViewEnquiries(Camp)} to see all {@link Enquiry}s
+     * <div>Calls {@link StaffUI#menu_ViewSuggestions(Camp)} to see all {@link Suggestion}s
+     * <div>Calls {@link StaffUI#menu_EditMyCamp(Camp)} to edit an existing {@link Camp}
+     * Allows for deletion of {@link Camp}
      * @param camp camp created by current user
      */
     public static void menu_ManageMyCamp(Camp camp) {
@@ -221,7 +257,7 @@ public class StaffUI {
                     menu_ViewSuggestions(camp);
                     break;
                 case 4: // Edit Camp
-                    menu_EditCreatedCamp(camp);
+                    menu_EditMyCamp(camp);
                     break;
                 case 5: // Delete Camp
                     System.out.println("WARNING: This action CANNOT be undone");
@@ -244,6 +280,7 @@ public class StaffUI {
     }
 
     /**
+     * Displays all attendees and committee member of a {@link Camp} as well as their roles
      * @param camp
      */
     private static void menu_ViewSignUps(Camp camp) {
@@ -258,6 +295,8 @@ public class StaffUI {
     }
 
     /**
+     * Displays all {@link Enquiry}s of a {@link Camp}
+     * <div>Also allows user to reply to an {@link Enquiry} via {@link StaffUI#menu_AddReplyToEnquiry(Camp, Enquiry)}
      * @param camp
      */
     public static void menu_ViewEnquiries(Camp camp) {
@@ -289,6 +328,11 @@ public class StaffUI {
         }
     }
 
+    /**
+     * Creates and adds {@link Reply} to an {@link Enquiry} from a {@link Camp}
+     * @param camp
+     * @param enquiry
+     */
     private static void menu_AddReplyToEnquiry(Camp camp, Enquiry enquiry) {
         System.out.println();
         System.out.println("Enter your reply...");
@@ -304,6 +348,11 @@ public class StaffUI {
         }
     }
 
+    /**
+     * Displays all {@link Suggestions} of a {@link Camp}
+     * <div> Allows {@link Staff} to set status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED} via {@link StaffUI#menu_SetSuggestionStatus(Suggestion)}
+     * @param camp
+     */
     public static void menu_ViewSuggestions(Camp camp) {
         ArrayList<Suggestion> suggestions = camp.getSuggestions();
         while (true) {
@@ -326,6 +375,10 @@ public class StaffUI {
         }
     }
 
+    /**
+     * Sets status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED}
+     * @param suggestion
+     */
     public static void menu_SetSuggestionStatus(Suggestion suggestion) {
         while (true) {
             System.out.println();
@@ -363,7 +416,26 @@ public class StaffUI {
     }
 
 
-    public static void menu_EditCreatedCamp(Camp camp) {
+    /**
+     * Allows {@link Staff} to edit attributes of an existing {@link Camp}
+     * <p>
+     * Attributes
+     * <Ul>
+     * <li>name
+     * <li>location
+     * <li>description
+     * <li>startDate
+     * <li>endDate
+     * <li>regCloseDate
+     * <li>openToFaculty
+     * <li>totalSlots
+     * <li>commSlots
+     * <li>visibleToStudents
+     * </ul>
+     * <div> Gets new information but does not save, allows exit without saving
+     * @param camp
+     */
+    public static void menu_EditMyCamp(Camp camp) {
         String name = camp.getName(), location = camp.getLocation(), description = camp.getDescription();
         LocalDate startDate = camp.getStartDate(), endDate = camp.getEndDate(), regCloseDate = camp.getRegCloseDate();
         Faculty openToFaculty = camp.getOpenToFaculty();
@@ -487,6 +559,12 @@ public class StaffUI {
         }
     }
 
+    /**
+     * Generates {@link Staff} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
+     * <div>Allow {@link Staff} to select whether to generate report for all {@link Camp}s or filter some {@link Camp}s
+     * <div> Allows {@link Staff} to select filter to choose the order which the attendees and committee appears
+     * <div> Calls {@link StaffUI#menu_SearchForCamp() to filter {@link Camp}s
+     */
     public static void menu_GenerateReport() {
 
         int option;
@@ -553,6 +631,23 @@ public class StaffUI {
         System.out.println("SUCCESS: Report saved to 'StaffReport.txt'");
     }
 
+    /**
+     * Allows {@link Staff} to create new {@link Camp}
+     * <p>
+     * Attributes
+     * <Ul>
+     * <li>name
+     * <li>location
+     * <li>description
+     * <li>startDate
+     * <li>endDate
+     * <li>regCloseDate
+     * <li>openToFaculty
+     * <li>totalSlots
+     * <li>commSlots
+     * <li>visibleToStudents
+     * </ul>
+     */
     public static void menu_CreateNewCamp() {
         String name, location, description;
         LocalDate startDate, endDate, regCloseDate;

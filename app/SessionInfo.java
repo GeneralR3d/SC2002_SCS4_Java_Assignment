@@ -4,15 +4,25 @@ import entity.CommitteeMember;
 import entity.Staff;
 import entity.User;
 
+/**
+ * Helper class to store runtime information about current user
+ * <div>Stores sessionInfo about cuurent {@link User}
+ */
 public class SessionInfo {
     private static User user;
     private static String userType;
 
+    /**
+     * Accessor
+     * @return userType of {@link String}
+     */
     public static String getUserType() {
         return userType;
     }
 
     /**
+     * Mutator
+     * Sets both {@code user} and {@code userType}
      * @param user
      */
     public static void setUser(User user) {
@@ -28,6 +38,10 @@ public class SessionInfo {
         }
     }
 
+    /**
+     * Accessor
+     * @return user of type {@link User}
+     */
     public static User getUser() {
         return user;
     }

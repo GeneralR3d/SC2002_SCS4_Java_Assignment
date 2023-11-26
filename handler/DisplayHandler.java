@@ -57,7 +57,7 @@ public class DisplayHandler {
 
     
     /** 
-     * Displays a list of camps a certain user has signed up for, as well as his/role 
+     * Displays a list of camps a certain user has signed up for, as well as his/her role 
      * <div>Role either as:
      * Committee Member or Attendee
      * @param camps an {@link java.util.ArrayList}
