@@ -1,6 +1,5 @@
 package boundary;
 
-
 import handler.DisplayHandler;
 import handler.InputHandler;
 
@@ -38,36 +37,36 @@ public class StudentUI {
             option = InputHandler.nextInt();
 
             switch (option) {
-            case 1:
-                ArrayList<Camp> openCamps = CampController.getAvailableCamps();
-                menu_DisplayOpenCamps(openCamps);
-                break;
-            case 2:
-                menu_SearchForCamp();
-                break;
-            case 3:
-                ArrayList<Camp> signedUpCamps = CampController.getSignedUpCamps();
-                menu_DisplayRegisteredCamps(signedUpCamps);
-                break;
-            case 4:
-                menu_WithdrawRegisteredCamps();
-                break;
-            case 5:
-                AccountUI.changePasswordMenu();
-                return;
-            case 6:
-                AccountUI.logout();
-                return;
-            case 7:
-                if (!userType.equals("CommitteeMember")) {
+                case 1:
+                    ArrayList<Camp> openCamps = CampController.getAvailableCamps();
+                    menu_DisplayOpenCamps(openCamps);
+                    break;
+                case 2:
+                    menu_SearchForCamp();
+                    break;
+                case 3:
+                    ArrayList<Camp> signedUpCamps = CampController.getSignedUpCamps();
+                    menu_DisplayRegisteredCamps(signedUpCamps);
+                    break;
+                case 4:
+                    menu_WithdrawRegisteredCamps();
+                    break;
+                case 5:
+                    AccountUI.changePasswordMenu();
+                    return;
+                case 6:
+                    AccountUI.logout();
+                    return;
+                case 7:
+                    if (!userType.equals("CommitteeMember")) {
+                        System.out.println("Invalid input!");
+                        break;
+                    }
+                    CommitteeUI.displayMenu();
+                    break;
+                default:
                     System.out.println("Invalid input!");
                     break;
-                }
-                CommitteeUI.displayMenu();
-                break;
-            default:
-                System.out.println("Invalid input!");
-                break;
             }
         }
     }
@@ -109,47 +108,47 @@ public class StudentUI {
 
             ArrayList<Camp> result;
             switch (option) {
-            case 0:
-                return;
-            case 1:
-                System.out.println("Enter camp name:");
-                String campName = InputHandler.nextLine();
-                result = SearchController.searchByCampName(campName);
-                menu_DisplayOpenCamps(result);
-                break;
-            case 2:
-                System.out.println("Enter camp start date (YYYY-MM-DD):");
-                LocalDate startDate = InputHandler.nextDate();
-                result = SearchController.searchByStartDate(startDate);
-                menu_DisplayOpenCamps(result);
-                break;
-            case 3:
-                System.out.println("Enter camp end date (YYYY-MM-DD):");
-                LocalDate endDate = InputHandler.nextDate();
-                result = SearchController.searchByEndDate(endDate);
-                menu_DisplayOpenCamps(result);
-                break;
-            case 4:
-                System.out.println("Enter camp location:");
-                String location = InputHandler.nextLine();
-                result = SearchController.searchByLocation(location);
-                menu_DisplayOpenCamps(result);
-                break;
-            case 5:
-                System.out.println("Enter attendee name:");
-                String attendeeName = InputHandler.nextLine();
-                result = SearchController.searchByAttendee(attendeeName);
-                menu_DisplayOpenCamps(result);
-                break;
-            case 6:
-                System.out.println("Enter committee member name:");
-                String commMemberName = InputHandler.nextLine();
-                result = SearchController.searchByAttendee(commMemberName);
-                menu_DisplayOpenCamps(result);
-                break;
-            default:
-                System.out.println("Invalid input!");
-                break;
+                case 0:
+                    return;
+                case 1:
+                    System.out.println("Enter camp name:");
+                    String campName = InputHandler.nextLine();
+                    result = SearchController.searchByCampName(campName);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                case 2:
+                    System.out.println("Enter camp start date (YYYY-MM-DD):");
+                    LocalDate startDate = InputHandler.nextDate();
+                    result = SearchController.searchByStartDate(startDate);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                case 3:
+                    System.out.println("Enter camp end date (YYYY-MM-DD):");
+                    LocalDate endDate = InputHandler.nextDate();
+                    result = SearchController.searchByEndDate(endDate);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                case 4:
+                    System.out.println("Enter camp location:");
+                    String location = InputHandler.nextLine();
+                    result = SearchController.searchByLocation(location);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                case 5:
+                    System.out.println("Enter attendee name:");
+                    String attendeeName = InputHandler.nextLine();
+                    result = SearchController.searchByAttendee(attendeeName);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                case 6:
+                    System.out.println("Enter committee member name:");
+                    String commMemberName = InputHandler.nextLine();
+                    result = SearchController.searchByAttendee(commMemberName);
+                    menu_DisplayOpenCamps(result);
+                    break;
+                default:
+                    System.out.println("Invalid input!");
+                    break;
             }
         }
     }
@@ -194,7 +193,7 @@ public class StudentUI {
                 continue;
             }
             CampController.removeAttendee(registeredCamps.get(option - 1));
-            System.out.println("You have succesfully withdrew from the camp!");
+            System.out.println("You have succesfully withdrawn from the camp!");
         }
     }
 
@@ -216,39 +215,39 @@ public class StudentUI {
             option = InputHandler.nextInt();
 
             switch (option) {
-            case 0:
-                return;
-            case 1:
-                try {
-                    CampController.registerAttendee(camp);
-                    System.out.println("You have successfully registered as attendee!");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 2:
-                try {
-                    CampController.registerCommittee(camp);
-                    System.out.println("You have successfully registered as Committee Member!");
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 3:
-                System.out.println("Enter ~ to quit...");
-                System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = InputHandler.nextLine();
-                if (question.equals("~"))
+                case 0:
+                    return;
+                case 1:
+                    try {
+                        CampController.registerAttendee(camp);
+                        System.out.println("You have successfully registered as attendee!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
-                EnquiryController.post(camp, question);
-                System.out.println("Enquiry has been posted!");
-                break;
-            case 4:
-                menu_DisplayMyEnquiries(camp);
-                break;
-            default:
-                System.out.println("Invalid input!");
-                break;
+                case 2:
+                    try {
+                        CampController.registerCommittee(camp);
+                        System.out.println("You have successfully registered as Committee Member!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 3:
+                    System.out.println("Enter ~ to quit...");
+                    System.out.println("Key in enquiry, press enter to confirm: ");
+                    String question = InputHandler.nextLine();
+                    if (question.equals("~"))
+                        break;
+                    EnquiryController.post(camp, question);
+                    System.out.println("Enquiry has been posted!");
+                    break;
+                case 4:
+                    menu_DisplayMyEnquiries(camp);
+                    break;
+                default:
+                    System.out.println("Invalid input!");
+                    break;
             }
         }
     }
@@ -304,42 +303,42 @@ public class StudentUI {
             option = InputHandler.nextInt();
 
             switch (option) {
-            case 0:
-                return;
-            case 1:
-                System.out.println("Enter ~ to quit");
-                System.out.println("Key in enquiry, press enter to confirm: ");
-                String question = InputHandler.nextLine();
+                case 0:
+                    return;
+                case 1:
+                    System.out.println("Enter ~ to quit");
+                    System.out.println("Key in enquiry, press enter to confirm: ");
+                    String question = InputHandler.nextLine();
 
-                if (question.equals("~"))
-                    break;
+                    if (question.equals("~"))
+                        break;
 
-                try {
-                    EnquiryController.edit(enquiry, question);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    try {
+                        EnquiryController.edit(enquiry, question);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    System.out.println("Enquiry has been edited!");
                     break;
-                }
-                System.out.println("Enquiry has been edited!");
-                break;
-            case 2:
-                try {
-                    EnquiryController.delete(camp, enquiry);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    break;
-                }
-                System.out.println("Enquiry has been deleted!");
-                return;
-            case 3:
-                if (!userType.equals("CommitteeMember")) {
+                case 2:
+                    try {
+                        EnquiryController.delete(camp, enquiry);
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                        break;
+                    }
+                    System.out.println("Enquiry has been deleted!");
+                    return;
+                case 3:
+                    if (!userType.equals("CommitteeMember")) {
+                        System.out.println("Invalid input!");
+                        break;
+                    }
+                    CommitteeUI.menu_ReplyEnquiry(camp, enquiry);
+                default:
                     System.out.println("Invalid input!");
                     break;
-                }
-                CommitteeUI.menu_ReplyEnquiry(camp, enquiry);
-            default:
-                System.out.println("Invalid input!");
-                break;
             }
         }
     }

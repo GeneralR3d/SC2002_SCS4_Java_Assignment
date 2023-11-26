@@ -27,6 +27,7 @@ public class Camp {
 	private ArrayList<CommitteeMember> committeeList;
 	private ArrayList<Enquiry> enquiryList;
 	private ArrayList<Suggestion> suggestionList;
+	private ArrayList<Student> blacklist;
 
 	/**
 	 * Accessor method
@@ -215,7 +216,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method Normally the staff in charge of a camp is the staff who
+	 * Accessor method Normally the staff in charge of a camp is the staff who
 	 * created the camp
 	 *
 	 * @return {@link Staff} the staff who is in charge of this camp
@@ -235,7 +236,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method
+	 * Accessor method
 	 *
 	 * @return {@link java.util.ArrayList} the list of attendees of a camp
 	 */
@@ -244,7 +245,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method
+	 * Accessor method
 	 *
 	 * @return {@link java.util.ArrayList} the list of committee members of a camp
 	 */
@@ -253,7 +254,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method
+	 * Accessor method
 	 *
 	 * @return {@link java.util.ArrayList} the list of enquiries of a camp
 	 */
@@ -262,7 +263,7 @@ public class Camp {
 	}
 
 	/**
-	 * Accesor method
+	 * Accessor method
 	 *
 	 * @return {@link java.util.ArrayList} the list of suggestions of a camp
 	 */
@@ -270,8 +271,22 @@ public class Camp {
 		return this.suggestionList;
 	}
 
+	/**
+	 * Accessor method
+	 *
+	 * @return int the number of attendee slots left
+	 */
 	public int getAttendeeSlotsLeft() {
 		return this.totalSlotsLeft - this.commSlotsLeft;
+	}
+
+	/**
+	 * Accessor method
+	 *
+	 * @return {@link java.util.ArrayList} the list of suggestions of a camp
+	 */
+	public ArrayList<Student> getBlacklist() {
+		return this.blacklist;
 	}
 
 	/**
@@ -311,6 +326,7 @@ public class Camp {
 		committeeList = new ArrayList<CommitteeMember>();
 		enquiryList = new ArrayList<Enquiry>();
 		suggestionList = new ArrayList<Suggestion>();
+		blacklist = new ArrayList<Student>();
 	}
 
 	/**
@@ -329,7 +345,7 @@ public class Camp {
 	 * @param attendee the attendee to be added of type {@link Student}
 	 */
 	public void addAttendee(Student attendee) {
-		attendeeList.add(attendee);
+		this.attendeeList.add(attendee);
 		this.totalSlotsLeft--;
 	}
 
@@ -382,34 +398,52 @@ public class Camp {
 	 * @param enquiry the enquiry to be added of type {@link Enquiry}
 	 */
 	public void addEnquiry(Enquiry enquiry) {
-		enquiryList.add(enquiry);
+		this.enquiryList.add(enquiry);
 	}
 
 	/**
 	 * Removes one enquiry from the list of enquiries of the camp
 	 *
-	 * @param enquiry the enruiry to be removed of type {@link Enquiry}
+	 * @param enquiry the enquiry to be removed of type {@link Enquiry}
 	 */
 	public void removeEnquiry(Enquiry enquiry) {
-		enquiryList.remove(enquiry);
+		this.enquiryList.remove(enquiry);
 	}
 
 	/**
 	 * Adds one suggestion to the list of suggestions of the camp
 	 *
-	 * @param suggestion the enquiry to be added of type {@link Suggestion}
+	 * @param suggestion the suggestion to be added of type {@link Suggestion}
 	 */
 	public void addSuggestion(Suggestion suggestion) {
-		suggestionList.add(suggestion);
+		this.suggestionList.add(suggestion);
 	}
 
 	/**
 	 * Removes one suggestion from the list of suggestions of the camp
 	 *
-	 * @param suggestion the enruiry to be removed of type {@link Suggestion}
+	 * @param suggestion the suggestion to be removed of type {@link Suggestion}
 	 */
 	public void removeSuggestion(Suggestion suggestion) {
-		suggestionList.remove(suggestion);
+		this.suggestionList.remove(suggestion);
+	}
+
+	/**
+	 * Adds one student to the list of blacklists for the camp
+	 *
+	 * @param student the student to be added of type {@link Student}
+	 */
+	public void addBlacklist(Student student) {
+		this.blacklist.add(student);
+	}
+
+	/**
+	 * Removes one student to the list of blacklists for the camp
+	 *
+	 * @param student the student to be removed of type {@link Student}
+	 */
+	public void removeBlackList(Student student) {
+		this.blacklist.remove(student);
 	}
 
 }

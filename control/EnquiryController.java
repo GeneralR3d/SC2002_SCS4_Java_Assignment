@@ -11,7 +11,6 @@ import entity.Staff;
 import entity.Student;
 import entity.User;
 
-
 public class EnquiryController {
 
   /**
@@ -40,20 +39,32 @@ public class EnquiryController {
   }
 
   public static void addReply(Camp camp, Enquiry enquiry, String content) throws Exception {
-    //TODO: check if commMember is enquiry owner
-    //TODO: check if commMember already replied, only first reply add points
     User user = SessionInfo.getUser();
     if (!(user instanceof CommitteeMember) && !(user instanceof Staff)) {
       throw new Exception("You are not a committee member or a staff");
     }
     if (user instanceof CommitteeMember) {
+
       CommitteeMember commMember = (CommitteeMember) user;
       if (!camp.equals(commMember.getCommiteeMemberFor())) {
         throw new Exception("You are not a committee member for this camp");
       }
+
       String userID = user.getUserID();
+
+      // check if commMember is enquiry owner
+      if (userID.equals(enquiry.getOwner().getUserID()))
+        throw new Exception("You cannot reply to your own enquiry!");
+
       Reply reply = new Reply(userID, content);
       enquiry.addReply(reply);
+
+      ArrayList<Reply> enquiryReplies = enquiry.getReplies();
+      // check if commMember already replied, only first reply add points
+      for (Reply enquiryReply : enquiryReplies) {
+        if (user.getUserID().equals(enquiryReply.getOwnerID()))
+          return;
+      }
       commMember.addPoint();
     }
     if (user instanceof Staff) {

@@ -130,25 +130,34 @@ public class CampController {
         return registeredCamps;
     }
 
-    public static boolean removeAttendee(Camp camp) {
+    public static void removeAttendee(Camp camp) {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
             if (attendees.get(i).getUserID() == SessionInfo.getUser().getUserID()) {
+                Student student = attendees.get(i);
                 // remove from camp attendees
-                camp.removeAttendee(attendees.get(i));
-                // remove from student signedupcamps
-                Student currUser = (Student) SessionInfo.getUser();
-                currUser.getSignedUpCamps().remove(camp);
-                return true;
+                camp.removeAttendee(student);
+                // add to camp blacklist
+                camp.addBlacklist(student);
+                break;
             }
         }
-        // user not found
-        return false;
+        // remove from student signedupcamps
+        Student currUser = (Student) SessionInfo.getUser();
+        currUser.getSignedUpCamps().remove(camp);
     }
 
     public static void registerAttendee(Camp camp) throws Exception {
         if (camp.getAttendeeSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
+
+        // check if user has been blacklisted from the camp;
+        ArrayList<Student> blacklistStudents = camp.getBlacklist();
+        for (Student blacklistStudent : blacklistStudents) {
+            if (blacklistStudent.getUserID() == SessionInfo.getUser().getUserID()) {
+                throw new Exception("You can no longer register for this camp as you have previously withdrawn!");
+            }
+        }
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
@@ -190,6 +199,14 @@ public class CampController {
     public static void registerCommittee(Camp camp) throws Exception {
         if (camp.getCommSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
+
+        // check if user has been blacklisted from the camp;
+        ArrayList<Student> blacklistStudents = camp.getBlacklist();
+        for (Student blacklistStudent : blacklistStudents) {
+            if (blacklistStudent.getUserID() == SessionInfo.getUser().getUserID()) {
+                throw new Exception("You can no longer register for this camp as you have previously withdrawn!");
+            }
+        }
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();

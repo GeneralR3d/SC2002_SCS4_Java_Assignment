@@ -14,17 +14,17 @@ import entity.Student;
 
 public class ReportController {
 
-
     public static void generateReport(Camp camp, int sortBy, String fileName, boolean isStaff) {
         ArrayList<Student> attendees = camp.getAttendees();
         ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
 
-
         try {
-            BufferedWriter reportStream = new BufferedWriter(new FileWriter(fileName,isStaff));
+            BufferedWriter reportStream = new BufferedWriter(new FileWriter(fileName, isStaff));
 
-            if (isStaff) reportStream.write("======== Staff Report For Camp " + camp.getName() + " ========\r");
-            else reportStream.write("======== Committee Member Report For Camp " + camp.getName() + " ========\r");
+            if (isStaff)
+                reportStream.write("======== Staff Report For Camp " + camp.getName() + " ========\r");
+            else
+                reportStream.write("======== Committee Member Report For Camp " + camp.getName() + " ========\r");
 
             // camp details
             reportStream.write("\n");
@@ -43,22 +43,26 @@ public class ReportController {
             reportStream.write("\n\r");
             reportStream.write("Camp participants: \r");
             if (sortBy == 1) {
-                int j =1;
+                int j = 1;
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee" + "\r");
+                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from "
+                            + attendees.get(i).getFaculty() + "---- attendee" + "\r");
                 }
 
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee" + "\r");
+                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from "
+                            + committeeMembers.get(i).getFaculty() + "---- committee" + "\r");
                 }
             }
             if (sortBy == 2) {
                 int j = 1;
                 for (int i = 0; i < committeeMembers.size(); i++) {
-                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from " + committeeMembers.get(i).getFaculty() + "---- committee" + "\r");
+                    reportStream.write(j++ + ": " + committeeMembers.get(i).getName() + " from "
+                            + committeeMembers.get(i).getFaculty() + "---- committee" + "\r");
                 }
                 for (int i = 0; i < attendees.size(); i++) {
-                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from " + attendees.get(i).getFaculty() + "---- attendee" + "\r");
+                    reportStream.write(j++ + ": " + attendees.get(i).getName() + " from "
+                            + attendees.get(i).getFaculty() + "---- attendee" + "\r");
                 }
             }
 
@@ -75,28 +79,27 @@ public class ReportController {
                     reportStream.write("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view() + "\r");
                     if (!enquiry.isProcessed()) {
                         reportStream.write("\tThere are currently no replies!\r");
-                    } 
-                    else
+                    } else
                         for (Reply reply : enquiry.getReplies()) {
                             reportStream.write("\tReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
                         }
                 }
 
-            if(isStaff){
+            if (isStaff) {
                 reportStream.write("\n\r");
                 reportStream.write("Performance report for committee members: \r");
                 sort(committeeMembers);
-                for (int i = 0; i < committeeMembers.size(); i++){
-                        reportStream.write((i+1)+ ": " + committeeMembers.get(i).getName() + " has "+ committeeMembers.get(i).getPoints()+"points!\r");
+                for (int i = 0; i < committeeMembers.size(); i++) {
+                    reportStream.write((i + 1) + ": " + committeeMembers.get(i).getName() + " has "
+                            + committeeMembers.get(i).getPoints() + "points!\r");
                 }
             }
 
-            
             reportStream.write("======== End-of-Report ========");
             reportStream.write("\n\r");
             reportStream.close();
         } catch (FileNotFoundException e) {
-            System.out.println(fileName+" not found!\n\r" + e.getMessage());
+            System.out.println(fileName + " not found!\n\r" + e.getMessage());
             System.exit(0);
         } catch (IOException e) {
             System.out.println("file error!\n\r" + e.getMessage());
@@ -105,11 +108,8 @@ public class ReportController {
         }
     }
 
-    public static void sort(ArrayList<CommitteeMember> arr){
-        arr.sort((o1,o2)
-                    ->(o2.getPoints() - o1.getPoints()));
+    public static void sort(ArrayList<CommitteeMember> arr) {
+        arr.sort((o1, o2) -> (o2.getPoints() - o1.getPoints()));
     }
 
 }
-
-
