@@ -50,6 +50,7 @@ public class CampController {
         ArrayList<Camp> allCamps = DataController.getCamps();
 
         // check if deletingcamp is in camps
+        // TODO: check if thr r any attendees/comm in deletingCamp
         for (Camp camp : allCamps) {
             if (deletingCamp.getCampID() == camp.getCampID()) {
                 DataController.removeCamp(deletingCamp);
@@ -137,6 +138,8 @@ public class CampController {
         if (camp.getAttendeeSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
 
+        //TODO: check if student has any overlapping camp dates
+
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
@@ -161,6 +164,8 @@ public class CampController {
     public static void registerCommittee(Camp camp) throws Exception {
         if (camp.getCommSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
+
+        //TODO: check if student has any overlapping camp dates
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();

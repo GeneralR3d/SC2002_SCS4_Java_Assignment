@@ -21,7 +21,8 @@ public class AccountUI {
                 System.out.println("Wrong username or password! Please try again");
                 continue;
             }
-            if (password.equals("")) {
+            // TODO: check for default password
+            if (password.equals("password")) {
                 System.out.println();
                 System.out.println("Welcome to the CAMS! As this is your first time logging in, please change your password.");
                 changePasswordMenu();

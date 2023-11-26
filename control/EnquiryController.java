@@ -40,6 +40,8 @@ public class EnquiryController {
   }
 
   public static void addReply(Camp camp, Enquiry enquiry, String content) throws Exception {
+    //TODO: check if commMember is enquiry owner
+    //TODO: check if commMember already replied, only first reply add points
     User user = SessionInfo.getUser();
     if (!(user instanceof CommitteeMember) && !(user instanceof Staff)) {
       throw new Exception("You are not a committee member or a staff");
