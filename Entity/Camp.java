@@ -152,7 +152,7 @@ public class Camp {
 
 	/**
 	 * Accessor method
-	 * 
+	 *
 	 * @return int the total number of both committee and attendees
 	 */
 	public int getTotalSlotsLeft() {
@@ -161,6 +161,7 @@ public class Camp {
 
 	/**
 	 * Mutator method
+	 * 
 	 * @param totalSlotsLeft the total number of both committee and attendees
 	 */
 	public void setTotalSlotsLeft(int totalSlotsLeft) {
@@ -288,8 +289,10 @@ public class Camp {
 
 	/**
 	 * Accessor method
-	 * Returns a list of blacklisted students who have previous registered for a camp but withdrew
-	 * @return {@link java.util.ArrayList} 
+	 * Returns a list of blacklisted students who have previous registered for a
+	 * camp but withdrew
+	 * 
+	 * @return {@link java.util.ArrayList}
 	 */
 	public ArrayList<Student> getBlacklist() {
 		return this.blacklist;
@@ -448,7 +451,7 @@ public class Camp {
 	 *
 	 * @param student the student to be removed of type {@link Student}
 	 */
-	public void removeBlackList(Student student) {
+	public void removeBlacklist(Student student) {
 		this.blacklist.remove(student);
 	}
 
