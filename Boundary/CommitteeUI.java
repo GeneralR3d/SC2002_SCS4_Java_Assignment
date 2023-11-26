@@ -3,7 +3,6 @@ package boundary;
 import handler.DisplayHandler;
 import handler.InputHandler;
 
-
 import control.EnquiryController;
 import control.ReportController;
 import control.SuggestionController;
@@ -25,14 +24,13 @@ public class CommitteeUI {
             CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();
             Camp camp = committee.getCommiteeMemberFor();
             System.out.println("You are a committee member for camp " + camp.getName());
-            System.out.println("Command Options: ");
-            System.out.println("Enter number to select....");
-            System.out.println("Enter 0 to go back.");
             System.out.println("1. View details for camp");
             System.out.println("2. View enquries");
             System.out.println("3. Submit suggestion");
             System.out.println("4. Manage suggestions");
             System.out.println("5. Generate report");
+            System.out.println("Please select an option...");
+            System.out.println("Enter 0 to go back...");
 
             option = InputHandler.nextInt();
 
@@ -46,14 +44,14 @@ public class CommitteeUI {
                 menu_DisplayEnquiries(camp);
                 break;
             case 3:
-                System.out.println("Enter ~ to quit");
-                System.out.println("Key in suggestion, press enter to confirm: ");
+                System.out.println("Enter your suggestion...");
+                System.out.println("Enter ~ to cancel and go back...");
                 String suggestion = InputHandler.nextLine();
                 if (suggestion.equals("~"))
                     break;
                 else
                     SuggestionController.post(camp, suggestion);
-                System.out.println("Suggestion has been posted!");
+                System.out.println("SUCCESS: Suggestion has been posted!");
                 break;
             case 4:
                 menu_DisplayMySuggestions(camp);
@@ -81,18 +79,20 @@ public class CommitteeUI {
         int option;
         while (true) {
             ArrayList<Enquiry> enquiries = EnquiryController.getAllEnquiries(camp);
-            if (enquiries == null) {
-                System.out.println("There are no enquiries for this camp!");
+            if (enquiries.size() == 0) {
+                System.out.println();
+                System.out.println("NOTICE: There are no enquiries for this camp");
+                System.out.println("Enter any key to go back...");
+                InputHandler.nextLine();
                 return;
             }
-            System.out.println("Command Options: ");
-            System.out.println("Enter number to reply....");
-            System.out.println("Enter 0 to go back");
             for (int i = 0; i < enquiries.size(); i++) {
                 System.out.println();
                 System.out.println((i + 1) + ": ");
                 DisplayHandler.displayResult(enquiries.get(i));
             }
+            System.out.println("Enter number to reply...");
+            System.out.println("Enter 0 to go back...");
             while (true) {
 
                 option = InputHandler.nextInt();
@@ -110,13 +110,14 @@ public class CommitteeUI {
     }
 
     public static void menu_ReplyEnquiry(Camp camp, Enquiry enquiry) {
-        System.out.println("Enter ~ to go back");
-        System.out.println("Key in reply, press enter to confirm: ");
+        System.out.println("Enter your reply");
+        System.out.println("Enter ~ to go back...");
         String reply = InputHandler.nextLine();
         if (reply.equals("~"))
             return;
         try {
             EnquiryController.addReply(camp, enquiry, reply);
+            System.out.println("SUCCESS: Your reply has been posted!");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return;
@@ -125,26 +126,25 @@ public class CommitteeUI {
     }
 
     private static void menu_DisplayMySuggestions(Camp camp) {
-        ArrayList<Suggestion> mySuggestions = SuggestionController.getMySuggestions(camp);
-        if (mySuggestions.size() == 0) {
-            System.out.println();
-            System.out.println("You have no suggestions!");
-            System.out.println();
-            System.out.println("Press any key to exit");
-            InputHandler.nextLine();
-            return;
-        }
         int option;
         while (true) {
-            System.out.println();
-            System.out.println("Command Options: ");
-            System.out.println("Enter number to reply....");
-            System.out.println("Enter 0 to go back");
-            for (int i = 0; i < mySuggestions.size(); i++) {
+            ArrayList<Suggestion> mySuggestions = SuggestionController.getMySuggestions(camp);
+            if (mySuggestions.size() == 0) {
                 System.out.println();
+                System.out.println("You have no suggestions!");
+                System.out.println();
+                System.out.println("Press any key to exit");
+                InputHandler.nextLine();
+                return;
+            }
+            System.out.println();
+            for (int i = 0; i < mySuggestions.size(); i++) {
                 System.out.println((i + 1) + ":");
                 DisplayHandler.displayResult(mySuggestions.get(i));
+                System.out.println();
             }
+            System.out.println("Select a suggestion to manage it...");
+            System.out.println("Enter 0 to go back...");
 
             option = InputHandler.nextInt();
 
@@ -162,12 +162,10 @@ public class CommitteeUI {
         int option;
         while (true) {
             System.out.println();
-            System.out.println("Command Options: ");
-            System.out.println("Enter number to reply....");
-            System.out.println("Enter 0 to go back");
-            System.out.println();
             System.out.println("1: Edit Suggestion");
             System.out.println("2: Delete Suggestion");
+            System.out.println("Please select an option...");
+            System.out.println("Enter 0 to go back...");
 
             option = InputHandler.nextInt();
 
@@ -175,14 +173,14 @@ public class CommitteeUI {
             case 0:
                 return;
             case 1:
-                System.out.println("Enter ~ to go back");
-                System.out.println("Key in your new Suggestion, press enter to confirm: ");
+                System.out.println("Enter your suggestion...");
+                System.out.println("Enter ~ to go back...");
                 String newSuggestion = InputHandler.nextLine();
                 if (newSuggestion.equals("~"))
                     return;
                 try {
                     SuggestionController.edit(suggestion, newSuggestion);
-                    System.out.println("Suggestion has been edited successfully!");
+                    System.out.println("SUCCESS: Suggestion has been edited successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
@@ -190,11 +188,11 @@ public class CommitteeUI {
             case 2:
                 try {
                     SuggestionController.delete(camp, suggestion);
-                    System.out.println("Suggestion has been deleted successfully!");
+                    System.out.println("SUCCESS: Suggestion has been deleted successfully!");
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                break;
+                return;
             default:
                 System.out.println("Invalid Input");
                 break;
@@ -209,12 +207,12 @@ public class CommitteeUI {
             System.out.println("How do you want the list of attendees to be displayed?");
             System.out.println("1: Attendees first");
             System.out.println("2: Commiteee first");
-            System.out.println("0: exit");
+            System.out.println("Enter 0 to go back...");
 
             option = InputHandler.nextInt();
 
             if (option < 0 || option > 2) {
-                System.out.println("Inavlid input!");
+                System.out.println("Invalid input!");
                 continue;
             }
             if (option == 0)
@@ -222,7 +220,7 @@ public class CommitteeUI {
             else
                 break;
         }
-        ReportController.generateReport(camp, option, "CommitteeReport.txt",false);
+        ReportController.generateReport(camp, option, "CommitteeReport.txt", false);
         System.out.println("SUCCESS: Report saved to 'CommitteeReport.txt'");
     }
 
