@@ -77,17 +77,23 @@ public class ReportController {
                     reportStream.write("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view() + "\r");
                     if (!enquiry.isProcessed()) {
                         reportStream.write("\tThere are currently no replies!\r");
-                    } else
+                    } 
+                    else
                         for (Reply reply : enquiry.getReplies()) {
                             reportStream.write("\tReplied by " + reply.getOwnerID() + ": " + reply.view() + "\r");
                         }
                 }
 
             if(isStaff){
-            reportStream.write("\n\r");
-            reportStream.write("Performance report for committee members: \r");
-
+                reportStream.write("\n\r");
+                reportStream.write("Performance report for committee members: \r");
+                sort(committeeMembers);
+                for (int i = 0; i < committeeMembers.size(); i++){
+                        reportStream.write((i+1)+ ": " + committeeMembers.get(i).getName() + " has "+ committeeMembers.get(i).getPoints()+"points!\r");
+                }
             }
+
+            
             reportStream.write("======== End-of-Report ========");
             reportStream.write("\n\r");
             reportStream.close();
@@ -100,4 +106,12 @@ public class ReportController {
             System.exit(0);
         }
     }
+
+    public static void sort(ArrayList<CommitteeMember> arr){
+        arr.sort((o1,o2)
+                    ->(o2.getPoints() - o1.getPoints()));
+    }
+
 }
+
+
