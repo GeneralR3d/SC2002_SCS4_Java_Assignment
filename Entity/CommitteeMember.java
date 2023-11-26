@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Represents a committee member who is a sub-class of a student.
- * <div>Can only be commitee member of one {@link Camp}.
- * <div>Has points depending on the number of enquries answered and suggestions posted.
+ * <div>Can only be commitee member of one {@link Camp}.</div>
+ * <div>Has points depending on the number of enquries answered and suggestions posted.</div>
  */
 
 public class CommitteeMember extends Student {

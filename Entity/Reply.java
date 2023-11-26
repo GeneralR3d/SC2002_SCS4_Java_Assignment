@@ -2,7 +2,7 @@ package entity;
 
 /**
  * A non-editable message
- * <div>Contains the ownerID as a {@link String} and the content as a {@link String}
+ * <div>Contains the ownerID as a {@link String} and the content as a {@link String}</div>
  */
 public class Reply implements Message {
 

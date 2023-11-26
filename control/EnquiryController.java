@@ -55,7 +55,7 @@ public class EnquiryController {
 
     /**
    * Edits an enquiry if it has not been replied to
-   * @param camp
+   * @param content
    * @param enquiry
    * @throws Exception if that {@link Enquiry} already has a reply by {@link Staff} or {@link CommitteeMember}
    */
@@ -68,9 +68,9 @@ public class EnquiryController {
 
   /**
    * Adds a {@link Reply} to an {@link Enquiry}
-   * <div> Only {@link CommitteeMember} or {@link Staff} is allowed, {@link Student} cannot reply to enquiries
-   * <div> {@link CommitteeMember} can only reply to enquiries of the {@link Camp} he/she is in-charge-of
-   * <div> {@link CommitteeMember} cannot reply to his/her own {@link Enquiry}
+   * <div> Only {@link CommitteeMember} or {@link Staff} is allowed, {@link Student} cannot reply to enquiries</div>
+   * <div> {@link CommitteeMember} can only reply to enquiries of the {@link Camp} he/she is in-charge-of</div>
+   * <div> {@link CommitteeMember} cannot reply to his/her own {@link Enquiry}</div>
    * @param camp
    * @param enquiry
    * @param content
@@ -117,7 +117,7 @@ public class EnquiryController {
    /**
    * Returns an {@link java.util.ArrayList} of {@link Enquiry} for a {@link Camp} which the current {@link User} is the owner of
    * @param camp
-   * @return ArrayList<Enquiry>
+   * @return enquiry {@link java.util.ArrayList}
    */
   public static ArrayList<Enquiry> getUserEnquiries(Camp camp) {
     User user = SessionInfo.getUser();
@@ -137,7 +137,7 @@ public class EnquiryController {
     /**
    * Returns an {@link java.util.ArrayList} of {@link Enquiry} for a {@link Camp}
    * @param camp
-   * @return ArrayList<Enquiry>
+   * @return enquiry {@link java.util.ArrayList}
    */
   public static ArrayList<Enquiry> getAllEnquiries(Camp camp) {
     ArrayList<Enquiry> campEnquiries = camp.getEnquiries();

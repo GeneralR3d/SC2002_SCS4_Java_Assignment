@@ -6,7 +6,7 @@ import entity.User;
 
 /**
  * Helper class to store runtime information about current user
- * <div>Stores sessionInfo about cuurent {@link User}
+ * <div>Stores sessionInfo about cuurent {@link User}</div>
  */
 public class SessionInfo {
     private static User user;
@@ -22,7 +22,7 @@ public class SessionInfo {
 
     /**
      * Mutator
-     * Sets both {@code user} and {@code userType}
+     * <div>Sets both {@code user} and {@code userType}</div>
      * @param user
      */
     public static void setUser(User user) {

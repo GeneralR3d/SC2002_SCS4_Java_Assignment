@@ -34,7 +34,7 @@ public class InputHandler {
 
     /**
      * Analogous to {@link Scanner#nextInt}
-     * <div>Handles the {@link InputMismatchException} thrown by {@link Scanner#nextInt()} if the user does not type in an integer
+     * <div>Handles the {@link java.util.InputMismatchException} thrown by {@link Scanner#nextInt()} if the user does not type in an integer</div>
      * @return int
      */
     public static int nextInt() {
@@ -57,7 +57,7 @@ public class InputHandler {
 
     /**
      * gets a LocalDate from the user.
-     * <div>Catches the exception thrown by {@link java.time.LocalDate.parse}
+     * <div>Catches the exception thrown by {@link java.time.LocalDate#parse(CharSequence)}</div>
      * @return {@link java.time.LocalDate}
      */
     public static LocalDate nextDate() {

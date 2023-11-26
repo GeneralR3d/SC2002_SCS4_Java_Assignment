@@ -12,8 +12,8 @@ import handler.InputHandler;
 public class AccountUI {
     /**
      * Displays menu for login. This is the main loop of the program when different users {@code login} and {@code logout}.
-     * <div>Prompts {@link User} to change {@code password} upon first {@code login}
-     * <div>After logging in, dislays the current UI menu for the appropriate {@link User} type
+     * <div>Prompts {@link User} to change {@code password} upon first {@code login}</div>
+     * <div>After logging in, dislays the current UI menu for the appropriate {@link User} type</div>
      */
     public static void loginMenu() {
         while (true) {
@@ -53,8 +53,8 @@ public class AccountUI {
 
     /**
      * Menu for prompting {@link User} to change {@code password}
-     * <div> Validates both {@code password} entries
-     * <div> {@link User} not allowed to change back to deafult {@code password}
+     * <div> Validates both {@code password} entries</div>
+     * <div> {@link User} not allowed to change back to deafult {@code password}</div>
      */
     public static void changePasswordMenu() {
         System.out.println("Change Password");
@@ -88,7 +88,7 @@ public class AccountUI {
 
     /**
      * Displays {@code logout} menu for user
-     * <div> Calls {@link DataController#save()} to write data about current {@link User} to persistent memory 
+     * <div> Calls {@link DataController#save()} to write data about current {@link User} to persistent memory </div>
      */
     public static void logout() {
         DataController.save();

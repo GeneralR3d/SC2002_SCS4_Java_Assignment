@@ -7,7 +7,7 @@ package entity;
     <li>APPROVED
     <li>REJECTED
  * </ul>
- * <div>Only staff can approve or reject a suggestion
+ * <div>Only staff can approve or reject a suggestion</div>
  */
 public enum Status {
     PENDING,

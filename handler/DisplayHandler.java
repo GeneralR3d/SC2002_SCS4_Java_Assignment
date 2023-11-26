@@ -6,7 +6,8 @@ import entity.*;
 
 /**
  * Handles the displaying and printing of information onto the terminal.
- * <div>Contains a series of overloaded methods called {@code displayResult}
+ * <div>Contains a series of overloaded methods called {@code displayResult}</div>
+ * 
  */
 public class DisplayHandler {
 
@@ -33,7 +34,7 @@ public class DisplayHandler {
     
     /** 
      * Does not display all information of the camp
-     * <div>Mainly used to display basic information for non-owners of a camp to see
+     * <div>Mainly used to display basic information for non-owners of a camp to see</div>
      * @param camps an {@link java.util.ArrayList}
      */
     // display available camps
@@ -59,7 +60,7 @@ public class DisplayHandler {
     /** 
      * Displays a list of camps a certain user has signed up for, as well as his/her role 
      * <div>Role either as:
-     * Committee Member or Attendee
+     * Committee Member or Attendee</div>
      * @param camps an {@link java.util.ArrayList}
      * @param currUser the {@link User} 
      */
@@ -95,7 +96,7 @@ public class DisplayHandler {
     
     /** 
      * Displays information about a single enquiry.
-     * <div>This includes the original content of that enquiry as well as replies, if there are any.
+     * <div>This includes the original content of that enquiry as well as replies, if there are any.</div>
      * @param enquiry
      */
     public static void displayResult(Enquiry enquiry) {
@@ -122,7 +123,7 @@ public class DisplayHandler {
     
     /** 
      * Displays a list of signups from a particular camp.
-     * <div>The signups are split into a list of committee members and attendees.
+     * <div>The signups are split into a list of committee members and attendees.</div>
      * @param students an {@link java.util.ArrayList}
      * @param commMembers an {@link java.util.ArrayList}
      */

@@ -51,7 +51,7 @@ public class Staff extends User {
 
 	/**
 	 * Returns a list of camps the staff has created
-	 * @return ArrayList<Camp>
+	 * @return camp {@link java.util.ArrayList}
 	 */
 	public ArrayList<Camp> getCreatedCamps() {
 		return this.createdCamps;

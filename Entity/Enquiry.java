@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Concrete class for {@link EditableMessage}
  * <div>Represents an enquiry with an owner who is a {@link Student}, and a
- * {@link java.util.ArrayList} of replies under this enquiry
+ * {@link java.util.ArrayList} of replies under this enquiry</div>
  */
 public class Enquiry implements EditableMessage {
 
@@ -42,7 +42,7 @@ public class Enquiry implements EditableMessage {
 
     /**
      * Returns status of the enquiry.
-     * <div>The enquiry is considered processed when it has a {@link Reply} or more
+     * <div>The enquiry is considered processed when it has a {@link Reply} or more</div>
      */
     public boolean isProcessed() {
         return this.replies.size() != 0;

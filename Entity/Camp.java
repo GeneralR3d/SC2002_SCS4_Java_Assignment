@@ -309,8 +309,8 @@ public class Camp {
 	 * @param openToFaculty     enum type {@link Faculty} to indicate which faculty
 	 *                          this camp is created in
 	 * @param location          type {@link String}
-	 * @param totalSlotsLeft    total number of slots available for the camp
-	 * @param comSlotsLeft      total number of committe member slots available for
+	 * @param totalSlots   total number of slots available for the camp
+	 * @param commSlots      total number of committe member slots available for
 	 *                          the camp
 	 * @param description       type {@link String}
 	 * @param visibleToStudents boolean value indicating whether the camp is visible

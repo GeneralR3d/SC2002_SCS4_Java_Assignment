@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import app.SessionInfo;
 import entity.Camp;
 import entity.CommitteeMember;
+import entity.Staff;
 import entity.Suggestion;
 import entity.User;
 
@@ -13,7 +14,7 @@ import entity.User;
  * These include:<br>
  * 1) Creation, edit and deletion of {@link Suggestion}<br>
  * 2) Returning {@link java.util.ArrayList} of suggestions<br>
- * 3) Approving or rejecting {@link Suggestion} by {@link Staff}
+ * 3) Approving or rejecting {@link Suggestion} by {@link entity.Staff}
  * </p>
  */
 public class SuggestionController {
@@ -62,7 +63,7 @@ public class SuggestionController {
   }
 
   /**
-   * Allows {@link Staff} to approve a {@link Suggestion} made by a {@link CommitteeMember}
+   * Allows {@link entity.Staff} to approve a {@link Suggestion} made by a {@link CommitteeMember}
    * @param suggestion
    * @throws Exception if the suggestion has already been processed
    */
@@ -75,7 +76,7 @@ public class SuggestionController {
   }
 
     /**
-   * Allows {@link Staff} to reject a {@link Suggestion} made by a {@link CommitteeMember}
+   * Allows {@link entity.Staff} to reject a {@link Suggestion} made by a {@link CommitteeMember}
    * @param suggestion
    * @throws Exception if the suggestion has already been processed
    */
@@ -87,9 +88,9 @@ public class SuggestionController {
   }
 
   /**
-   * Returns a list of {@link Suggestions} which the current {@link CommitteeMember} is the owner of
+   * Returns a list of {@link entity.Suggestion} which the current {@link CommitteeMember} is the owner of
    * @param camp
-   * @return ArrayList<Suggestion> of type {@link java.util.ArrayList}
+   * @return suggestions of type {@link java.util.ArrayList}
    */
   public static ArrayList<Suggestion> getMySuggestions(Camp camp) {
     CommitteeMember commMember = (CommitteeMember) SessionInfo.getUser();

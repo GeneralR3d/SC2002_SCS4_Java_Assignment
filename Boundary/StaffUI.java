@@ -100,8 +100,8 @@ public class StaffUI {
 
     /**
      * Filters a camp by certain attributes and displays the search results through {@link StaffUI#menu_ViewCamps(ArrayList)}
-     * <div>returns an {@link java.util.ArrayList} of {@link Camp}
-     * <div>Attributes
+     * <div>returns an {@link java.util.ArrayList} of {@link Camp}</div>
+     * <div>Attributes</div>
      * <ul>
      * <li>Camp name
      * <li>Camp start date
@@ -111,8 +111,8 @@ public class StaffUI {
      * <li>A certain Attendee
      * <li>A certain Committee member
      * </ul>
-     * <div>Calls {@link SearchController} methods for filtering
-     * @return ArrayList<Camp>
+     * <div>Calls {@link SearchController} methods for filtering</div>
+     * @return camps {@link java.util.ArrayList}
      */
     private static ArrayList<Camp> menu_SearchForCamp() {
 
@@ -226,10 +226,10 @@ public class StaffUI {
 
     /**
      * Displays more options for a {@link Staff} to see more about the {@link Camp}
-     * <div>Calls {@link StaffUI#menu_ViewSignUps(Camp)} to see all the signups
-     * <div>Calls {@link StaffUI#menu_ViewEnquiries(Camp)} to see all {@link Enquiry}s
-     * <div>Calls {@link StaffUI#menu_ViewSuggestions(Camp)} to see all {@link Suggestion}s
-     * <div>Calls {@link StaffUI#menu_EditMyCamp(Camp)} to edit an existing {@link Camp}
+     * <div>Calls {@link StaffUI#menu_ViewSignUps(Camp)} to see all the signups</div>
+     * <div>Calls {@link StaffUI#menu_ViewEnquiries(Camp)} to see all {@link Enquiry}s</div>
+     * <div>Calls {@link StaffUI#menu_ViewSuggestions(Camp)} to see all {@link Suggestion}s</div>
+     * <div>Calls {@link StaffUI#menu_EditMyCamp(Camp)} to edit an existing {@link Camp}</div>
      * Allows for deletion of {@link Camp}
      * @param camp camp created by current user
      */
@@ -302,7 +302,7 @@ public class StaffUI {
 
     /**
      * Displays all {@link Enquiry}s of a {@link Camp}
-     * <div>Also allows user to reply to an {@link Enquiry} via {@link StaffUI#menu_AddReplyToEnquiry(Camp, Enquiry)}
+     * <div>Also allows user to reply to an {@link Enquiry} via {@link StaffUI#menu_AddReplyToEnquiry(Camp, Enquiry)}</div>
      * @param camp
      */
     public static void menu_ViewEnquiries(Camp camp) {
@@ -355,8 +355,8 @@ public class StaffUI {
     }
 
     /**
-     * Displays all {@link Suggestions} of a {@link Camp}
-     * <div> Allows {@link Staff} to set status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED} via {@link StaffUI#menu_SetSuggestionStatus(Suggestion)}
+     * Displays all {@link Suggestion} of a {@link Camp}
+     * <div> Allows {@link Staff} to set status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED} via {@link StaffUI#menu_SetSuggestionStatus(Suggestion)}</div>
      * @param camp
      */
     public static void menu_ViewSuggestions(Camp camp) {
@@ -438,7 +438,7 @@ public class StaffUI {
      * <li>commSlots
      * <li>visibleToStudents
      * </ul>
-     * <div> Gets new information but does not save, allows exit without saving
+     * <div> Gets new information but does not save, allows exit without saving</div>
      * @param camp
      */
     public static void menu_EditMyCamp(Camp camp) {
@@ -567,9 +567,9 @@ public class StaffUI {
 
     /**
      * Generates {@link Staff} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
-     * <div>Allow {@link Staff} to select whether to generate report for all {@link Camp}s or filter some {@link Camp}s
-     * <div> Allows {@link Staff} to select filter to choose the order which the attendees and committee appears
-     * <div> Calls {@link StaffUI#menu_SearchForCamp() to filter {@link Camp}s
+     * <div> Allow {@link Staff} to select whether to generate report for all {@link Camp}s or filter some {@link Camp}s </div>
+     * <div> Allows {@link Staff} to select filter to choose the order which the attendees and committee appears </div>
+     * <div>Calls {@link StaffUI#menu_SearchForCamp()} to filter {@link Camp}</div>
      */
     public static void menu_GenerateReport() {
 

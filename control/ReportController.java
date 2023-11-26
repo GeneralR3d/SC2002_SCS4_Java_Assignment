@@ -10,6 +10,7 @@ import entity.Camp;
 import entity.CommitteeMember;
 import entity.Enquiry;
 import entity.Reply;
+import entity.Staff;
 import entity.Student;
 
 /**
@@ -20,14 +21,14 @@ public class ReportController {
 
     /**
      * Uses {@link java.io.BufferedWriter} and {@link java.io.FileWriter} to write to a {@code .txt} file
-     * <div> The types of report for {@link Staff} and {@link CommitteeMember} are different
-     * <div> {@link CommitteeMember} only generates report for that {@link Camp} he/she is in-charge-of, thus append mode of {@link java.io.FileWriter} is not used
-     * <div> {@link Staff} can generate report for multiple {@link Camp}s he/she has created, thus append mode of {@link java.io.FileWriter} is used
-     * <div> {@link Staff} report also includes performance report which are all the points of all {@link CommitteeMember} of that camp, sorted in descending order
+     * <div> The types of report for {@link entity.Staff} and {@link CommitteeMember} are different</div>
+     * <div> {@link CommitteeMember} only generates report for that {@link Camp} he/she is in-charge-of, thus append mode of {@link java.io.FileWriter} is not used</div>
+     * <div> {@link entity.Staff} can generate report for multiple {@link Camp}s he/she has created, thus append mode of {@link java.io.FileWriter} is used</div>
+     * <div> {@link entity.Staff} report also includes performance report which are all the points of all {@link CommitteeMember} of that camp, sorted in descending order</div>
      * @param camp
      * @param sortBy 1- attendees displayed first, 2- committee displayed first
      * @param fileName
-     * @param isStaff whether the user is a {@link Staff}
+     * @param isStaff whether the user is a {@link entity.Staff}
      */
     public static void generateReport(Camp camp, int sortBy, String fileName, boolean isStaff) {
         ArrayList<Student> attendees = camp.getAttendees();
@@ -126,7 +127,7 @@ public class ReportController {
     /**
      * Helper method
      * Sorts in place, an {@link java.util.ArrayList} of {@link CommitteeMember} according to the number of points they have.
-     * <div> Sorts in descending order, the {@link CommitteeMember} with most points will appear in front
+     * <div> Sorts in descending order, the {@link CommitteeMember} with most points will appear in front</div>
      * @param arr the {@link java.util.ArrayList} of {@link CommitteeMember} to be sorted
      */
     public static void sort(ArrayList<CommitteeMember> arr) {

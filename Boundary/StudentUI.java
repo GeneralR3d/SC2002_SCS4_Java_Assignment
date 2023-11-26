@@ -80,7 +80,7 @@ public class StudentUI {
 
     /**
      * Displays all {@link Camp}s visible to {@link Student} and he/she fufils the criteria to {@code SignUp}
-     * <div> Allows {@link Student} to select more options regarding a {@link Camp} via {@link StudentUI#menu_ViewCampOptions(Camp)}
+     * <div> Allows {@link Student} to select more options regarding a {@link Camp} via {@link StudentUI#menu_ViewCampOptions(Camp)}</div>
      * @param openCamps
      */
     private static void menu_DisplayOpenCamps(ArrayList<Camp> openCamps) {
@@ -103,7 +103,7 @@ public class StudentUI {
 
     /**
      * Filters a camp by certain attributes and displays the search results through {@link StudentUI#menu_DisplayOpenCamps(ArrayList)}
-     * <div>Attributes
+     * <div>Attributes</div>
      * <ul>
      * <li>Camp name
      * <li>Camp start date
@@ -113,8 +113,7 @@ public class StudentUI {
      * <li>A certain Attendee
      * <li>A certain Committee member
      * </ul>
-     * <div>Calls {@link SearchController} methods for filtering
-     * @return ArrayList<Camp>
+     * <div>Calls {@link SearchController} methods for filtering</div>
      */
     private static void menu_SearchForCamp() {
         int option;
@@ -180,8 +179,8 @@ public class StudentUI {
     /** 
      * Displays a list of camps the {@link Student} has signed up for, as well as his/her role
      * <div>Role either as:
-     * Committee Member or Attendee
-     * <div> Calls {@link StudentUI#menu_ViewCampOptions(Camp)} to display more options for a {@link Camp}
+     * Committee Member or Attendee</div>
+     * <div> Calls {@link StudentUI#menu_ViewCampOptions(Camp)} to display more options for a {@link Camp}</div>
      * @param registeredCamps an {@link java.util.ArrayList}
      */
     private static void menu_DisplayRegisteredCamps(ArrayList<Camp> registeredCamps) {
@@ -204,8 +203,8 @@ public class StudentUI {
 
     /**
      * Displays a list of {@link Camp}s the {@link Student} has signed up for from {@link CampController#getSignedUpCamps()}
-     * <div> Allows withdraw from a {@link Camp} only if he/she is not a committee member
-     * <div> Calls {@link CampController#removeAttendee(Camp)} to perform {@code withdrawl}
+     * <div> Allows withdraw from a {@link Camp} only if he/she is not a committee member</div>
+     * <div> Calls {@link CampController#removeAttendee(Camp)} to perform {@code withdrawl}</div>
      */
     private static void menu_WithdrawRegisteredCamps() {
         int option;
@@ -233,10 +232,10 @@ public class StudentUI {
 
     /** 
      * Displays more options for a {@link Student} to see more about a {@link Camp}
-     * <div>Calls {@link CampController#registerAttendee(Camp)} to register as attendee
-     * <div>Calls {@link CampController#registerCommittee(Camp)} to register as committee
-     * <div>Calls {@link EnquiryController#post} to add an enquiry to a {@link Camp} even without registering
-     * <div>Calls {@link StudentUI#menu_DisplayMyEnquiries(Camp)} to let {@link Student} manage past {@link Enquiry}s about this {@link Camp}
+     * <div>Calls {@link CampController#registerAttendee(Camp)} to register as attendee</div>
+     * <div>Calls {@link CampController#registerCommittee(Camp)} to register as committee</div>
+     * <div>Calls {@link EnquiryController#post} to add an enquiry to a {@link Camp} even without registering</div>
+     * <div>Calls {@link StudentUI#menu_DisplayMyEnquiries(Camp)} to let {@link Student} manage past {@link Enquiry}s about this {@link Camp}</div>
     */
     private static void menu_ViewCampOptions(Camp camp) {
         int option;
@@ -297,8 +296,8 @@ public class StudentUI {
 
     /**
      * Gets a list of {@link Enquiry} which current {@link Student} has made about a {@link Camp}
-     * <div>Displays the list via {@link DisplayHandler#displayResult(Enquiry)}
-     * <div>Allows {@link Student} to select more options via {@link StudentUI#menu_ViewEnquiryOptions(Camp, Enquiry)}
+     * <div>Displays the list via {@link DisplayHandler#displayResult(Enquiry)}</div>
+     * <div>Allows {@link Student} to select more options via {@link StudentUI#menu_ViewEnquiryOptions(Camp, Enquiry)}</div>
      * @param camp
      */
     private static void menu_DisplayMyEnquiries(Camp camp) {

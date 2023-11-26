@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Represents a student who is a sub-class of {@link User}
- * <div>Has a {@link java.util.ArrayList} to store all the camps they have signed up
- * <div>for, both as attendee and committee member
+ * <div>Has a {@link java.util.ArrayList} to store all the camps they have signed up</div>
+ * <div>for, both as attendee and committee member</div>
  */
 public class Student extends User {
 
@@ -59,7 +59,7 @@ public class Student extends User {
 	/**
 	 * Returns a list of camps the student is registered for
 	 *
-	 * @return ArrayList<Camp>
+	 * @return camps {@link java.util.ArrayList}
 	 */
 	public ArrayList<Camp> getSignedUpCamps() {
 		return signedUpCamps;

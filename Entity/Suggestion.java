@@ -2,7 +2,7 @@ package entity;
 
 /**
  * Concrete class for {@link EditableMessage}
- * <div>Represents an sugesstion with an owner who is a {@link Student}, and a status
+ * <div>Represents an sugesstion with an owner who is a {@link Student}, and a status</div>
  * of type {@link Status}
  */
 public class Suggestion implements EditableMessage {

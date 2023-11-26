@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 /**
  * Stores real-time data of all camps, staff, students and commitee members in memory
- * <div> Acts as run-time database 
- * <div> Reads tab-seperated values
+ * <div> Acts as run-time database </div>
+ * <div> Reads tab-seperated values</div>
  */
 public class DataController {
     public static final String SEPARATOR = "\t";
@@ -27,7 +27,7 @@ public class DataController {
 
     /**
      * Reads array list of {@link Staff} and {@link Student} from text file and creates the objects in memory
-     * <div> Currently hardcoded to read {@code staff_list.txt} and {@code student_list.txt}
+     * <div> Currently hardcoded to read {@code staff_list.txt} and {@code student_list.txt}</div>
      * 
      */
     public static void init() {
@@ -97,7 +97,7 @@ public class DataController {
 
     /**
      * Only writes back name, userID and {@link Faculty} of staffs and students
-     * <div> Does not save password changes or any information about created {@link Camp}s or {@link CommitteeMember}
+     * <div> Does not save password changes or any information about created {@link Camp}s or {@link CommitteeMember}</div>
      */
     public static void save() {
         try {
@@ -157,7 +157,7 @@ public class DataController {
 
     /**
      * Returns all the camps created
-     * @return ArrayList<Camp> {@link java.util.ArrayList}
+     * @return camps {@link java.util.ArrayList}
      */
     public static ArrayList<Camp> getCamps() {
         return camps;
@@ -165,7 +165,7 @@ public class DataController {
 
     /**
      * Returns all staff
-     * @return ArrayList<Staff> {@link java.util.ArrayList}
+     * @return staff {@link java.util.ArrayList}
      */
     public static ArrayList<Staff> getStaffs() {
         return staffs;
@@ -173,7 +173,7 @@ public class DataController {
 
      /**
      * Returns all students
-     * @return ArrayList<Student> {@link java.util.ArrayList}
+     * @return students {@link java.util.ArrayList}
      */
     public static ArrayList<Student> getStudents() {
         return students;
@@ -181,7 +181,7 @@ public class DataController {
 
      /**
      * Returns all commitee members
-     * @return ArrayList<CommitteeMember> {@link java.util.ArrayList}
+     * @return CommitteeMember {@link java.util.ArrayList}
      */
     public static ArrayList<CommitteeMember> getCommMembers() {
         return commMembers;
@@ -189,7 +189,7 @@ public class DataController {
 
      /**
      * Returns all users including {@link Staff}, {@link Student} and {@link CommitteeMember}
-     * @return ArrayList<User> all users are upcasted to super-class type {@link User}
+     * @return ArrayList all users are upcasted to super-class type {@link User}
      */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<User>();
@@ -322,10 +322,10 @@ public class DataController {
 
      /**
      * Returns a {@link User} according to a userID
-     * <div>Used in {@link UserController}
+     * <div>Used in {@link UserController}</div>
      * @param userID
-     * @return {@link User} if found
-     * @return {@code null} it not found
+     * @return {@link User} if found,{@code null} it not found
+     * 
      */
     public static User findUser(String userID) {
         ArrayList<User> users = getUsers();

@@ -6,7 +6,7 @@ import entity.CommitteeMember;
 import entity.Student;
 
 /**
- * Static class which handles the conversion of {@link User} type when {@link Student} becomes a {@link CommitteeMember} and vice versa
+ * Static class which handles the conversion of {@link entity.User} type when {@link Student} becomes a {@link CommitteeMember} and vice versa
  */
 public class RoleController {
 
@@ -26,7 +26,6 @@ public class RoleController {
     /**
    * Converts {@link CommitteeMember} to {@link Student}
    * @param committee
-   * @param camp
    * @deprecated not used since Committee is not allowed to withdraw from a camp once registered
    */
   public static void committeeToStudent(CommitteeMember committee) {

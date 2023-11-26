@@ -86,7 +86,7 @@ public class CommitteeUI {
 
     /**
      * Displays all {@link Enquiry}s of a {@link Camp}
-     * <div>Also allows user to reply to an {@link Enquiry} via {@link CommitteeUI#menu_ReplyEnquiry(Camp, Enquiry)}
+     * <div>Also allows user to reply to an {@link Enquiry} via {@link CommitteeUI#menu_ReplyEnquiry(Camp, Enquiry)}</div>
      * @param camp
      */
     private static void menu_DisplayEnquiries(Camp camp) {
@@ -146,8 +146,8 @@ public class CommitteeUI {
 
     /**
      * Gets all {@link Suggestion} of a {@link Camp} via {@link SuggestionController#getMySuggestions(Camp)}
-     * <div>Displays {@link Suggestion}s via {@link DisplayHandler#displayResult(Suggestion)}
-     * <div> Allows {@link Committee} to select options for {@link Suggestion} via {@link CommitteeUI#menu_ManageMySuggestions(Camp, Suggestion)}
+     * <div>Displays {@link Suggestion}s via {@link DisplayHandler#displayResult(Suggestion)}</div>
+     * <div> Allows {@link entity.CommitteeMember} to select options for {@link Suggestion} via {@link CommitteeUI#menu_ManageMySuggestions(Camp, Suggestion)}</div>
      * @param camp
      */
     private static void menu_DisplayMySuggestions(Camp camp) {
@@ -184,8 +184,8 @@ public class CommitteeUI {
     }
 
     /**
-     * Allows {@link CommitteeMember} to {@code edit} or {@code delete} {@link Suggestion}s which are still {@code PENDING}
-     * <div> Calls {@link SuggestionController#edit(Suggestion, String)} and {@link SuggestionController#delete(Camp, Suggestion)}
+     * Allows {@link entity.CommitteeMember} to {@code edit} or {@code delete} {@link Suggestion}s which are still {@code PENDING}
+     * <div> Calls {@link SuggestionController#edit(Suggestion, String)} and {@link SuggestionController#delete(Camp, Suggestion)}</div>
      * @param camp
      * @param suggestion
      */
@@ -233,9 +233,9 @@ public class CommitteeUI {
     }
 
     /**
-     * Generates {@link CommitteeMember} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
-     * <div> {@link CommitteeMember} can only generate report for the {@link Camp} they are in-charge-of
-     * <div> Allows {@link CommitteeMember} to select filter to choose the order which the attendees and committee appears
+     * Generates {@link entity.CommitteeMember} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
+     * <div> {@link entity.CommitteeMember} can only generate report for the {@link Camp} they are in-charge-of</div>
+     * <div> Allows {@link entity.CommitteeMember} to select filter to choose the order which the attendees and committee appears</div>
      */
     private static void menu_GenerateReport(Camp camp) {
         int option;

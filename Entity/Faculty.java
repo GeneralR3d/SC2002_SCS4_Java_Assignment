@@ -27,7 +27,7 @@ package entity;
 	<li>WKWSCI
 	<li>NTU
  * </ul>
- * <div>The "NTU" option represents the entire school
+ * <div>The "NTU" option represents the entire school</div>
  */
 public enum Faculty {
 	PACE,
