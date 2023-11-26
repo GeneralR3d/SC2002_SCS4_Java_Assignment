@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import app.SessionInfo;
 import entity.Camp;
 import entity.CommitteeMember;
-import entity.Enquiry;
 import entity.Suggestion;
 import entity.User;
 

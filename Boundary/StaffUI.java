@@ -163,21 +163,21 @@ public class StaffUI {
 
     public static void menu_ViewMyCamps() {
         // get created camps
-        ArrayList<Camp> myCamps;
-        try {
-            myCamps = CampController.getCreatedCamps();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return;
-        }
-        if (myCamps.size() == 0) {
-            System.out.println();
-            System.out.println("NOTICE: You have not created any camps");
-            System.out.println("Enter any key to go back...");
-            InputHandler.nextLine();
-            return;
-        }
         while (true) {
+            ArrayList<Camp> myCamps;
+            try {
+                myCamps = CampController.getCreatedCamps();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                return;
+            }
+            if (myCamps.size() == 0) {
+                System.out.println();
+                System.out.println("NOTICE: You have not created any camps");
+                System.out.println("Enter any key to go back...");
+                InputHandler.nextLine();
+                return;
+            }
             System.out.println();
             System.out.println("Created Camps:");
             DisplayHandler.displayResult(myCamps);
@@ -247,9 +247,15 @@ public class StaffUI {
      * @param camp
      */
     private static void menu_ViewSignUps(Camp camp) {
-        // TODO: display message if no signups
         ArrayList<Student> attendees = camp.getAttendees();
         ArrayList<CommitteeMember> commMembers = camp.getCommittee();
+        if (attendees.size() + commMembers.size() == 0) {
+            System.out.println();
+            System.out.println("NOTICE: There are no signups for this camp");
+            System.out.println("Enter any key to exit...");
+            InputHandler.nextLine();
+            return;
+        }
         System.out.println();
         System.out.println("Signups for the camp:");
         DisplayHandler.displayResult(attendees, commMembers);
@@ -583,7 +589,7 @@ public class StaffUI {
             System.out.println("Registration Closing Date (YYYY-MM-DD):");
             regCloseDate = InputHandler.nextDate();
             if (!regCloseDate.isBefore(startDate)) {
-                System.out.println("Registration Closing Date must be before End Date!");
+                System.out.println("Registration Closing Date must be before Start Date!");
                 continue;
             }
             break;
