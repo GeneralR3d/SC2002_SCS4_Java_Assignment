@@ -10,10 +10,31 @@ import entity.Faculty;
 import entity.Staff;
 import entity.Student;
 
+/**
+ * Static control class for interfacing with the UI classes to handle all requests regarding camps.
+ * <p>
+ * These include:<br>
+ * 1) Creation, edit and deletion of camps<br>
+ * 2) Filtering and returning {@link java.util.ArrayList} of camps based on different scenarios <br>
+ * 3) adding and removing signups for a {@link entity.Camp}
+ * </p>
+ */
 public class CampController {
 
     /**
-     * @param newCamp
+     * <div>creates a camp.
+     * <div>Only staff can do create a camp.
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * @param name
+     * @param startDate
+     * @param endDate can be same as startDate to indicate a day camp
+     * @param regCloseDate cannot be after startDate
+     * @param openToFaculty which school this camp is for, can be for whole NTU
+     * @param location
+     * @param totalSlots both attendees and committee members
+     * @param commSlots committee member slots
+     * @param description
+     * @param visibleToStudents whether the camp can be seen by students/accepting signups
      */
     public static void createCamp(String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
             Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
@@ -27,7 +48,20 @@ public class CampController {
     }
 
     /**
-     * @param camp
+     * <div>Edits a camp after creation
+     * <div>Only staff can edit a camp.
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * <div>Checks if a camp already has signups. If yes, the camp cannot be set to invisible or turned off
+     * @param name
+     * @param startDate
+     * @param endDate can be same as startDate to indicate a day camp
+     * @param regCloseDate cannot be after startDate
+     * @param openToFaculty which school this camp is for, can be for whole NTU
+     * @param location
+     * @param totalSlots both attendees and committee members
+     * @param commSlots committee member slots
+     * @param description
+     * @param visibleToStudents whether the camp can be seen by students/accepting signups
      */
     public static void editCamp(Camp camp, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
             Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
@@ -46,20 +80,17 @@ public class CampController {
         camp.setTotalSlotsLeft(totalSlots);
         camp.setComSlotsLeft(commSlots);
         camp.setDescription(description);
-
-        if(visibleToStudents == false){
-            // check if thr r any attendees/comm in deletingCamp
-            int numAttendees = camp.getAttendees().size();
-            int numCommMembers = camp.getCommittee().size();
-            if (numAttendees != 0 || numCommMembers != 0)
-                throw new Exception("Camp cannot be turned off as there have already been signups!");
-        }   
         camp.setVisibleToStudents(visibleToStudents);
     }
 
     /**
-     * @param deletingCamp
-     * @return boolean
+     * <div>Deletes a camp.
+     * <div>Only staff can delete a camp
+     * <div>Checks if a camp already has signups. If yes, the camp cannot be deleted
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * @param deletingCamp the camp to be deleted
+     * @throws Exception when the camp already has signups
+     * @throws Exception when camp to be deleted cannot be found
      */
     public static void deleteCamp(Camp deletingCamp) throws Exception {
         UserController.assertUserType(Staff.class);
@@ -85,8 +116,10 @@ public class CampController {
     }
 
     /**
-     * @return ArrayList<Camp>
-     * @throws Exception
+     * Gets the list of camps the staff has created.
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * @return ArrayList<Camp> 
+     * @throws Exception when the current user is not a staff
      */
     public static ArrayList<Camp> getCreatedCamps() throws Exception {
         UserController.assertUserType(Staff.class);
@@ -95,6 +128,18 @@ public class CampController {
         return createdCamps;
     }
 
+    /**
+     * Gets list of camps available camps according to user type.
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * Staff can see all the camps in the system.
+     * <p>
+     * CommitteeMembers and Students can only see if <br>
+     * 1) Its visibility is turned on for students <br> 
+     * 2) Today's date is before the registration close date <br>
+     * 3) The camp is meant for his/her faculty or open to the whole school
+     * </p>
+     * @return ArrayList<Camp> {@link java.util.ArrayList}
+     */
     public static ArrayList<Camp> getAvailableCamps() {
         ArrayList<Camp> campData = DataController.getCamps();
         ArrayList<Camp> availableCamps = new ArrayList<Camp>();
@@ -121,6 +166,12 @@ public class CampController {
         return availableCamps;
     }
 
+    /**
+     * Gets list of camps a student or committee member has signed up.
+     * <div> If he/she is a commitee member, add the camp he/she is in-charge-of to the list
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * @return ArrayList<Camp> {@link java.util.ArrayList}
+     */
     public static ArrayList<Camp> getSignedUpCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         switch (SessionInfo.getUserType()) {
@@ -142,6 +193,12 @@ public class CampController {
         return registeredCamps;
     }
 
+    /**
+     * Removes an attendee from list of attendees of a {@link Camp}
+     * <div> Also adds the attendee to a blacklist so he/she will not be able to register for this camp again
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * @param camp the camp he/she is withdrawing from
+     */
     public static void removeAttendee(Camp camp) {
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
@@ -159,6 +216,22 @@ public class CampController {
         currUser.getSignedUpCamps().remove(camp);
     }
 
+    /**
+     * Registers an attendee for a {@link Camp} by adding current {@link User} to the list
+     * <div> Interfaces with {@link DataController} which stores all the run-time data.
+     * <div> Student or commitee member can only register if
+     * <ol>
+     * <li> He/she is not in the blacklist, ie have not withdrew from this camp before
+     * <li> He/she is not already an attendee
+     * <li> He/she is not already a committee member
+     * <li> This {@link Camp}'s start and end date do not overlap with any of his/her existing camps
+     * </ol>
+     * @param camp
+     * @throws Exception when he/she is in blacklist
+     * @throws Exception when he/she is already an attendee
+     * @throws Exception when he/she is already a commitee
+     * @throws Exception when the dates clashes
+     */
     public static void registerAttendee(Camp camp) throws Exception {
         if (camp.getAttendeeSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
@@ -208,6 +281,23 @@ public class CampController {
         camp.addAttendee((Student) SessionInfo.getUser());
     }
 
+/**
+ * Registers a committee member for a {@link Camp}
+ * <div> Interfaces with {@link DataController} which stores all the run-time data.
+ * <div>can only register if
+ * <ol>
+ * <li> He/she is not in the blacklist, ie have not withdrew from this camp before
+ * <li> He/she is not already an attendee
+ * <li> He/she is not already a committee member
+ * <li> This {@link Camp}'s start and end date do not overlap with any of his/her existing camps
+ * </ol>
+ * <div> Also converts him/her from a {@link Student} to a {@link CommitteeMember}
+ * @param camp
+ * @throws Exception when he/she is in blacklist
+ * @throws Exception when he/she is already an attendee
+ * @throws Exception when he/she is already a commitee
+ * @throws Exception when the dates clashes
+ */
     public static void registerCommittee(Camp camp) throws Exception {
         if (camp.getCommSlotsLeft() == 0)
             throw new Exception("There are no slots available!");

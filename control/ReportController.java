@@ -12,8 +12,23 @@ import entity.Enquiry;
 import entity.Reply;
 import entity.Student;
 
+/**
+ * Static class to help with generating reports for {@link Staff} and {@link CommitteeMember}
+ */
 public class ReportController {
 
+
+    /**
+     * Uses {@link java.io.BufferedWriter} and {@link java.io.FileWriter} to write to a {@code .txt} file
+     * <div> The types of report for {@link Staff} and {@link CommitteeMember} are different
+     * <div> {@link CommitteeMember} only generates report for that {@link Camp} he/she is in-charge-of, thus append mode of {@link java.io.FileWriter} is not used
+     * <div> {@link Staff} can generate report for multiple {@link Camp}s he/she has created, thus append mode of {@link java.io.FileWriter} is used
+     * <div> {@link Staff} report also includes performance report which are all the points of all {@link CommitteeMember} of that camp, sorted in descending order
+     * @param camp
+     * @param sortBy 1- attendees displayed first, 2- committee displayed first
+     * @param fileName
+     * @param isStaff whether the user is a {@link Staff}
+     */
     public static void generateReport(Camp camp, int sortBy, String fileName, boolean isStaff) {
         ArrayList<Student> attendees = camp.getAttendees();
         ArrayList<CommitteeMember> committeeMembers = camp.getCommittee();
@@ -108,6 +123,11 @@ public class ReportController {
         }
     }
 
+    /**
+     * Sorts in place, an {@link java.util.ArrayList} of {@link CommitteeMember} according to the number of points they have.
+     * <div> Sorts in descending order, the {@link CommitteeMember} with most points will appear in front
+     * @param arr the {@link java.util.ArrayList} of {@link CommitteeMember} to be sorted
+     */
     public static void sort(ArrayList<CommitteeMember> arr) {
         arr.sort((o1, o2) -> (o2.getPoints() - o1.getPoints()));
     }

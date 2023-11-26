@@ -269,7 +269,6 @@ public class StaffUI {
             return;
         }
         while (true) {
-            // TODO: replace with displayhandler function
             for (int i = 0; i < enquiries.size(); i++) {
                 System.out.println();
                 System.out.println((i + 1) + ":");
@@ -307,7 +306,6 @@ public class StaffUI {
     public static void menu_ViewSuggestions(Camp camp) {
         ArrayList<Suggestion> suggestions = camp.getSuggestions();
         while (true) {
-            // TODO: replace with displayhandler function
             for (int i = 0; i < suggestions.size(); i++) {
                 System.out.println();
                 System.out.println((i + 1) + ": ");

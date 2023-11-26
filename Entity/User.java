@@ -2,7 +2,7 @@ package entity;
 
 /**
  * An abstract class which represents a user of the CAMS system
- * The default password is "password"
+ * <div>The default password is "password"
  */
 public abstract class User {
 

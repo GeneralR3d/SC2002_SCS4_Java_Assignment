@@ -151,12 +151,18 @@ public class Camp {
 	}
 
 	/**
-	 * @return int
+	 * Accessor method
+	 * 
+	 * @return int the total number of both committee and attendees
 	 */
 	public int getTotalSlotsLeft() {
 		return this.totalSlotsLeft;
 	}
 
+	/**
+	 * Mutator method
+	 * @param totalSlotsLeft the total number of both committee and attendees
+	 */
 	public void setTotalSlotsLeft(int totalSlotsLeft) {
 		this.totalSlotsLeft = totalSlotsLeft;
 	}

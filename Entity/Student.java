@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Represents a student who is a sub-class of {@link User}
- * Has a {@link java.util.ArrayList} to store all the camps they have signed up
- * for, both as attendee and committee member
+ * <div>Has a {@link java.util.ArrayList} to store all the camps they have signed up
+ * <div>for, both as attendee and committee member
  */
 public class Student extends User {
 

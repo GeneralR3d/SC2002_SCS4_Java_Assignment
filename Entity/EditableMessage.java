@@ -10,7 +10,7 @@ public interface EditableMessage extends Message {
 
 	/**
 	 * Virtual method
-	 * Allows editing of the string content of the {@link Message}
+	 * <div>Allows editing of the string content of the {@link Message}
 	 * @param content the new {@link String}
 	 */
 	void edit(String content);

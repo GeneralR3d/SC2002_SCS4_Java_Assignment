@@ -8,6 +8,9 @@ import entity.CommitteeMember;
 import entity.Faculty;
 import entity.Student;
 
+/**
+ * 
+ */
 public class SearchController {
     public static ArrayList<Camp> searchByCampName(String campName) {
         ArrayList<Camp> campData = CampController.getAvailableCamps();

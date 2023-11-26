@@ -4,10 +4,16 @@ import java.util.ArrayList;
 
 import entity.*;
 
+/**
+ * Handles the displaying and printing of information onto the terminal.
+ * <div>Contains a series of overloaded methods called {@code displayResult}
+ */
 public class DisplayHandler {
 
     /**
-     * @param camp
+     * Displays all details regarding a camp
+     * Used by staff or commitee members
+     * @param camp {@link Camp}
      */
     // display individual camps
     public static void displayResult(Camp camp) {
@@ -24,6 +30,12 @@ public class DisplayHandler {
         System.out.println("Staff in charge: " + camp.getStaffInCharge().getName());
     }
 
+    
+    /** 
+     * Does not display all information of the camp
+     * <div>Mainly used to display basic information for non-owners of a camp to see
+     * @param camps an {@link java.util.ArrayList}
+     */
     // display available camps
     public static void displayResult(ArrayList<Camp> camps) {
         System.out.println();
@@ -43,6 +55,14 @@ public class DisplayHandler {
         }
     }
 
+    
+    /** 
+     * Displays a list of camps a certain user has signed up for, as well as his/role 
+     * <div>Role either as:
+     * Committee Member or Attendee
+     * @param camps an {@link java.util.ArrayList}
+     * @param currUser the {@link User} 
+     */
     // display signed up camps
     public static void displayResult(ArrayList<Camp> camps, User currUser) {
         System.out.println();
@@ -58,6 +78,11 @@ public class DisplayHandler {
         }
     }
 
+    
+    /** 
+     * Displays a list of camps a certain staff has created
+     * @param staff
+     */
     // display created camps for staff
     public static void displayResult(Staff staff) {
         int count = 1;
@@ -67,6 +92,12 @@ public class DisplayHandler {
         }
     }
 
+    
+    /** 
+     * Displays information about a single enquiry.
+     * <div>This includes the original content of that enquiry as well as replies, if there are any.
+     * @param enquiry
+     */
     public static void displayResult(Enquiry enquiry) {
         System.out.println("Enquiry by " + enquiry.getOwner().getName() + ": " + enquiry.view());
         if (!enquiry.isProcessed()) {
@@ -78,11 +109,23 @@ public class DisplayHandler {
         }
     }
 
+    
+    /** 
+     * Displays information about a single suggestion, as well as its {@link Status}, whether it has been approved, rejected or pending
+     * @param suggestion
+     */
     public static void displayResult(Suggestion suggestion) {
         System.out.println("Suggestion by " + suggestion.getOwner().getName() + ": " + suggestion.view());
         System.out.println("Status: " + suggestion.getStatus());
     }
 
+    
+    /** 
+     * Displays a list of signups from a particular camp.
+     * <div>The signups are split into a list of committee members and attendees.
+     * @param students an {@link java.util.ArrayList}
+     * @param commMembers an {@link java.util.ArrayList}
+     */
     public static void displayResult(ArrayList<Student> students, ArrayList<CommitteeMember> commMembers) {
         System.out.println();
         System.out.println("Total Committee Members: " + commMembers.size());
