@@ -53,9 +53,15 @@ public class CampController {
         UserController.assertUserType(Staff.class);
         ArrayList<Camp> allCamps = DataController.getCamps();
 
+        // check if thr r any attendees/comm in deletingCamp
+        int numAttendees = deletingCamp.getAttendees().size();
+        int numCommMembers = deletingCamp.getCommittee().size();
+        if (numAttendees != 0 || numCommMembers != 0)
+            throw new Exception("Camp cannot be deleted as there have already been signups!");
+        for (
+
         // check if deletingcamp is in camps
-        // TODO: check if thr r any attendees/comm in deletingCamp
-        for (Camp camp : allCamps) {
+        Camp camp : allCamps) {
             if (deletingCamp.getCampID() == camp.getCampID()) {
                 DataController.removeCamp(deletingCamp);
                 Staff staff = (Staff) SessionInfo.getUser();
