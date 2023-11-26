@@ -239,8 +239,12 @@ public class StudentUI {
                     String question = InputHandler.nextLine();
                     if (question.equals("~"))
                         break;
-                    EnquiryController.post(camp, question);
-                    System.out.println("Enquiry has been posted!");
+                    try {
+                        EnquiryController.post(camp, question);
+                        System.out.println("Enquiry has been posted!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 4:
                     menu_DisplayMyEnquiries(camp);

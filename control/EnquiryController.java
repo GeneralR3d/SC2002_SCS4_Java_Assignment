@@ -17,7 +17,13 @@ public class EnquiryController {
    * @param camp
    * @param content
    */
-  public static void post(Camp camp, String content) {
+  public static void post(Camp camp, String content) throws Exception {
+    if (SessionInfo.getUserType().equals("CommitteeMember")) {
+      CommitteeMember commMember = (CommitteeMember) SessionInfo.getUser();
+      if (camp.equals(commMember.getCommiteeMemberFor())) {
+        throw new Exception("You cannot post an enquiry as you are a committee member for this camp!");
+      }
+    }
     User user = SessionInfo.getUser();
     Student student = (Student) user;
     Enquiry enquiry = new Enquiry(student, content);
