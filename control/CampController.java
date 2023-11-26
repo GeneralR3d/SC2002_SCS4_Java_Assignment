@@ -10,15 +10,17 @@ import entity.Faculty;
 import entity.Staff;
 import entity.Student;
 
-
 public class CampController {
 
     /**
      * @param newCamp
      */
-    public static void createCamp(String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) throws Exception {
+    public static void createCamp(String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
+            Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
+            boolean visibleToStudents) throws Exception {
         UserController.assertUserType(Staff.class);
-        Camp newCamp = new Camp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
+        Camp newCamp = new Camp(0, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
+                commSlots, description, visibleToStudents, (Staff) SessionInfo.getUser());
         Staff staff = (Staff) SessionInfo.getUser();
         staff.createCamp(newCamp);
         DataController.addCamp(newCamp);
@@ -27,7 +29,9 @@ public class CampController {
     /**
      * @param camp
      */
-    public static void editCamp(Camp camp, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate, Faculty openToFaculty, String location, int totalSlots, int commSlots, String description, boolean visibleToStudents) throws Exception {
+    public static void editCamp(Camp camp, String name, LocalDate startDate, LocalDate endDate, LocalDate regCloseDate,
+            Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
+            boolean visibleToStudents) throws Exception {
         UserController.assertUserType(Staff.class);
         camp.setName(name);
         camp.setStartDate(startDate);
@@ -80,18 +84,20 @@ public class CampController {
 
         // add committeememberfor camp and add as first in result
         switch (SessionInfo.getUserType()) {
-        case "Student":
-        case "CommitteeMember":
-            for (Camp currCamp : campData) {
-                // check for RegCloseDate
-                // check visibility and faculty of camp
-                if (currCamp.isVisibleToStudents() && !today.isAfter(currCamp.getRegCloseDate()) && (currCamp.getOpenToFaculty() == Faculty.NTU || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
-                    availableCamps.add(currCamp);
+            case "Student":
+            case "CommitteeMember":
+                for (Camp currCamp : campData) {
+                    // check for RegCloseDate
+                    // check visibility and faculty of camp
+                    if (currCamp.isVisibleToStudents() && !today.isAfter(currCamp.getRegCloseDate())
+                            && (currCamp.getOpenToFaculty() == Faculty.NTU
+                                    || currCamp.getOpenToFaculty() == SessionInfo.getUser().getFaculty())) {
+                        availableCamps.add(currCamp);
+                    }
                 }
-            }
-            break;
-        case "Staff":
-            availableCamps = campData;
+                break;
+            case "Staff":
+                availableCamps = campData;
         }
 
         return availableCamps;
@@ -100,20 +106,20 @@ public class CampController {
     public static ArrayList<Camp> getSignedUpCamps() {
         ArrayList<Camp> registeredCamps = new ArrayList<Camp>();
         switch (SessionInfo.getUserType()) {
-        case "Student":
-            for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
-                registeredCamps.add(camp);
-            break;
-        case "CommitteeMember":
-            // add first camp as committeemember camp
-            Camp committeCamp = ((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor();
-            registeredCamps.add(committeCamp);
-            for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps()) {
-                if (camp.equals(committeCamp))
-                    continue;
-                registeredCamps.add(camp);
-            }
-            break;
+            case "Student":
+                for (Camp camp : ((Student) SessionInfo.getUser()).getSignedUpCamps())
+                    registeredCamps.add(camp);
+                break;
+            case "CommitteeMember":
+                // add first camp as committeemember camp
+                Camp committeCamp = ((CommitteeMember) SessionInfo.getUser()).getCommiteeMemberFor();
+                registeredCamps.add(committeCamp);
+                for (Camp camp : ((CommitteeMember) SessionInfo.getUser()).getSignedUpCamps()) {
+                    if (camp.equals(committeCamp))
+                        continue;
+                    registeredCamps.add(camp);
+                }
+                break;
         }
         return registeredCamps;
     }
@@ -138,8 +144,6 @@ public class CampController {
         if (camp.getAttendeeSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
 
-        //TODO: check if student has any overlapping camp dates
-
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
         for (int i = 0; i < attendees.size(); i++) {
@@ -157,6 +161,22 @@ public class CampController {
         }
 
         Student student = (Student) SessionInfo.getUser();
+
+        // check if student has any overlapping camp dates
+        ArrayList<Camp> signedUpCamps = student.getSignedUpCamps();
+        LocalDate campStartDate = camp.getStartDate();
+        LocalDate campEndDate = camp.getEndDate();
+        for (Camp signedUpCamp : signedUpCamps) {
+            LocalDate startDate = signedUpCamp.getStartDate();
+            LocalDate endDate = signedUpCamp.getEndDate();
+            if (!campStartDate.isBefore(startDate) && !campStartDate.isAfter(endDate)) {
+                throw new Exception("The dates for this camp clashes with a camp you have already signed up for!");
+            }
+            if (!campEndDate.isBefore(startDate) && !campStartDate.isAfter(endDate)) {
+                throw new Exception("The dates for this camp clashes with a camp you have already signed up for!");
+            }
+        }
+
         student.register(camp);
         camp.addAttendee((Student) SessionInfo.getUser());
     }
@@ -164,8 +184,6 @@ public class CampController {
     public static void registerCommittee(Camp camp) throws Exception {
         if (camp.getCommSlotsLeft() == 0)
             throw new Exception("There are no slots available!");
-
-        //TODO: check if student has any overlapping camp dates
 
         // check if user already signed up as attendee
         ArrayList<Student> attendees = camp.getAttendees();
@@ -179,8 +197,24 @@ public class CampController {
         if (SessionInfo.getUserType().equals("CommitteeMember"))
             throw new Exception("You are already a committee member!");
 
-        // if they are not, convert them into a committee member
         Student student = (Student) SessionInfo.getUser();
+
+        // check if student has any overlapping camp dates
+        ArrayList<Camp> signedUpCamps = student.getSignedUpCamps();
+        LocalDate campStartDate = camp.getStartDate();
+        LocalDate campEndDate = camp.getEndDate();
+        for (Camp signedUpCamp : signedUpCamps) {
+            LocalDate startDate = signedUpCamp.getStartDate();
+            LocalDate endDate = signedUpCamp.getEndDate();
+            if (!campStartDate.isBefore(startDate) && !campStartDate.isAfter(endDate)) {
+                throw new Exception("The dates for this camp clashes with a camp you have already signed up for!");
+            }
+            if (!campEndDate.isBefore(startDate) && !campStartDate.isAfter(endDate)) {
+                throw new Exception("The dates for this camp clashes with a camp you have already signed up for!");
+            }
+        }
+
+        // if they are not, convert them into a committee member
         RoleController.studentToCommittee(student, camp);
 
         CommitteeMember committee = (CommitteeMember) SessionInfo.getUser();

@@ -35,6 +35,7 @@ public class DisplayHandler {
             System.out.print((i + 1) + ":");
             System.out.println("\tCamp name: " + camps.get(i).getName());
             System.out.println("\tDescription: " + camps.get(i).getDescription());
+            System.out.println("\tFrom: " + camps.get(i).getStartDate() + " to " + camps.get(i).getEndDate());
             System.out.println("\tSlots Left: " + camps.get(i).getTotalSlotsLeft());
             System.out.println("\t- Attendees: " + camps.get(i).getAttendeeSlotsLeft());
             System.out.println("\t- Committee: " + camps.get(i).getCommSlotsLeft());
