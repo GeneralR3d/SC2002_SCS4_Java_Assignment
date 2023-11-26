@@ -14,7 +14,6 @@ import entity.Camp;
 import entity.CommitteeMember;
 import entity.Enquiry;
 import entity.Student;
-import entity.User;
 
 /**
  * User interface boundary class for {@link Student}
