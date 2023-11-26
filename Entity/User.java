@@ -13,6 +13,7 @@ public abstract class User {
 
 	/**
 	 * Accessor
+	 * 
 	 * @return String the name of the user
 	 */
 	public String getName() {
@@ -21,6 +22,7 @@ public abstract class User {
 
 	/**
 	 * accessor
+	 * 
 	 * @return userID
 	 */
 	public String getUserID() {
@@ -29,6 +31,7 @@ public abstract class User {
 
 	/**
 	 * accessor
+	 * 
 	 * @return faculty of user
 	 */
 	public Faculty getFaculty() {
@@ -37,6 +40,7 @@ public abstract class User {
 
 	/**
 	 * Accessor
+	 * 
 	 * @return passowrd of user
 	 */
 	public String getPassword() {
@@ -45,6 +49,7 @@ public abstract class User {
 
 	/**
 	 * Mutator
+	 * 
 	 * @param faculty the school which the user belongs to
 	 */
 	public void setFaculty(Faculty faculty) {
@@ -53,6 +58,7 @@ public abstract class User {
 
 	/**
 	 * constructor
+	 * 
 	 * @param name
 	 * @param userID
 	 * @param faculty
@@ -67,6 +73,7 @@ public abstract class User {
 
 	/**
 	 * Constructor
+	 * 
 	 * @param name
 	 * @param userID
 	 * @param faculty
@@ -79,14 +86,16 @@ public abstract class User {
 
 	/**
 	 * Changes the user's password
+	 * 
 	 * @param password
 	 */
-	public void changepassword(String password) {
+	public void changePassword(String password) {
 		this.password = password;
 	}
 
 	/**
 	 * Verifies the password entered against the password attribute of the user
+	 * 
 	 * @param password
 	 * @return boolean true if the password is the same
 	 */
