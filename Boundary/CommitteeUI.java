@@ -222,7 +222,7 @@ public class CommitteeUI {
             else
                 break;
         }
-        ReportController.generateReport(camp, option, "CommitteeReport.txt");
+        ReportController.generateReport(camp, option, "CommitteeReport.txt",false);
         System.out.println("SUCCESS: Report saved to 'CommitteeReport.txt'");
     }
 

@@ -87,9 +87,8 @@ public class StaffUI {
         }
     }
 
-    private static void menu_SearchForCamp() {
-        int option;
-        while (true) {
+    private static ArrayList<Camp> menu_SearchForCamp() {
+
             System.out.println();
             System.out.println("1. Camp name");
             System.out.println("2. Camp start date");
@@ -101,12 +100,12 @@ public class StaffUI {
             System.out.println("Select attribute to search by....");
             System.out.println("Enter 0 to go back...");
 
-            option = InputHandler.nextInt();
+            int option = InputHandler.nextInt();
 
-            ArrayList<Camp> result;
+            ArrayList<Camp> result = null;
             switch (option) {
             case 0:
-                return;
+                return null;
             case 1:
                 System.out.println("Enter camp name:");
                 String campName = InputHandler.nextLine();
@@ -157,7 +156,8 @@ public class StaffUI {
                 System.out.println("Invalid input!");
                 break;
             }
-        }
+
+        return result;
     }
 
     public static void menu_ViewMyCamps() {
@@ -481,12 +481,12 @@ public class StaffUI {
     }
 
     public static void menu_GenerateReport() {
+
         int option;
         while (true) {
-            System.out.println("How do you want the list of attendees to be displayed?");
-            System.out.println("1: Attendees first");
-            System.out.println("2: Commiteee first");
-            System.out.println("Select how you want the list of attendees to be displayed...");
+            System.out.println("Select how you want the report to be generated...");
+            System.out.println("1: Report for all camps created");
+            System.out.println("2: Filter camps to generate report");
             System.out.println("Enter 0 to go back...");
 
             option = InputHandler.nextInt();
@@ -499,7 +499,47 @@ public class StaffUI {
                 return;
             break;
         }
-        ReportController.generateReport(option, "StaffReport.txt");
+
+        int sortBy;
+        while (true) {
+            System.out.println("How do you want the list of attendees to be displayed?");
+            System.out.println("1: Attendees first");
+            System.out.println("2: Commiteee first");
+            System.out.println("Select how you want the list of attendees to be displayed...");
+
+            sortBy = InputHandler.nextInt();
+
+            if (sortBy <= 0 || sortBy > 2) {
+                System.out.println("Inavlid input!");
+                continue;
+            }
+            break;
+        }
+        
+        ArrayList<Camp> campsList = null;
+        if(option == 1){
+            
+            try{
+                campsList = CampController.getCreatedCamps();
+            }catch (Exception e) {
+                System.out.println("You have no created camps!");
+                System.out.println(e.getMessage());
+                return;
+            }
+        }
+        
+        if(option == 2){
+            campsList = menu_SearchForCamp();
+            if(campsList == null || campsList.size()==0){
+                System.out.println("There are no such camps!");
+                return;
+            } 
+        }
+
+        for(Camp camp : campsList){
+            ReportController.generateReport(camp, sortBy, "StaffReport.txt", true);
+        }
+
         System.out.println("SUCCESS: Report saved to 'StaffReport.txt'");
     }
 
