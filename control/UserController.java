@@ -4,13 +4,15 @@ import app.SessionInfo;
 import entity.User;
 
 /**
- * Static class for handling the {@code login}, {@code logout} and {@code changePassword} for {@link User}
+ * Static class for handling the {@code login}, {@code logout} and
+ * {@code changePassword} for {@link User}
  */
 public class UserController {
 
     /**
      * Verifies the {@code USERID} and {@code password} are correct
      * Logs in the user by setting {@link SessionInfo}
+     * 
      * @param userID
      * @param password
      */
@@ -34,14 +36,16 @@ public class UserController {
 
     /**
      * Changes password of the user
+     * 
      * @param newPassword
      */
     public static void changePassword(String newPassword) {
-        SessionInfo.getUser().changepassword(newPassword);
+        SessionInfo.getUser().changePassword(newPassword);
     }
 
     /**
      * Ensures the current {@link User} is of a certain type
+     * 
      * @param clist the {@link User} type
      * @throws Exception if current user is not of the {@link User} type passed in
      */
