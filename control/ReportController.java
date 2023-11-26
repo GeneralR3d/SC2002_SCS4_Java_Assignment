@@ -124,6 +124,7 @@ public class ReportController {
     }
 
     /**
+     * Helper method
      * Sorts in place, an {@link java.util.ArrayList} of {@link CommitteeMember} according to the number of points they have.
      * <div> Sorts in descending order, the {@link CommitteeMember} with most points will appear in front
      * @param arr the {@link java.util.ArrayList} of {@link CommitteeMember} to be sorted

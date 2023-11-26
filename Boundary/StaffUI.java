@@ -3,6 +3,7 @@ package boundary;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import app.SessionInfo;
 import control.CampController;
 import control.EnquiryController;
 import control.ReportController;
@@ -361,9 +362,6 @@ public class StaffUI {
         }
     }
 
-    public static void menu_GenerateReport(Camp camp) {
-
-    }
 
     public static void menu_EditCreatedCamp(Camp camp) {
         String name = camp.getName(), location = camp.getLocation(), description = camp.getDescription();
@@ -542,6 +540,9 @@ public class StaffUI {
             if (campsList == null || campsList.size() == 0) {
                 System.out.println("There are no such camps!");
                 return;
+            }
+            for(Camp camp: campsList){
+                if(camp.getStaffInCharge()!=SessionInfo.getUser()) campsList.remove(camp);
             }
         }
 
