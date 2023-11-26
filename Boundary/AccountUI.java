@@ -3,8 +3,8 @@ package boundary;
 import app.SessionInfo;
 import control.DataController;
 import control.UserController;
+import entity.User;
 import handler.InputHandler;
-import entity.*;
 
 public class AccountUI {
     public static void loginMenu() {

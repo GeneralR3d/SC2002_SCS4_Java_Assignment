@@ -3,7 +3,14 @@ package control;
 import java.util.ArrayList;
 
 import app.SessionInfo;
-import entity.*;
+import entity.Camp;
+import entity.CommitteeMember;
+import entity.Enquiry;
+import entity.Reply;
+import entity.Staff;
+import entity.Student;
+import entity.User;
+
 
 public class EnquiryController {
 

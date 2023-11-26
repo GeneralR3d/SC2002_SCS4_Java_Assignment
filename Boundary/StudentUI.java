@@ -1,7 +1,6 @@
 package boundary;
 
-import control.*;
-import entity.*;
+
 import handler.DisplayHandler;
 import handler.InputHandler;
 
@@ -9,6 +8,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import app.SessionInfo;
+import control.CampController;
+import control.EnquiryController;
+import control.SearchController;
+import entity.Camp;
+import entity.CommitteeMember;
+import entity.Enquiry;
 
 public class StudentUI {
     public static void displayMenu() {

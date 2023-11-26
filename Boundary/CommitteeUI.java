@@ -3,15 +3,15 @@ package boundary;
 import handler.DisplayHandler;
 import handler.InputHandler;
 
-import entity.*;
+
 import control.EnquiryController;
 import control.ReportController;
 import control.SuggestionController;
+import entity.Camp;
+import entity.CommitteeMember;
+import entity.Enquiry;
+import entity.Suggestion;
 
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import app.SessionInfo;

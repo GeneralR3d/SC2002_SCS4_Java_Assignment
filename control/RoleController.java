@@ -1,7 +1,10 @@
 package control;
 
 import app.SessionInfo;
-import entity.*;
+import entity.Camp;
+import entity.CommitteeMember;
+import entity.Student;
+
 
 public class RoleController {
 
