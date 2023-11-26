@@ -31,30 +31,30 @@ public class StaffUI {
             System.out.println("Please select an option...");
             int choice = InputHandler.nextInt();
             switch (choice) {
-            case 1: // View All Camps
-                menu_ViewCamps(CampController.getAvailableCamps());
-                break;
-            case 2:
-                menu_SearchForCamp();
-                break;
-            case 3: // View Created Camps
-                menu_ViewMyCamps();
-                break;
-            case 4: // View Created Camps
-                menu_GenerateReport();
-                break;
-            case 5: // Create New Camp
-                menu_CreateNewCamp();
-                break;
-            case 6: // Change Password
-                AccountUI.changePasswordMenu();
-                return;
-            case 7: // Logout
-                AccountUI.logout();
-                return;
-            default:
-                System.out.println("Invalid Input");
-                break;
+                case 1: // View All Camps
+                    menu_ViewCamps(CampController.getAvailableCamps());
+                    break;
+                case 2:
+                    menu_SearchForCamp();
+                    break;
+                case 3: // View Created Camps
+                    menu_ViewMyCamps();
+                    break;
+                case 4: // View Created Camps
+                    menu_GenerateReport();
+                    break;
+                case 5: // Create New Camp
+                    menu_CreateNewCamp();
+                    break;
+                case 6: // Change Password
+                    AccountUI.changePasswordMenu();
+                    return;
+                case 7: // Logout
+                    AccountUI.logout();
+                    return;
+                default:
+                    System.out.println("Invalid Input");
+                    break;
             }
         }
     }
@@ -89,21 +89,21 @@ public class StaffUI {
 
     private static ArrayList<Camp> menu_SearchForCamp() {
 
-            System.out.println();
-            System.out.println("1. Camp name");
-            System.out.println("2. Camp start date");
-            System.out.println("3. Camp end date");
-            System.out.println("4. Camp faculty");
-            System.out.println("5. Camp location");
-            System.out.println("6. Attendee");
-            System.out.println("7. Committee member");
-            System.out.println("Select attribute to search by....");
-            System.out.println("Enter 0 to go back...");
+        System.out.println();
+        System.out.println("1. Camp name");
+        System.out.println("2. Camp start date");
+        System.out.println("3. Camp end date");
+        System.out.println("4. Camp faculty");
+        System.out.println("5. Camp location");
+        System.out.println("6. Attendee");
+        System.out.println("7. Committee member");
+        System.out.println("Select attribute to search by....");
+        System.out.println("Enter 0 to go back...");
 
-            int option = InputHandler.nextInt();
+        int option = InputHandler.nextInt();
 
-            ArrayList<Camp> result = null;
-            switch (option) {
+        ArrayList<Camp> result = null;
+        switch (option) {
             case 0:
                 return null;
             case 1:
@@ -155,7 +155,7 @@ public class StaffUI {
             default:
                 System.out.println("Invalid input!");
                 break;
-            }
+        }
 
         return result;
     }
@@ -210,34 +210,34 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-            case 1:
-                menu_ViewSignUps(camp);
-                break;
-            case 2: // View Enquiries
-                menu_ViewEnquiries(camp);
-                break;
-            case 3: // View Suggestions
-                menu_ViewSuggestions(camp);
-                break;
-            case 4: // Edit Camp
-                menu_EditCreatedCamp(camp);
-                break;
-            case 5: // Delete Camp
-                System.out.println("WARNING: This action CANNOT be undone");
-                System.out.println("Enter CONFIRM to confirm deletion of this camp...");
-                System.out.println("Enter any key to go back...");
-                if (InputHandler.nextLine().equals("CONFIRM"))
-                    try {
-                        CampController.deleteCamp(camp);
-                        System.out.println("SUCCESS: Camp has been deleted!");
-                        return;
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                break;
-            default:
-                System.out.println("Invalid Input");
-                break;
+                case 1:
+                    menu_ViewSignUps(camp);
+                    break;
+                case 2: // View Enquiries
+                    menu_ViewEnquiries(camp);
+                    break;
+                case 3: // View Suggestions
+                    menu_ViewSuggestions(camp);
+                    break;
+                case 4: // Edit Camp
+                    menu_EditCreatedCamp(camp);
+                    break;
+                case 5: // Delete Camp
+                    System.out.println("WARNING: This action CANNOT be undone");
+                    System.out.println("Enter CONFIRM to confirm deletion of this camp...");
+                    System.out.println("Enter any key to go back...");
+                    if (InputHandler.nextLine().equals("CONFIRM"))
+                        try {
+                            CampController.deleteCamp(camp);
+                            System.out.println("SUCCESS: Camp has been deleted!");
+                            return;
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+                    break;
             }
         }
     }
@@ -338,27 +338,27 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-            case 1: // Approve
-                try {
-                    SuggestionController.approve(suggestion);
-                    System.out.println("SUCCESS: Suggestion has been approved!");
-                    return;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case 2: // Reject
-                try {
-                    SuggestionController.reject(suggestion);
-                    System.out.println("SUCCESS: Suggestion has been rejected!");
-                    return;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("Invalid Input");
-                break;
+                case 1: // Approve
+                    try {
+                        SuggestionController.approve(suggestion);
+                        System.out.println("SUCCESS: Suggestion has been approved!");
+                        return;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 2: // Reject
+                    try {
+                        SuggestionController.reject(suggestion);
+                        System.out.println("SUCCESS: Suggestion has been rejected!");
+                        return;
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid Input");
+                    break;
             }
         }
     }
@@ -376,15 +376,24 @@ public class StaffUI {
         while (true) {
             System.out.println();
             System.out.println("1.  " + (name == camp.getName() ? "" : "*") + "Edit Name" + " (" + name + ")");
-            System.out.println("2.  " + (startDate == camp.getStartDate() ? "" : "*") + "Edit Start Date" + " (" + startDate + ")");
-            System.out.println("3.  " + (endDate == camp.getEndDate() ? "" : "*") + "Edit End Date" + " (" + endDate + ")");
-            System.out.println("4.  " + (regCloseDate == camp.getRegCloseDate() ? "" : "*") + "Edit Registration Closing Date" + " (" + regCloseDate + ")");
-            System.out.println("5.  " + (openToFaculty == camp.getOpenToFaculty() ? "" : "*") + "Edit Faculty" + " (" + openToFaculty.toString() + ")");
-            System.out.println("6.  " + (location == camp.getLocation() ? "" : "*") + "Edit Location" + " (" + location + ")");
-            System.out.println("7.  " + (totalSlots == camp.getTotalSlotsLeft() ? "" : "*") + "Edit Total Slots" + " (" + totalSlots + ")");
-            System.out.println("8.  " + (commSlots == camp.getCommSlotsLeft() ? "" : "*") + "Edit Camp Committee Slots" + " (" + commSlots + ")");
-            System.out.println("9.  " + (description == camp.getDescription() ? "" : "*") + "Edit Description" + " (" + description + ")");
-            System.out.println("10. " + (visibleToStudents == camp.isVisibleToStudents() ? "" : "*") + "Toggle Visibility On / Off" + " (" + (visibleToStudents ? "On" : "Off") + ")");
+            System.out.println("2.  " + (startDate == camp.getStartDate() ? "" : "*") + "Edit Start Date" + " ("
+                    + startDate + ")");
+            System.out.println(
+                    "3.  " + (endDate == camp.getEndDate() ? "" : "*") + "Edit End Date" + " (" + endDate + ")");
+            System.out.println("4.  " + (regCloseDate == camp.getRegCloseDate() ? "" : "*")
+                    + "Edit Registration Closing Date" + " (" + regCloseDate + ")");
+            System.out.println("5.  " + (openToFaculty == camp.getOpenToFaculty() ? "" : "*") + "Edit Faculty" + " ("
+                    + openToFaculty.toString() + ")");
+            System.out.println(
+                    "6.  " + (location == camp.getLocation() ? "" : "*") + "Edit Location" + " (" + location + ")");
+            System.out.println("7.  " + (totalSlots == camp.getTotalSlotsLeft() ? "" : "*") + "Edit Total Slots" + " ("
+                    + totalSlots + ")");
+            System.out.println("8.  " + (commSlots == camp.getCommSlotsLeft() ? "" : "*") + "Edit Camp Committee Slots"
+                    + " (" + commSlots + ")");
+            System.out.println("9.  " + (description == camp.getDescription() ? "" : "*") + "Edit Description" + " ("
+                    + description + ")");
+            System.out.println("10. " + (visibleToStudents == camp.isVisibleToStudents() ? "" : "*")
+                    + "Toggle Visibility On / Off" + " (" + (visibleToStudents ? "On" : "Off") + ")");
             System.out.println("11. Apply Changes");
             System.out.println("Select an attribute to edit it...");
             System.out.println("Enter 0 to go back (WITHOUT saving)...");
@@ -392,90 +401,92 @@ public class StaffUI {
             if (choice == 0)
                 break;
             switch (choice) {
-            case 1: // Edit Name
-                System.out.println("Name:");
-                name = InputHandler.nextLine();
-                break;
-            case 2: // Edit Start Date
-                do {
-                    System.out.println("Start Date (YYYY-MM-DD):");
-                    startDate = InputHandler.nextDate();
-                    if (startDate.isAfter(endDate))
-                        System.out.println("Start Date cannot be after End Date!");
-                } while (startDate.isAfter(endDate));
-                break;
-            case 3: // Edit End Date
-                do {
-                    System.out.println("End Date (YYYY-MM-DD):");
-                    endDate = InputHandler.nextDate();
-                    if (endDate.isBefore(startDate))
-                        System.out.println("End Date cannot be before Start Date!");
-                } while (endDate.isBefore(startDate));
-                break;
-            case 4: // Edit Registration Closing Date
-                do {
-                    System.out.println("Registration Closing Date (YYYY-MM-DD):");
-                    regCloseDate = InputHandler.nextDate();
-                    if (!regCloseDate.isBefore(startDate))
-                        System.out.println("Registration Closing Date must be before Start Date!");
-                } while (!regCloseDate.isBefore(startDate));
-                break;
-            case 5: // Edit Faculty
-                int i;
-                while (true) {
-                    System.out.println("Faculty:");
-                    for (Faculty f : Faculty.values())
-                        System.out.println((f.ordinal() + 1) + ". " + f);
-                    i = InputHandler.nextInt();
-                    if (i <= 0 || i > Faculty.values().length) {
-                        System.out.println("Invalid Input");
-                        continue;
+                case 1: // Edit Name
+                    System.out.println("Name:");
+                    name = InputHandler.nextLine();
+                    break;
+                case 2: // Edit Start Date
+                    do {
+                        System.out.println("Start Date (YYYY-MM-DD):");
+                        startDate = InputHandler.nextDate();
+                        if (startDate.isAfter(endDate))
+                            System.out.println("Start Date cannot be after End Date!");
+                    } while (startDate.isAfter(endDate));
+                    break;
+                case 3: // Edit End Date
+                    do {
+                        System.out.println("End Date (YYYY-MM-DD):");
+                        endDate = InputHandler.nextDate();
+                        if (endDate.isBefore(startDate))
+                            System.out.println("End Date cannot be before Start Date!");
+                    } while (endDate.isBefore(startDate));
+                    break;
+                case 4: // Edit Registration Closing Date
+                    do {
+                        System.out.println("Registration Closing Date (YYYY-MM-DD):");
+                        regCloseDate = InputHandler.nextDate();
+                        if (!regCloseDate.isBefore(startDate))
+                            System.out.println("Registration Closing Date must be before Start Date!");
+                    } while (!regCloseDate.isBefore(startDate));
+                    break;
+                case 5: // Edit Faculty
+                    int i;
+                    while (true) {
+                        System.out.println("Faculty:");
+                        for (Faculty f : Faculty.values())
+                            System.out.println((f.ordinal() + 1) + ". " + f);
+                        i = InputHandler.nextInt();
+                        if (i <= 0 || i > Faculty.values().length) {
+                            System.out.println("Invalid Input");
+                            continue;
+                        }
+                        break;
+                    }
+                    openToFaculty = Faculty.values()[i - 1];
+                    break;
+                case 6: // Edit Location
+                    System.out.println("Location:");
+                    location = InputHandler.nextLine();
+                    break;
+                case 7: // Edit Total Slots
+                    do {
+                        System.out.println("Total Slots:");
+                        totalSlots = InputHandler.nextInt();
+                        if (totalSlots < 0)
+                            System.out.println("Total Slots cannot be less than 0!");
+                    } while (totalSlots < 0);
+                    break;
+                case 8: // Edit Camp Committee Slots
+                    do {
+                        System.out.println("Committee Member Slots:");
+                        commSlots = InputHandler.nextInt();
+                        if (commSlots < 0)
+                            System.out.println("Committee Member Slots cannot be less than 0!");
+                        if (commSlots > 10)
+                            System.out.println("Committee Member Slots cannot be more than 10!");
+                        if (commSlots > totalSlots)
+                            System.out.println("Committee Member Slots cannot be more than Total Slots!");
+                    } while (commSlots < 0 || commSlots > 10 || commSlots > totalSlots);
+                    break;
+                case 9: // Edit Description
+                    System.out.println("Description:");
+                    description = InputHandler.nextLine();
+                    break;
+                case 10: // Toggle Visibility On / Off
+                    visibleToStudents = visibleToStudents ? false : true;
+                    break;
+                case 11: // Apply Changes
+                    try {
+                        CampController.editCamp(camp, name, startDate, endDate, regCloseDate, openToFaculty, location,
+                                totalSlots, commSlots, description, visibleToStudents);
+                        System.out.println("Changes saved successfully!");
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
-                }
-                openToFaculty = Faculty.values()[i - 1];
-                break;
-            case 6: // Edit Location
-                System.out.println("Location:");
-                location = InputHandler.nextLine();
-                break;
-            case 7: // Edit Total Slots
-                do {
-                    System.out.println("Total Slots:");
-                    totalSlots = InputHandler.nextInt();
-                    if (totalSlots < 0)
-                        System.out.println("Total Slots cannot be less than 0!");
-                } while (totalSlots < 0);
-                break;
-            case 8: // Edit Camp Committee Slots
-                do {
-                    System.out.println("Committee Member Slots:");
-                    commSlots = InputHandler.nextInt();
-                    if (commSlots < 0)
-                        System.out.println("Committee Member Slots cannot be less than 0!");
-                    if (commSlots > 10)
-                        System.out.println("Committee Member Slots cannot be more than 10!");
-                    if (commSlots > totalSlots)
-                        System.out.println("Committee Member Slots cannot be more than Total Slots!");
-                } while (commSlots < 0 || commSlots > 10 || commSlots > totalSlots);
-                break;
-            case 9: // Edit Description
-                System.out.println("Description:");
-                description = InputHandler.nextLine();
-                break;
-            case 10: // Toggle Visibility On / Off
-                visibleToStudents = visibleToStudents ? false : true;
-                break;
-            case 11: // Apply Changes
-                try {
-                    CampController.editCamp(camp, name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents);
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            default:
-                System.out.println("Invalid Input");
-                break;
+                default:
+                    System.out.println("Invalid Input");
+                    break;
             }
         }
     }
@@ -515,28 +526,28 @@ public class StaffUI {
             }
             break;
         }
-        
+
         ArrayList<Camp> campsList = null;
-        if(option == 1){
-            
-            try{
+        if (option == 1) {
+
+            try {
                 campsList = CampController.getCreatedCamps();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("You have no created camps!");
                 System.out.println(e.getMessage());
                 return;
             }
         }
-        
-        if(option == 2){
+
+        if (option == 2) {
             campsList = menu_SearchForCamp();
-            if(campsList == null || campsList.size()==0){
+            if (campsList == null || campsList.size() == 0) {
                 System.out.println("There are no such camps!");
                 return;
-            } 
+            }
         }
 
-        for(Camp camp : campsList){
+        for (Camp camp : campsList) {
             ReportController.generateReport(camp, sortBy, "StaffReport.txt", true);
         }
 
@@ -637,7 +648,8 @@ public class StaffUI {
         System.out.println("SUCCESS: Camp has been successfully created");
         // Create Camp
         try {
-            CampController.createCamp(name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots, commSlots, description, visibleToStudents);
+            CampController.createCamp(name, startDate, endDate, regCloseDate, openToFaculty, location, totalSlots,
+                    commSlots, description, visibleToStudents);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

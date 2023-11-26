@@ -33,6 +33,10 @@ public class CampController {
             Faculty openToFaculty, String location, int totalSlots, int commSlots, String description,
             boolean visibleToStudents) throws Exception {
         UserController.assertUserType(Staff.class);
+        if (visibleToStudents == false) {
+            if (camp.getAttendees().size() != 0 || camp.getCommittee().size() != 0)
+                throw new Exception("Visibility cannot be turned to false as there have already been signups!");
+        }
         camp.setName(name);
         camp.setStartDate(startDate);
         camp.setEndDate(endDate);
