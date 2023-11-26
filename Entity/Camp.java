@@ -282,8 +282,8 @@ public class Camp {
 
 	/**
 	 * Accessor method
-	 *
-	 * @return {@link java.util.ArrayList} the list of suggestions of a camp
+	 * Returns a list of blacklisted students who have previous registered for a camp but withdrew
+	 * @return {@link java.util.ArrayList} 
 	 */
 	public ArrayList<Student> getBlacklist() {
 		return this.blacklist;

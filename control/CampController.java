@@ -46,6 +46,14 @@ public class CampController {
         camp.setTotalSlotsLeft(totalSlots);
         camp.setComSlotsLeft(commSlots);
         camp.setDescription(description);
+
+        if(visibleToStudents == false){
+            // check if thr r any attendees/comm in deletingCamp
+            int numAttendees = camp.getAttendees().size();
+            int numCommMembers = camp.getCommittee().size();
+            if (numAttendees != 0 || numCommMembers != 0)
+                throw new Exception("Camp cannot be turned off as there have already been signups!");
+        }   
         camp.setVisibleToStudents(visibleToStudents);
     }
 
