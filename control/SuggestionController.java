@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import app.SessionInfo;
 import entity.Camp;
 import entity.CommitteeMember;
-import entity.Staff;
 import entity.Suggestion;
 import entity.User;
 
 /**
- * Static control class for interfacing with all UI classes and handling requests regarding{@link Suggestion}
+ * Static control class for interfacing with all UI classes and handling
+ * requests regarding{@link Suggestion}
  * <p>
  * These include:<br>
  * 1) Creation, edit and deletion of {@link Suggestion}<br>
@@ -22,6 +22,7 @@ public class SuggestionController {
   /**
    * Creates a {@link Suggestion} for a {@link Camp}
    * Only {@link CommitteeMember} can create suggestion
+   * 
    * @param camp
    * @param content of the suggestion
    */
@@ -34,7 +35,9 @@ public class SuggestionController {
   }
 
   /**
-   * Deletes the suggestion if not processed ie, {@code APPROVED} or {@code REJECTED}
+   * Deletes the suggestion if not processed ie, {@code APPROVED} or
+   * {@code REJECTED}
+   * 
    * @param camp
    * @param suggestion
    * @throws Exception if the suggestion has already been processed
@@ -51,8 +54,9 @@ public class SuggestionController {
 
   /**
    * Edits a suggestion if not processed ie, {@code APPROVED} or {@code REJECTED}
+   * 
    * @param suggestion
-   * @param content new content as {@link String}
+   * @param content    new content as {@link String}
    * @throws Exception if the suggestion has already been processed
    */
   public static void edit(Suggestion suggestion, String content) throws Exception {
@@ -63,7 +67,9 @@ public class SuggestionController {
   }
 
   /**
-   * Allows {@link entity.Staff} to approve a {@link Suggestion} made by a {@link CommitteeMember}
+   * Allows {@link entity.Staff} to approve a {@link Suggestion} made by a
+   * {@link CommitteeMember}
+   * 
    * @param suggestion
    * @throws Exception if the suggestion has already been processed
    */
@@ -75,8 +81,10 @@ public class SuggestionController {
     suggestion.getOwner().addPoint();
   }
 
-    /**
-   * Allows {@link entity.Staff} to reject a {@link Suggestion} made by a {@link CommitteeMember}
+  /**
+   * Allows {@link entity.Staff} to reject a {@link Suggestion} made by a
+   * {@link CommitteeMember}
+   * 
    * @param suggestion
    * @throws Exception if the suggestion has already been processed
    */
@@ -88,7 +96,9 @@ public class SuggestionController {
   }
 
   /**
-   * Returns a list of {@link entity.Suggestion} which the current {@link CommitteeMember} is the owner of
+   * Returns a list of {@link entity.Suggestion} which the current
+   * {@link CommitteeMember} is the owner of
+   * 
    * @param camp
    * @return suggestions of type {@link java.util.ArrayList}
    */

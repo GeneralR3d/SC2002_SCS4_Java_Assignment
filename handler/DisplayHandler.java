@@ -6,14 +6,16 @@ import entity.*;
 
 /**
  * Handles the displaying and printing of information onto the terminal.
- * <div>Contains a series of overloaded methods called {@code displayResult}</div>
- * 
+ * <div>Contains a series of overloaded methods called
+ * {@code displayResult}</div>
+ *
  */
 public class DisplayHandler {
 
     /**
      * Displays all details regarding a camp
      * Used by staff or commitee members
+     *
      * @param camp {@link Camp}
      */
     // display individual camps
@@ -31,10 +33,11 @@ public class DisplayHandler {
         System.out.println("Staff in charge: " + camp.getStaffInCharge().getName());
     }
 
-    
-    /** 
+    /**
      * Does not display all information of the camp
-     * <div>Mainly used to display basic information for non-owners of a camp to see</div>
+     * <div>Mainly used to display basic information for non-owners of a camp to
+     * see</div>
+     *
      * @param camps an {@link java.util.ArrayList}
      */
     // display available camps
@@ -48,7 +51,11 @@ public class DisplayHandler {
             System.out.print((i + 1) + ":");
             System.out.println("\tCamp name: " + camps.get(i).getName());
             System.out.println("\tDescription: " + camps.get(i).getDescription());
+            System.out.println("\tOpen To: " + camps.get(i).getOpenToFaculty());
             System.out.println("\tFrom: " + camps.get(i).getStartDate() + " to " + camps.get(i).getEndDate());
+            System.out.println("\tRegister By: " + camps.get(i).getRegCloseDate());
+            System.out.println("\tLocation: " + camps.get(i).getLocation());
+            System.out.println("\tStaff In Charge: " + camps.get(i).getStaffInCharge());
             System.out.println("\tSlots Left: " + camps.get(i).getTotalSlotsLeft());
             System.out.println("\t- Attendees: " + camps.get(i).getAttendeeSlotsLeft());
             System.out.println("\t- Committee: " + camps.get(i).getCommSlotsLeft());
@@ -56,13 +63,14 @@ public class DisplayHandler {
         }
     }
 
-    
-    /** 
-     * Displays a list of camps a certain user has signed up for, as well as his/her role 
+    /**
+     * Displays a list of camps a certain user has signed up for, as well as his/her
+     * role
      * <div>Role either as:
      * Committee Member or Attendee</div>
-     * @param camps an {@link java.util.ArrayList}
-     * @param currUser the {@link User} 
+     *
+     * @param camps    an {@link java.util.ArrayList}
+     * @param currUser the {@link User}
      */
     // display signed up camps
     public static void displayResult(ArrayList<Camp> camps, User currUser) {
@@ -79,9 +87,9 @@ public class DisplayHandler {
         }
     }
 
-    
-    /** 
+    /**
      * Displays a list of camps a certain staff has created
+     *
      * @param staff
      */
     // display created camps for staff
@@ -93,10 +101,11 @@ public class DisplayHandler {
         }
     }
 
-    
-    /** 
+    /**
      * Displays information about a single enquiry.
-     * <div>This includes the original content of that enquiry as well as replies, if there are any.</div>
+     * <div>This includes the original content of that enquiry as well as replies,
+     * if there are any.</div>
+     *
      * @param enquiry
      */
     public static void displayResult(Enquiry enquiry) {
@@ -110,9 +119,10 @@ public class DisplayHandler {
         }
     }
 
-    
-    /** 
-     * Displays information about a single suggestion, as well as its {@link Status}, whether it has been approved, rejected or pending
+    /**
+     * Displays information about a single suggestion, as well as its
+     * {@link Status}, whether it has been approved, rejected or pending
+     *
      * @param suggestion
      */
     public static void displayResult(Suggestion suggestion) {
@@ -120,11 +130,12 @@ public class DisplayHandler {
         System.out.println("Status: " + suggestion.getStatus());
     }
 
-    
-    /** 
+    /**
      * Displays a list of signups from a particular camp.
-     * <div>The signups are split into a list of committee members and attendees.</div>
-     * @param students an {@link java.util.ArrayList}
+     * <div>The signups are split into a list of committee members and
+     * attendees.</div>
+     *
+     * @param students    an {@link java.util.ArrayList}
      * @param commMembers an {@link java.util.ArrayList}
      */
     public static void displayResult(ArrayList<Student> students, ArrayList<CommitteeMember> commMembers) {
