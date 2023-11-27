@@ -712,7 +712,7 @@ public class StaffUI {
             System.out.println("Total Slots:");
             totalSlots = InputHandler.nextInt();
             if (totalSlots <= 0) {
-                System.out.println("Total Slots cannot be less than 0!");
+                System.out.println("Total Slots cannot be less than 1!");
                 continue;
             }
             // Committee Member Slots
@@ -727,7 +727,7 @@ public class StaffUI {
                 continue;
             }
             if (commSlots <= 0) {
-                System.out.println("Total Slots cannot be less than 0!");
+                System.out.println("Committee Member Slots cannot be less than 1!");
                 continue;
             }
             break;
