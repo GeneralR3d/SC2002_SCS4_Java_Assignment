@@ -31,6 +31,7 @@ public class StaffUI {
     public static void displayMenu() {
         while (true) {
             System.out.println();
+            System.out.println("Welcome to the Camp Application and Management System (CAMS)!");
             System.out.println("1. View All Camps");
             System.out.println("2. Search For Camp");
             System.out.println("3. View My Camps");
@@ -70,7 +71,9 @@ public class StaffUI {
     }
 
     /**
-     * Displays a list of {@link Camp}s and allows the user to select camps to navigate into each {@link Camp} to see more details
+     * Displays a list of {@link Camp}s and allows the user to select camps to
+     * navigate into each {@link Camp} to see more details
+     * 
      * @param camps {@link java.util.ArrayList}
      */
     public static void menu_ViewCamps(ArrayList<Camp> camps) {
@@ -99,7 +102,8 @@ public class StaffUI {
     }
 
     /**
-     * Filters a camp by certain attributes and displays the search results through {@link StaffUI#menu_ViewCamps(ArrayList)}
+     * Filters a camp by certain attributes and displays the search results through
+     * {@link StaffUI#menu_ViewCamps(ArrayList)}
      * <div>returns an {@link java.util.ArrayList} of {@link Camp}</div>
      * <div>Attributes</div>
      * <ul>
@@ -112,6 +116,7 @@ public class StaffUI {
      * <li>A certain Committee member
      * </ul>
      * <div>Calls {@link SearchController} methods for filtering</div>
+     * 
      * @return camps {@link java.util.ArrayList}
      */
     private static ArrayList<Camp> menu_SearchForCamp() {
@@ -189,7 +194,8 @@ public class StaffUI {
 
     /**
      * Allows {@link Staff} to see list of {@link Camp}s created
-     * Allows navigation into each {@link Camp} to see more options via {@link StaffUI#menu_ManageMyCamp(Camp)}
+     * Allows navigation into each {@link Camp} to see more options via
+     * {@link StaffUI#menu_ManageMyCamp(Camp)}
      */
     public static void menu_ViewMyCamps() {
         // get created camps
@@ -226,11 +232,16 @@ public class StaffUI {
 
     /**
      * Displays more options for a {@link Staff} to see more about the {@link Camp}
-     * <div>Calls {@link StaffUI#menu_ViewSignUps(Camp)} to see all the signups</div>
-     * <div>Calls {@link StaffUI#menu_ViewEnquiries(Camp)} to see all {@link Enquiry}s</div>
-     * <div>Calls {@link StaffUI#menu_ViewSuggestions(Camp)} to see all {@link Suggestion}s</div>
-     * <div>Calls {@link StaffUI#menu_EditMyCamp(Camp)} to edit an existing {@link Camp}</div>
+     * <div>Calls {@link StaffUI#menu_ViewSignUps(Camp)} to see all the
+     * signups</div>
+     * <div>Calls {@link StaffUI#menu_ViewEnquiries(Camp)} to see all
+     * {@link Enquiry}s</div>
+     * <div>Calls {@link StaffUI#menu_ViewSuggestions(Camp)} to see all
+     * {@link Suggestion}s</div>
+     * <div>Calls {@link StaffUI#menu_EditMyCamp(Camp)} to edit an existing
+     * {@link Camp}</div>
      * Allows for deletion of {@link Camp}
+     * 
      * @param camp camp created by current user
      */
     public static void menu_ManageMyCamp(Camp camp) {
@@ -280,7 +291,9 @@ public class StaffUI {
     }
 
     /**
-     * Displays all attendees and committee member of a {@link Camp} as well as their roles
+     * Displays all attendees and committee member of a {@link Camp} as well as
+     * their roles
+     * 
      * @param camp
      */
     private static void menu_ViewSignUps(Camp camp) {
@@ -302,7 +315,9 @@ public class StaffUI {
 
     /**
      * Displays all {@link Enquiry}s of a {@link Camp}
-     * <div>Also allows user to reply to an {@link Enquiry} via {@link StaffUI#menu_AddReplyToEnquiry(Camp, Enquiry)}</div>
+     * <div>Also allows user to reply to an {@link Enquiry} via
+     * {@link StaffUI#menu_AddReplyToEnquiry(Camp, Enquiry)}</div>
+     * 
      * @param camp
      */
     public static void menu_ViewEnquiries(Camp camp) {
@@ -336,6 +351,7 @@ public class StaffUI {
 
     /**
      * Creates and adds {@link Reply} to an {@link Enquiry} from a {@link Camp}
+     * 
      * @param camp
      * @param enquiry
      */
@@ -356,7 +372,10 @@ public class StaffUI {
 
     /**
      * Displays all {@link Suggestion} of a {@link Camp}
-     * <div> Allows {@link Staff} to set status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED} via {@link StaffUI#menu_SetSuggestionStatus(Suggestion)}</div>
+     * <div> Allows {@link Staff} to set status of {@link Suggestion} to
+     * {@code APPROVED} or {@code REJECTED} via
+     * {@link StaffUI#menu_SetSuggestionStatus(Suggestion)}</div>
+     * 
      * @param camp
      */
     public static void menu_ViewSuggestions(Camp camp) {
@@ -383,6 +402,7 @@ public class StaffUI {
 
     /**
      * Sets status of {@link Suggestion} to {@code APPROVED} or {@code REJECTED}
+     * 
      * @param suggestion
      */
     public static void menu_SetSuggestionStatus(Suggestion suggestion) {
@@ -421,7 +441,6 @@ public class StaffUI {
         }
     }
 
-
     /**
      * Allows {@link Staff} to edit attributes of an existing {@link Camp}
      * <p>
@@ -438,7 +457,9 @@ public class StaffUI {
      * <li>commSlots
      * <li>visibleToStudents
      * </ul>
-     * <div> Gets new information but does not save, allows exit without saving</div>
+     * <div> Gets new information but does not save, allows exit without
+     * saving</div>
+     * 
      * @param camp
      */
     public static void menu_EditMyCamp(Camp camp) {
@@ -566,9 +587,12 @@ public class StaffUI {
     }
 
     /**
-     * Generates {@link Staff} report via {@link ReportController#generateReport(Camp, int, String, boolean)}
-     * <div> Allow {@link Staff} to select whether to generate report for all {@link Camp}s or filter some {@link Camp}s </div>
-     * <div> Allows {@link Staff} to select filter to choose the order which the attendees and committee appears </div>
+     * Generates {@link Staff} report via
+     * {@link ReportController#generateReport(Camp, int, String, boolean)}
+     * <div> Allow {@link Staff} to select whether to generate report for all
+     * {@link Camp}s or filter some {@link Camp}s </div>
+     * <div> Allows {@link Staff} to select filter to choose the order which the
+     * attendees and committee appears </div>
      * <div>Calls {@link StaffUI#menu_SearchForCamp()} to filter {@link Camp}</div>
      */
     public static void menu_GenerateReport() {
@@ -625,8 +649,9 @@ public class StaffUI {
                 System.out.println("There are no such camps!");
                 return;
             }
-            for(Camp camp: campsList){
-                if(camp.getStaffInCharge()!=SessionInfo.getUser()) campsList.remove(camp);
+            for (Camp camp : campsList) {
+                if (camp.getStaffInCharge() != SessionInfo.getUser())
+                    campsList.remove(camp);
             }
         }
 

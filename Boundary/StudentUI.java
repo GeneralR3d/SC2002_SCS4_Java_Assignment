@@ -28,6 +28,7 @@ public class StudentUI {
         while (true) {
             String userType = SessionInfo.getUserType();
             System.out.println();
+            System.out.println("Welcome to the Camp Application and Management System (CAMS)!");
             System.out.println("1. View open camps");
             System.out.println("2. Search for camps");
             System.out.println("3. See all registered camps");
@@ -83,7 +84,7 @@ public class StudentUI {
      * criteria to {@code SignUp}
      * <div> Allows {@link Student} to select more options regarding a {@link Camp}
      * via {@link StudentUI#menu_ViewCampOptions(Camp)}</div>
-     * 
+     *
      * @param openCamps
      */
     private static void menu_DisplayOpenCamps(ArrayList<Camp> openCamps) {
@@ -187,7 +188,7 @@ public class StudentUI {
      * Committee Member or Attendee</div>
      * <div> Calls {@link StudentUI#menu_ViewCampOptions(Camp)} to display more
      * options for a {@link Camp}</div>
-     * 
+     *
      * @param registeredCamps an {@link java.util.ArrayList}
      */
     private static void menu_DisplayRegisteredCamps(ArrayList<Camp> registeredCamps) {
@@ -317,7 +318,7 @@ public class StudentUI {
      * {@link DisplayHandler#displayResult(Enquiry)}</div>
      * <div>Allows {@link Student} to select more options via
      * {@link StudentUI#menu_ViewEnquiryOptions(Camp, Enquiry)}</div>
-     * 
+     *
      * @param camp
      */
     private static void menu_DisplayMyEnquiries(Camp camp) {
@@ -361,7 +362,7 @@ public class StudentUI {
      * {@link EnquiryController#delete(Camp, Enquiry)}
      * For {@link CommitteeMember} allows for {@code reply} of {@link Enquiry} via
      * {@link CommitteeUI#menu_ReplyEnquiry(Camp, Enquiry)}
-     * 
+     *
      * @param camp
      * @param enquiry
      */
